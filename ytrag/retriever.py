@@ -41,7 +41,16 @@ class BM25Retriever:
 
     def __init__(self, chunks: list[Chunk]):
         self.chunks = chunks
-        self.corpus_tokens = [simple_tokenize(c.text) for c in chunks]
+        cache_path = BASE_DIR / "data" / "bm25_tokens.pkl"
+        if cache_path.exists():
+            try:
+                import pickle
+                with open(cache_path, "rb") as f:
+                    self.corpus_tokens = pickle.load(f)
+            except Exception:
+                self.corpus_tokens = [simple_tokenize(c.text) for c in chunks]
+        else:
+            self.corpus_tokens = [simple_tokenize(c.text) for c in chunks]
         self.bm25 = BM25Okapi(self.corpus_tokens)
 
     def retrieve(self, query: str, k: int = 3) -> list[RetrievalResult]:
@@ -96,16 +105,22 @@ class DenseRetriever:
     def is_ready(self) -> bool:
         return self._ready and self.embeddings is not None
 
+    def _get_model(self):
+        if self.model is None:
+            try:
+                from sentence_transformers import SentenceTransformer
+                try:
+                    self.model = SentenceTransformer(self.model_name, local_files_only=True)
+                except Exception:
+                    self.model = SentenceTransformer(self.model_name)
+            except Exception as e:
+                print(f"[DenseRetriever] SentenceTransformer could not be loaded ({e}). BM25 fallback active.")
+                self.model = None
+        return self.model
+
     def load(self):
         if self._ready:
             return
-
-        from sentence_transformers import SentenceTransformer
-
-        try:
-            self.model = SentenceTransformer(self.model_name, local_files_only=True)
-        except Exception:
-            self.model = SentenceTransformer(self.model_name)
 
         chunk_signature = hashlib.sha256("".join(c.chunk_id for c in self.chunks).encode("utf-8")).hexdigest()[:16]
         filename = f"emb_{self.model_name.replace('/', '_')}_{len(self.chunks)}_{chunk_signature}.npy"
@@ -127,9 +142,11 @@ class DenseRetriever:
                 except Exception:
                     pass
 
-        if self.embeddings is None:
+        # Only if precomputed embeddings do not exist on disk, we load model to compute them
+        model = self._get_model()
+        if model is not None and self.embeddings is None:
             texts = [c.text for c in self.chunks]
-            self.embeddings = self.model.encode(
+            self.embeddings = model.encode(
                 texts,
                 batch_size=self.batch_size,
                 show_progress_bar=False,
@@ -148,11 +165,15 @@ class DenseRetriever:
         self._ready = True
 
     def retrieve(self, query: str, k: int = 3) -> list[RetrievalResult]:
-        if not self._ready or self.embeddings is None or self.model is None:
+        if not self._ready or self.embeddings is None:
+            return []
+
+        model = self._get_model()
+        if model is None:
             return []
 
         clean_query = normalize_dsa_text(query)
-        query_emb = self.model.encode(
+        query_emb = model.encode(
             [clean_query],
             show_progress_bar=False,
             normalize_embeddings=True,

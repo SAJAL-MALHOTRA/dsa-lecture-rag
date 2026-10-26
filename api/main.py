@@ -118,28 +118,43 @@ def resolve_default_provider() -> str:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     import asyncio
-    # Initialize index and DSA sheet on startup (instant)
-    chunks, raw_transcripts, videos_meta = load_corpus()
-    bm25 = BM25Retriever(chunks)
-    dense = DenseRetriever(chunks, model_name="all-MiniLM-L6-v2", lazy=True)
-    hybrid = HybridRetriever(bm25, dense)
-    segment_index = SegmentIndex(raw_transcripts, window=1)
-    summarizer = GroundedSummarizer()
+    # 1. Instantly load DSA Sheet index (< 0.05s) so core metadata is available immediately
     dsa_index = DSASheetIndex(DSA_SHEET_DIR)
-
-    state["chunks"] = chunks
-    state["hybrid"] = hybrid
-    state["segment_index"] = segment_index
-    state["videos_meta"] = videos_meta
-    state["summarizer"] = summarizer
     state["dsa_index"] = dsa_index
+    state["chunks"] = []
+    state["videos_meta"] = []
+    state["is_ready"] = False
+    ready_event = asyncio.Event()
+    state["ready_event"] = ready_event
 
-    # Warm up dense retriever in background so port binds instantly in < 1 second!
-    async def _warmup_dense():
+    # 2. Warm up heavy retrievers and SQLite corpus in background executor
+    # This guarantees the server binds to $PORT in < 0.1s so cloud health-checks succeed instantly!
+    async def _async_warmup():
         loop = asyncio.get_running_loop()
-        await loop.run_in_executor(None, dense.load)
+        def _sync_load():
+            chunks, raw_transcripts, videos_meta = load_corpus()
+            bm25 = BM25Retriever(chunks)
+            dense = DenseRetriever(chunks, model_name="all-MiniLM-L6-v2", lazy=True)
+            dense.load()
+            hybrid = HybridRetriever(bm25, dense)
+            segment_index = SegmentIndex(raw_transcripts, window=1)
+            summarizer = GroundedSummarizer()
+            return chunks, raw_transcripts, videos_meta, hybrid, segment_index, summarizer
 
-    asyncio.create_task(_warmup_dense())
+        try:
+            chunks, raw_transcripts, videos_meta, hybrid, segment_index, summarizer = await loop.run_in_executor(None, _sync_load)
+            state["chunks"] = chunks
+            state["hybrid"] = hybrid
+            state["segment_index"] = segment_index
+            state["videos_meta"] = videos_meta
+            state["summarizer"] = summarizer
+            state["is_ready"] = True
+            ready_event.set()
+            print(f"[FastAPI Lifespan] Corpus ({len(chunks)} chunks, {len(videos_meta)} videos) and retrievers initialized successfully!", flush=True)
+        except Exception as e:
+            print(f"[FastAPI Lifespan] Error during background index loading: {e}", file=sys.stderr, flush=True)
+
+    asyncio.create_task(_async_warmup())
     yield
     state.clear()
 
@@ -234,12 +249,27 @@ def _retrieve(query: str, k: int = 5) -> SearchResponse:
     if not query:
         return SearchResponse(query=query, total_found=0, results=[])
 
-    hybrid: HybridRetriever = state["hybrid"]
-    segment_index: SegmentIndex = state["segment_index"]
-    dsa_index: DSASheetIndex = state.get("dsa_index")
+    hybrid: Optional[HybridRetriever] = state.get("hybrid")
+    segment_index: Optional[SegmentIndex] = state.get("segment_index")
+    dsa_index: Optional[DSASheetIndex] = state.get("dsa_index")
 
     # HyDE expansion: bridges code-syntax & phonetic slang to Hinglish lecture speech
     expanded_query = expand_dsa_query(query)
+
+    # Fast fallback if background retriever indexing is still in progress
+    if not hybrid or not segment_index:
+        matched_dsa = None
+        if dsa_index:
+            sol, match_score = dsa_index.get_best_match(query)
+            if sol and match_score > 0.15:
+                matched_dsa = sol.to_dict()
+        return SearchResponse(
+            query=query,
+            total_found=0,
+            summary="Retriever indexes are warming up in the background. Full lecture moments will be searchable in a few moments.",
+            results=[],
+            dsa_snippet=matched_dsa,
+        )
 
     # 1. Relevance / Domain Gate
     bm25_top = hybrid.bm25.retrieve(expanded_query, k=1)
@@ -335,8 +365,10 @@ def get_health():
     except Exception:
         pass
 
+    is_ready = bool(state.get("is_ready", False))
     return {
-        "status": "healthy",
+        "status": "healthy" if is_ready else "warming_up",
+        "ready": is_ready,
         "videos_indexed": len(state.get("videos_meta", [])),
         "lecture_chunks": len(state.get("chunks", [])),
         "dsa_problems_indexed": len(dsa_index.solutions) if dsa_index else 0,
@@ -352,14 +384,22 @@ def get_corpus():
     return {
         "videos": state.get("videos_meta", []),
         "total_chunks": len(state.get("chunks", [])),
+        "ready": bool(state.get("is_ready", False)),
     }
 
 
 @app.get("/api/search", response_model=SearchResponse)
-def search_lectures(
+async def search_lectures(
     q: str = Query(..., description="Student doubt / technical query"),
     k: int = Query(5, description="Number of results to return"),
 ):
+    ev = state.get("ready_event")
+    if ev is not None and not ev.is_set():
+        import asyncio
+        try:
+            await asyncio.wait_for(ev.wait(), timeout=4.0)
+        except asyncio.TimeoutError:
+            pass
     return _retrieve(q, k)
 
 
