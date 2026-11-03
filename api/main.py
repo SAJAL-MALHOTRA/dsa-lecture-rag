@@ -166,8 +166,8 @@ class SearchResultItem(BaseModel):
     video_id: str
     video_title: str
     seek_sec: int
-    start_sec: int
-    end_sec: int
+    start_sec: float
+    end_sec: float
     timestamp_display: str
     snippet: str
     url: str
@@ -345,8 +345,8 @@ def _retrieve(query: str, k: int = 5) -> SearchResponse:
                 video_id=chunk.video_id,
                 video_title=chunk.video_title,
                 seek_sec=seek_sec,
-                start_sec=chunk.start_sec,
-                end_sec=chunk.end_sec,
+                start_sec=round(float(chunk.start_sec), 2),
+                end_sec=round(float(chunk.end_sec), 2),
                 timestamp_display=ts_str,
                 snippet=chunk.text,
                 url=f"https://www.youtube.com/watch?v={chunk.video_id}&t={seek_sec}s",
