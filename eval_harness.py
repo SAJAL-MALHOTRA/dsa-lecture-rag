@@ -208,6 +208,40 @@ def mcnemar_exact(b: int, c: int) -> float:
     return min(1.0, 2 * tail)
 
 
+def tost_paired(b: int, c: int, n_total: int, delta: float = 0.10) -> dict:
+    """Two One-Sided Tests (TOST) for paired proportion equivalence within margin +/- delta."""
+    diff = (b - c) / n_total if n_total > 0 else 0.0
+    se = math.sqrt(max(0.0, (b + c) - (b - c) ** 2 / n_total)) / n_total if n_total > 0 else 0.0
+    if se == 0:
+        eq = abs(diff) < delta
+        return {"diff": diff, "se": 0.0, "p_tost": 0.0 if eq else 1.0, "equivalent": eq, "delta": delta}
+    z1 = (diff + delta) / se
+    z2 = (diff - delta) / se
+    def norm_cdf(z: float) -> float:
+        return 0.5 * (1.0 + math.erf(z / math.sqrt(2.0)))
+    p1 = 1.0 - norm_cdf(z1)
+    p2 = norm_cdf(z2)
+    p_tost = max(p1, p2)
+    return {"diff": diff, "se": se, "z1": z1, "z2": z2, "p_tost": p_tost, "equivalent": p_tost < 0.05, "delta": delta}
+
+
+def bayesian_discordant(b: int, c: int, n_total: int, delta: float = 0.10, seed: int = 42) -> dict:
+    """Bayesian Dirichlet/Gamma posterior over paired difference delta = (b - c) / N."""
+    rng = random.Random(seed)
+    diffs = []
+    for _ in range(5000):
+        g_b = rng.gammavariate(b + 0.5, 1.0)
+        g_c = rng.gammavariate(c + 0.5, 1.0)
+        g_rest = rng.gammavariate(max(0.5, n_total - b - c + 1.0), 1.0)
+        total = g_b + g_c + g_rest
+        diffs.append((g_b - g_c) / total)
+    diffs.sort()
+    prob_equiv = sum(1 for d in diffs if abs(d) <= delta) / len(diffs)
+    ci_lo = diffs[int(0.025 * len(diffs))]
+    ci_hi = diffs[int(0.975 * len(diffs))]
+    return {"prob_equiv": prob_equiv, "ci": [ci_lo, ci_hi], "delta": delta}
+
+
 def compare_runs(queries, sa: dict, sb: dict, k: int, n_boot: int, seed: int) -> dict:
     ids = [q.id for q in queries]
     ha = [hit_at(sa[i], k) for i in ids]
@@ -218,9 +252,13 @@ def compare_runs(queries, sa: dict, sb: dict, k: int, n_boot: int, seed: int) ->
     neither = sum(1 for x, y in zip(ha, hb) if not x and not y)
     diffs = [rr_at(sa[i], k) - rr_at(sb[i], k) for i in ids]
     lo, hi = bootstrap_ci(diffs, n_boot, seed)
+    n_tot = len(ids)
+    tost = tost_paired(len(a_only), len(b_only), n_tot, delta=0.10)
+    bayes = bayesian_discordant(len(a_only), len(b_only), n_tot, delta=0.10, seed=seed)
     return {"k": k, "a_only": a_only, "b_only": b_only, "both": both,
             "neither": neither, "p_mcnemar": mcnemar_exact(len(a_only), len(b_only)),
-            "mrr_diff": mean(diffs) if diffs else 0.0, "mrr_diff_ci": [lo, hi]}
+            "mrr_diff": mean(diffs) if diffs else 0.0, "mrr_diff_ci": [lo, hi],
+            "tost": tost, "bayesian": bayes}
 
 
 def summarize(queries, scores: dict, ks, n_boot: int, seed: int):
@@ -497,10 +535,16 @@ def run_report(queries, sha, runs: dict, cfgs: dict, ks, primary_k, dedup_overla
             c = compare_runs(queries, scores_by_def[dname][a], scores_by_def[dname][b],
                              primary_k, n_boot, seed)
             js["results"][dname][f"compare:{a}-vs-{b}"] = c
+            t_res = c["tost"]
+            b_res = c["bayesian"]
+            eq_str = "Equivalent (p < 0.05)" if t_res["equivalent"] else "Inconclusive / Not Equivalent"
             md += ["", f"### Paired comparison at k={primary_k}: {a} vs {b}", "",
-                   f"- {a} only: {len(c['a_only'])} · {b} only: {len(c['b_only'])} · "
-                   f"both: {c['both']} · neither: {c['neither']}",
+                   f"- {a} only: {len(c['a_only'])} | {b} only: {len(c['b_only'])} | "
+                   f"both: {c['both']} | neither: {c['neither']}",
                    f"- exact McNemar p = {c['p_mcnemar']:.4f}",
+                   f"- TOST Equivalence (margin delta = +/-{t_res['delta']*100:.1f}%): p_TOST = {t_res['p_tost']:.4f} -> **{eq_str}**",
+                   f"- Bayesian Posterior P(|diff| < {b_res['delta']*100:.1f}%): **{b_res['prob_equiv']*100:.1f}%** "
+                   f"(95% Credible Interval [{b_res['ci'][0]*100:+.1f}%, {b_res['ci'][1]*100:+.1f}%])",
                    f"- MRR difference ({a} - {b}) = {c['mrr_diff']:+.3f} "
                    f"(95% CI {c['mrr_diff_ci'][0]:+.3f} to {c['mrr_diff_ci'][1]:+.3f})"]
             lookup = {q.id: q for q in queries}
