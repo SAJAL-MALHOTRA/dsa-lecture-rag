@@ -13,6 +13,7 @@ Every retriever conforms to the single contract expected by evaluate.py:
 from __future__ import annotations
 
 import hashlib
+import os
 import re
 from pathlib import Path
 from typing import Optional
