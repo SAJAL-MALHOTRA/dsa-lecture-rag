@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benchmark Diagnostics &amp; Failure Analysis | DSA Lecture RAG</title>
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --surface-hover: #fafaf8;
+      --border: #e3e3dc;
+      --border-dark: #cdcdc5;
+      --ink: #171716;
+      --ink-secondary: #52524d;
+      --ink-muted: #85857c;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --green: #059669;
+      --green-bg: #ecfdf5;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --amber: #d97706;
+      --amber-bg: #fffbeb;
+      --radius: 8px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all 0.15s;
+    }
+    .back-link:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-dark);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 24px auto;
+      padding: 0 24px;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .kpi-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-top: 4px;
+    }
+
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 2px;
+    }
+
+    /* Section & Cards */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* Filters Bar */
+    .filters-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--surface-hover);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+    }
+
+    select, input[type="text"] {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--ink);
+      outline: none;
+    }
+
+    input[type="text"] {
+      min-width: 220px;
+    }
+
+    /* Data Table */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      text-align: left;
+    }
+
+    th {
+      background: #fbfbf9;
+      color: var(--ink-secondary);
+      font-weight: 600;
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: var(--surface-hover);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-lex { background: #e0f2fe; color: #0369a1; }
+    .badge-con { background: #fef3c7; color: #b45309; }
+    .badge-par { background: #f3e8ff; color: #7e22ce; }
+    .badge-sym { background: #fee2e2; color: #b91c1c; }
+
+    .status-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .status-hit { background: var(--green-bg); color: var(--green); }
+    .status-miss { background: var(--red-bg); color: var(--red); }
+
+    .seek-bar-cell {
+      min-width: 150px;
+    }
+
+    .seek-visual {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+    }
+
+    .error-delta {
+      font-weight: 600;
+    }
+    .delta-good { color: var(--green); }
+    .delta-fair { color: var(--amber); }
+    .delta-poor { color: var(--red); }
+
+    .yt-btn {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11.5px;
+    }
+    .yt-btn:hover { text-decoration: underline; }
+
+    /* Equivalence Callout Box */
+    .stat-callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .stat-callout-text h3 {
+      font-size: 14px;
+      color: #1e3a8a;
+      margin-bottom: 4px;
+    }
+
+    .stat-callout-text p {
+      font-size: 12.5px;
+      color: #1e40af;
+    }
+
+    .stat-callout-stats {
+      display: flex;
+      gap: 20px;
+    }
+    .stat-item {
+      text-align: right;
+    }
+    .stat-item-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+    .stat-item-desc {
+      font-size: 11px;
+      color: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-title">
+      <span>📊</span>
+      <span>DSA Lecture RAG — Diagnostic Failure Analysis</span>
+    </div>
+    <a href="/" class="back-link">
+      <span>←</span> Back to Lecture Navigation
+    </a>
+  </header>
+
+  <div class="container">
+
+    <!-- KPI Summary Row -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Benchmark Set Size</div>
+        <div class="kpi-val" id="kpi-total">104 Queries</div>
+        <div class="kpi-sub">65 Test · 39 Dev across 18 Videos</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Median Seek Precision</div>
+        <div class="kpi-val">8.0s – 9.0s</div>
+        <div class="kpi-sub">Refinement error from explanation onset</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">TOST Equivalence (Δ = ±10%)</div>
+        <div class="kpi-val" style="color: var(--green);">p &lt; 0.0001</div>
+        <div class="kpi-sub">Statistically equivalent at 95% confidence</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Bayesian Evidence for Null</div>
+        <div class="kpi-val" style="color: var(--accent);">99.6% Prob</div>
+        <div class="kpi-sub">Posterior P(|diff| &lt; 10%) on test split</div>
+      </div>
+    </div>
+
+    <!-- Equivalence Highlight Callout -->
+    <div class="stat-callout">
+      <div class="stat-callout-text">
+        <h3>Methodological Milestone: Two One-Sided Tests (TOST) &amp; Bayesian Evidence</h3>
+        <p>Rather than merely failing to reject the null (McNemar p = 1.0000), TOST formally rejects both non-equivalence margins (|Δ| ≥ 10%), proving that English and Multilingual dense encoders achieve equivalent performance on technical lecture navigation.</p>
+      </div>
+      <div class="stat-callout-stats">
+        <div class="stat-item">
+          <div class="stat-item-num">16 pp</div>
+          <div class="stat-item-desc">95% CI Width (down from 30)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-item-num">0.44</div>
+          <div class="stat-item-desc">Mean Lexical Leakage (Protocol: &lt;0.5)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Diagnostic Query Browser -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title">Query-by-Query Retrieval &amp; Seek Diagnostic Explorer</div>
+        <div id="query-count-badge" style="font-size: 12px; color: var(--ink-secondary);">Showing 104 queries</div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>Retriever System:</label>
+          <select id="sel-system">
+            <option value="hybrid_en">Hybrid (English all-MiniLM)</option>
+            <option value="hybrid_multi">Hybrid (Multilingual MiniLM)</option>
+            <option value="bm25">BM25 Lexical Baseline</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Split:</label>
+          <select id="sel-split">
+            <option value="all">All (104)</option>
+            <option value="test" selected>Held-Out Test (65)</option>
+            <option value="dev">Dev Split (39)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Query Type:</label>
+          <select id="sel-type">
+            <option value="all">All Types</option>
+            <option value="lexical">Lexical (Exact)</option>
+            <option value="conceptual">Conceptual (Proof/Why)</option>
+            <option value="paraphrase">Paraphrase (Synonym)</option>
+            <option value="symptom">Symptom (Bug/Confusion)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Outcome:</label>
+          <select id="sel-outcome">
+            <option value="all">All Outcomes</option>
+            <option value="hit1">Hit @ Rank 1</option>
+            <option value="hit3">Hit @ Top 3</option>
+            <option value="miss">Miss @ Top 3</option>
+          </select>
+        </div>
+
+        <div class="filter-group" style="margin-left: auto;">
+          <input type="text" id="search-filter" placeholder="Filter queries or topics...">
+        </div>
+      </div>
+
+      <!-- Queries Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Type</th>
+              <th>Query Text</th>
+              <th>Target Video</th>
+              <th>Ground Truth Span</th>
+              <th>Retrieved Seek Point</th>
+              <th>Seek Offset (|Δ|)</th>
+              <th>Outcome</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="queries-tbody">
+            <tr>
+              <td colspan="9" style="text-align: center; padding: 30px; color: var(--ink-muted);">
+                Loading diagnostics data...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let diagnosticsData = null;
+
+    async function loadDiagnostics() {
+      try {
+        const res = await fetch('/api/diagnostics');
+        diagnosticsData = await res.json();
+        renderTable();
+      } catch (e) {
+        document.getElementById('queries-tbody').innerHTML = `
+          <tr><td colspan="9" style="color: var(--red); text-align: center; padding: 20px;">
+            Error loading diagnostics: ${e.message}
+          </td></tr>
+        `;
+      }
+    }
+
+    function formatTime(sec) {
+      if (sec === null || sec === undefined) return "--";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function renderTable() {
+      if (!diagnosticsData || !diagnosticsData.queries) return;
+
+      const system = document.getElementById('sel-system').value;
+      const split = document.getElementById('sel-split').value;
+      const qtype = document.getElementById('sel-type').value;
+      const outcome = document.getElementById('sel-outcome').value;
+      const term = document.getElementById('search-filter').value.toLowerCase().trim();
+
+      const tbody = document.getElementById('queries-tbody');
+      tbody.innerHTML = '';
+
+      let matched = 0;
+
+      diagnosticsData.queries.forEach(q => {
+        // Filters
+        if (split !== 'all' && q.split !== split) return;
+        if (qtype !== 'all' && q.type !== qtype) return;
+
+        const sdata = q.systems[system] || {};
+        const hit1 = sdata.hit_k1 || false;
+        const hit3 = sdata.hit_k3 || false;
+
+        if (outcome === 'hit1' && !hit1) return;
+        if (outcome === 'hit3' && !hit3) return;
+        if (outcome === 'miss' && hit3) return;
+
+        if (term && !q.query.toLowerCase().includes(term) && !q.id.toLowerCase().includes(term) && !q.notes.toLowerCase().includes(term)) {
+          return;
+        }
+
+        matched++;
+
+        const tr = document.createElement('tr');
+
+        // Type badge class
+        let typeClass = 'badge-lex';
+        if (q.type === 'conceptual') typeClass = 'badge-con';
+        else if (q.type === 'paraphrase') typeClass = 'badge-par';
+        else if (q.type === 'symptom') typeClass = 'badge-sym';
+
+        // Error display
+        const errSec = sdata.first_hit_error;
+        let deltaHtml = `<span style="color: var(--ink-muted);">--</span>`;
+        if (errSec !== null && errSec !== undefined) {
+          const deltaClass = errSec <= 15 ? 'delta-good' : (errSec <= 30 ? 'delta-fair' : 'delta-poor');
+          deltaHtml = `<span class="error-delta ${deltaClass}">${errSec}s error</span>`;
+        } else if (sdata.top1_error !== null && sdata.top1_error !== undefined) {
+          deltaHtml = `<span class="error-delta delta-poor">${sdata.top1_error}s (Rank 1)</span>`;
+        }
+
+        // Outcome pill
+        const statusHtml = hit3 
+          ? `<span class="status-pill status-hit">Hit @ ${sdata.first_hit_rank || 1}</span>`
+          : `<span class="status-pill status-miss">Miss</span>`;
+
+        const seekSec = sdata.top1_seek || q.gt_start;
+        const ytUrl = `https://www.youtube.com/watch?v=${sdata.top1_video || q.gt_video}&t=${seekSec}s`;
+
+        tr.innerHTML = `
+          <td style="font-family: var(--font-mono); font-weight: 600;">${q.id}</td>
+          <td><span class="badge ${typeClass}">${q.type}</span></td>
+          <td style="font-weight: 500; max-width: 280px;">
+            ${q.query}
+            <div style="font-size: 11px; color: var(--ink-muted); margin-top: 2px;">${q.notes}</div>
+          </td>
+          <td style="font-family: var(--font-mono); font-size: 11.5px;">${q.gt_video}</td>
+          <td style="font-family: var(--font-mono);">${formatTime(q.gt_start)} – ${formatTime(q.gt_end)} <span style="color: var(--ink-muted); font-size: 11px;">(${q.gt_duration}s)</span></td>
+          <td style="font-family: var(--font-mono);">${sdata.top1_seek !== null ? formatTime(sdata.top1_seek) : '--'}</td>
+          <td class="seek-bar-cell">${deltaHtml}</td>
+          <td>${statusHtml}</td>
+          <td><a href="${ytUrl}" target="_blank" class="yt-btn">Watch Moment ↗</a></td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('query-count-badge').textContent = `Showing ${matched} of ${diagnosticsData.queries.length} queries`;
+
+      if (matched === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 30px; color: var(--ink-muted);">No queries match the selected filters.</td></tr>`;
+      }
+    }
+
+    // Attach filter event listeners
+    document.getElementById('sel-system').addEventListener('change', renderTable);
+    document.getElementById('sel-split').addEventListener('change', renderTable);
+    document.getElementById('sel-type').addEventListener('change', renderTable);
+    document.getElementById('sel-outcome').addEventListener('change', renderTable);
+    document.getElementById('search-filter').addEventListener('input', renderTable);
+
+    // Initial load
+    loadDiagnostics();
+  </script>
+</body>
+</html>

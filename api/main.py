@@ -880,10 +880,22 @@ async def chat_completions(req: OpenAIChatRequest):
     }
 
 
-# Mount Frontend
+# Mount Frontend & Diagnostics Dashboard
 @app.get("/")
 def serve_index():
     return FileResponse(STATIC_DIR / "index.html")
+
+
+@app.get("/dashboard")
+def serve_dashboard():
+    return FileResponse(STATIC_DIR / "dashboard.html")
+
+
+@app.get("/api/diagnostics")
+def get_diagnostics():
+    """Returns comprehensive 104-query benchmark data, seek errors, and TOST stats."""
+    from ytrag.diagnostics_data import build_diagnostics_payload
+    return build_diagnostics_payload()
 
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
