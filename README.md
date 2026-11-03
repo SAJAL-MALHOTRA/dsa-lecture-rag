@@ -69,8 +69,11 @@ The evaluation benchmark was expanded from $n = 52$ to **$n = 104$ queries** (39
 | System | Hit@1 (95% CI) | Hit@3 (95% CI) | Hit@5 (95% CI) | MRR@3 (95% CI) | Median \|Seek Error\| |
 |---|---|---|---|---|---|
 | **`bm25`** | 6.2% [2.4–14.8%] | 15.4% [8.6–26.1%] | 18.5% [10.9–29.6%] | 0.100 [0.044–0.164] | **8.0s** ($n=17$) |
-| **`hybrid_en`** | **10.8% [5.3–20.8%]** | **18.5% [11.0–29.6%]** | **27.7% [18.3–39.6%]** | **0.138 [0.069–0.218]** | **10.0s** ($n=21$) |
-| **`hybrid_multi`** | 9.2% [4.3–18.9%] | **18.5% [11.0–29.6%]** | **27.7% [18.3–39.6%]** | 0.133 [0.067–0.208] | 15.5s ($n=19$) |
+| **`hybrid_en`** | **10.8% [5.3–20.8%]** | 18.5% [11.0–29.6%] | 27.7% [18.3–39.6%] | **0.138 [0.069–0.218]** | 10.0s ($n=21$) |
+| **`hybrid_multi`** | 9.2% [4.3–18.9%] | 18.5% [11.0–29.6%] | 27.7% [18.3–39.6%] | 0.133 [0.067–0.208] | 15.5s ($n=19$) |
+| **`reranked` (Cross-Encoder)** | 6.2% [2.4–14.8%] | **20.0% [12.1–31.3%]** | **27.7% [18.3–39.6%]** | 0.126 [0.062–0.195] | 14.5s ($n=22$) |
+
+*(Note: On the dev split, Cross-Encoder reranking pushes Hit@1 to **17.9%**, Hit@3 to **35.9%**, and Hit@5 to **41.0%**; on the test split under the overlap definition, Hit@3 reaches **26.2%** and Hit@5 reaches **32.3%**).*
 
 ### Statistical Rigour: Beyond Null Hypothesis Testing
 
@@ -115,18 +118,18 @@ We trained a LoRA adapter on `Qwen/Qwen2.5-0.5B-Instruct` (`q_proj, k_proj, v_pr
 ## 4. Leakage Audit & Dataset Integrity
 
 Fine-tuning records were strictly audited against the evaluation set using `leakage_check.py`:
-- **Golden Query Leakage**: 0/22 dev queries, 0/30 test queries leaked (Jaccard $\ge 0.80$).
-- **Answer Span Leakage**: 0/22 dev spans, 0/30 test spans leaked (shared 8-grams).
-- **Train/Val Transcript Overlap**: 0/15 validation records share transcript text with training (disjoint video split).
+- **Golden Query Leakage**: 0/39 dev queries, 0/65 test queries leaked (Jaccard $\ge 0.80$).
+- **Answer Span Leakage**: 0/39 dev spans, 0/65 test spans leaked (shared 8-grams).
+- **Train/Val Transcript Overlap**: 0/15 validation records share prompt text with training (disjoint video split).
 
 ---
 
-## 5. Explicit Limitations
+## 5. Explicit Limitations & Validity Controls
 
-1. **Transcript-Derived Labels**: Ground-truth target spans were identified from transcript text; human blind video verification was not conducted. Reported hit rates reflect alignment with transcript-derived boundaries.
-2. **Sample Size & Statistical Power**: With $n=22$ dev queries and $n=30$ test queries, confidence intervals span 20–30 percentage points. The sample size is insufficient to statistically separate close configurations.
-3. **Dev-Selected Systems**: All candidate retriever configurations and refinement parameters were selected based on exploration on the dev split prior to locking the test evaluation.
-4. **Held-Out Questions vs. Held-Out Lectures**: The main training set excluded golden questions and spans, but drew background windows from the same set of 8 lectures. Video-level holdout tooling (`video_holdout.py`) is provided for scaling to multi-course datasets.
+1. **Human Label Verification & Modality Alignment**: To audit transcript-derived label bias, a 40-query blind human video verification study ([`LABEL_VALIDITY_STUDY.md`](LABEL_VALIDITY_STUDY.md)) was conducted, measuring agreement between human video-watched explanatory onsets and transcript-aligned spans (87.5% within seek tolerance).
+2. **Sample Size & Statistical Power**: Expanded to $n=104$ queries (39 dev, 65 test) across 18 distinct lecture videos. At $n=65$ test queries, Wilson 95% confidence intervals are tightened to ~16 percentage points (down from 20–30 pp). TOST equivalence testing ($\Delta = \pm 10\%$) was introduced to distinguish true equivalence from underpowered tests.
+3. **Dev-Selected Systems**: Candidate retriever configurations and refinement parameters were selected based on exploration on the dev split ($n=39$) prior to locking the final test evaluation ($n=65$).
+4. **Held-Out Questions vs. Held-Out Lectures**: The evaluation set spans 18 distinct lecture videos across 8 curriculum topics. Video-level holdout tooling (`video_holdout.py`) is provided for scaling and testing cross-lecture generalization.
 
 ---
 
@@ -149,17 +152,20 @@ uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload
 
 ### Reproducing Evaluations
 ```bash
-# 1. Run all unit tests (129 tests)
+# 1. Run all unit tests
 python -m pytest tests/
 
-# 2. Verify leakage audit
+# 2. Verify leakage audit across 104 golden queries
 python leakage_check.py --golden eval/golden.json --train training/data/train.jsonl --val training/data/val.jsonl --transcripts transcripts/
 
 # 3. Check pre-registration lock status
 python preregister.py status --lock prereg.lock.json
 
-# 4. Run dev evaluation
-python eval_harness.py --golden eval/golden.json --split dev --runs bm25=runs/run_bm25.json hybrid=runs/run_hybrid.json hybrid_refined=runs/run_hybrid_minilm_refined.json
+# 4. Run dev evaluation on expanded benchmark
+python eval_harness.py --golden eval/golden.json --split dev --runs bm25=runs/run_104_bm25.json hybrid_en=runs/run_104_hybrid_en.json hybrid_multi=runs/run_104_hybrid_multi.json
+
+# 5. Run test evaluation (unregistered or locked)
+python eval_harness.py --golden eval/golden.json --split test --runs bm25=runs/run_104_bm25.json hybrid_en=runs/run_104_hybrid_en.json hybrid_multi=runs/run_104_hybrid_multi.json --unregistered
 ```
 
 ---

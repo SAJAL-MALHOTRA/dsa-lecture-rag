@@ -1,0 +1,1911 @@
+{
+  "_provenance": {
+    "source_golden_sha256": "6acc2e6d4d2bdaf3231270cd8045ac895e30f8299e709b0e2506e9e9134b4c8e",
+    "sheet": "verification_sheet.csv",
+    "created_utc": "2026-11-03T21:06:48+00:00",
+    "note": "labels verified by a human watching the videos; see errata"
+  },
+  "queries": [
+    {
+      "id": "q001",
+      "query": "tortoise and hare algorithm",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "wiOo4DC5GGA",
+          "start_sec": 458,
+          "end_sec": 570
+        }
+      ],
+      "labeler": "S",
+      "notes": "Introduction of slow and fast pointer (tortoise and hare).",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q002",
+      "query": "technique with two pointers moving at different speeds to find loop",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "wiOo4DC5GGA",
+          "start_sec": 490,
+          "end_sec": 585
+        }
+      ],
+      "labeler": "S",
+      "notes": "How fast moves by 2 steps while slow moves by 1 step.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q003",
+      "query": "why does the fast pointer never jump over the slow pointer in a cycle",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "wiOo4DC5GGA",
+          "start_sec": 630.0,
+          "end_sec": 790.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Mathematical proof/intuition of distance reducing by 1 each step.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "wiOo4DC5GGA",
+          "start_sec": 650,
+          "end_sec": 790
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "query": "detect cycle by storing visited node addresses in a set",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "wiOo4DC5GGA",
+          "start_sec": 142,
+          "end_sec": 240
+        }
+      ],
+      "labeler": "S",
+      "notes": "Brute force using map/hash table with node pointer keys.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q005",
+      "query": "my while loop runs forever when checking if linked list has a loop",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "wiOo4DC5GGA",
+          "start_sec": 840,
+          "end_sec": 925
+        }
+      ],
+      "labeler": "S",
+      "notes": "Termination condition when fast reaches null or fast->next is null.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q006",
+      "query": "how to reverse a linked list using three pointers iteratively",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "D2vI2DNJGd8",
+          "start_sec": 420.0,
+          "end_sec": 660.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Iterative reversal with prev, temp, and front pointers.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "D2vI2DNJGd8",
+          "start_sec": 260,
+          "end_sec": 440
+        }
+      ]
+    },
+    {
+      "id": "q007",
+      "query": "reversing singly linked list using recursion",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "D2vI2DNJGd8",
+          "start_sec": 1120,
+          "end_sec": 1330
+        }
+      ],
+      "labeler": "S",
+      "notes": "Recursive implementation and establishing new head.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q008",
+      "query": "lost reference to the rest of the list when reversing next pointer",
+      "type": "symptom",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "D2vI2DNJGd8",
+          "start_sec": 160,
+          "end_sec": 255
+        }
+      ],
+      "labeler": "S",
+      "notes": "Why you must preserve front = temp->next before modifying temp->next.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q009",
+      "query": "time and space complexity of recursive linked list reversal",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "D2vI2DNJGd8",
+          "start_sec": 1893.0,
+          "end_sec": 1945.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "O(N) time and O(N) recursive stack space explanation.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "D2vI2DNJGd8",
+          "start_sec": 1720,
+          "end_sec": 1820
+        }
+      ]
+    },
+    {
+      "id": "q010",
+      "query": "two sum problem using hash map",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 315.0,
+          "end_sec": 465.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Better approach: looking up remaining target in hash map.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 314,
+          "end_sec": 465
+        }
+      ]
+    },
+    {
+      "id": "q011",
+      "query": "find a pair that adds up to target without using extra memory",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 718,
+          "end_sec": 845
+        }
+      ],
+      "labeler": "S",
+      "notes": "Sorting + two pointers approach to achieve O(1) auxiliary space.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q012",
+      "query": "why two pointers fails if we need to return original indices in two sum",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 1030.0,
+          "end_sec": 1100.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Sorting alters original indices unless pairs/tuples are stored.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 1030,
+          "end_sec": 1095
+        }
+      ]
+    },
+    {
+      "id": "q013",
+      "query": "my hash map returns the same element twice when target is double of it",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 375.0,
+          "end_sec": 450.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Why you check map before inserting the current element.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 375,
+          "end_sec": 445
+        }
+      ]
+    },
+    {
+      "id": "q014",
+      "query": "worst case time complexity of unordered_map in c++",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 650,
+          "end_sec": 700
+        }
+      ],
+      "labeler": "S",
+      "notes": "O(N) collisions in unordered_map vs O(log N) in map.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q015",
+      "query": "find contiguous subarray with given sum using prefix sums",
+      "type": "paraphrase",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "frf7qxiN2qU",
+          "start_sec": 710,
+          "end_sec": 950
+        }
+      ],
+      "labeler": "S",
+      "notes": "Prefix sum hash map approach for longest subarray with sum K.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q016",
+      "query": "sliding window for longest subarray with positive sum",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "frf7qxiN2qU",
+          "start_sec": 1820,
+          "end_sec": 2040
+        }
+      ],
+      "labeler": "S",
+      "notes": "Two-pointer sliding window optimal approach for array with only positives/zeros.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q017",
+      "query": "why two pointer window fails when array contains negative numbers",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "frf7qxiN2qU",
+          "start_sec": 2240,
+          "end_sec": 2360
+        }
+      ],
+      "labeler": "S",
+      "notes": "Monotonicity broken because adding element does not guarantee sum increases.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q018",
+      "query": "prefix sum hash map gives wrong length when array has zeros",
+      "type": "symptom",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "frf7qxiN2qU",
+          "start_sec": 1550.0,
+          "end_sec": 1710.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Do not update index of existing prefix sum if sum already exists.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "frf7qxiN2qU",
+          "start_sec": 1380,
+          "end_sec": 1540
+        }
+      ]
+    },
+    {
+      "id": "q019",
+      "query": "generating all subarrays brute force time complexity",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "frf7qxiN2qU",
+          "start_sec": 210,
+          "end_sec": 380
+        }
+      ],
+      "labeler": "S",
+      "notes": "O(N^3) naive with three loops vs O(N^2) running sum.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q020",
+      "query": "divide and conquer merge sort",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "ogjf7ORKfd8",
+          "start_sec": 230.0,
+          "end_sec": 450.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "High level divide and merge intuition.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "ogjf7ORKfd8",
+          "start_sec": 240,
+          "end_sec": 460
+        }
+      ]
+    },
+    {
+      "id": "q021",
+      "query": "combining two already sorted halves into a single list",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "ogjf7ORKfd8",
+          "start_sec": 1520,
+          "end_sec": 1740
+        }
+      ],
+      "labeler": "S",
+      "notes": "The merge function using temporary array and two pointers.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q022",
+      "query": "why is merge sort space complexity O(N)",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "ogjf7ORKfd8",
+          "start_sec": 2480,
+          "end_sec": 2620
+        }
+      ],
+      "labeler": "S",
+      "notes": "Temporary array allocation during merge step.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q023",
+      "query": "mid calculation low plus high divided by two overflow",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "ogjf7ORKfd8",
+          "start_sec": 1210,
+          "end_sec": 1280
+        }
+      ],
+      "labeler": "S",
+      "notes": "Calculating mid index and recursive boundaries.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q024",
+      "query": "recurrence relation for merge sort time complexity",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "ogjf7ORKfd8",
+          "start_sec": 2655.0,
+          "end_sec": 2850.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "2T(N/2) + O(N) leading to O(N log N) across all cases.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "ogjf7ORKfd8",
+          "start_sec": 2340,
+          "end_sec": 2470
+        }
+      ]
+    },
+    {
+      "id": "q025",
+      "query": "partitioning algorithm in quick sort",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 440,
+          "end_sec": 660
+        }
+      ],
+      "labeler": "S",
+      "notes": "Picking pivot and placing smaller elements on left, larger on right.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q026",
+      "query": "how to choose pivot element in quicksort",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 225.0,
+          "end_sec": 275.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "First element, last element, median, or random as pivot.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 180,
+          "end_sec": 310
+        }
+      ]
+    },
+    {
+      "id": "q027",
+      "query": "why does quicksort take O(N squared) time in worst case",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 1640,
+          "end_sec": 1790
+        }
+      ],
+      "labeler": "S",
+      "notes": "Already sorted array when picking first element as pivot.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q028",
+      "query": "index out of bounds in quick sort partition pointer crossing",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 810,
+          "end_sec": 960
+        }
+      ],
+      "labeler": "S",
+      "notes": "Boundary check i <= high - 1 and j >= low + 1.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q029",
+      "query": "why quick sort is preferred over merge sort for arrays",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 1810,
+          "end_sec": 1950
+        }
+      ],
+      "labeler": "S",
+      "notes": "In-place auxiliary space O(1) vs O(N) in merge sort.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q030",
+      "query": "base condition in recursion",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 645,
+          "end_sec": 765
+        },
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 1090,
+          "end_sec": 1130
+        }
+      ],
+      "labeler": "S",
+      "notes": "Stopping condition preventing infinite recursive execution.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q031",
+      "query": "how the computer remembers where to return after a recursive call",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 780,
+          "end_sec": 940
+        }
+      ],
+      "labeler": "S",
+      "notes": "Call stack frames holding local state and return addresses.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q032",
+      "query": "why does infinite recursion cause segmentation fault",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 410,
+          "end_sec": 590
+        }
+      ],
+      "labeler": "S",
+      "notes": "Call stack memory exhaustion resulting in stack overflow error.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q033",
+      "query": "program crashes with stack overflow error",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 555.0,
+          "end_sec": 645.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Missing or unreachable termination condition leading to crash.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 570,
+          "end_sec": 640
+        }
+      ]
+    },
+    {
+      "id": "q034",
+      "query": "recursion tree diagram",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 1165,
+          "end_sec": 1260
+        }
+      ],
+      "labeler": "S",
+      "notes": "Visualizing recursive function invocations as branch nodes.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q035",
+      "query": "hashing collisions",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 2815,
+          "end_sec": 2980
+        }
+      ],
+      "labeler": "S",
+      "notes": "When multiple keys hash to identical table bucket index.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q036",
+      "query": "modulo division method to map large integers to small array indices",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 3075.0,
+          "end_sec": 3225.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "hash(x) = x % 10 or prime table size.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 3080,
+          "end_sec": 3220
+        }
+      ]
+    },
+    {
+      "id": "q037",
+      "query": "separate chaining collision resolution using linked list",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 3230,
+          "end_sec": 3410
+        }
+      ],
+      "labeler": "S",
+      "notes": "Chaining technique attaching nodes in sorted order at index.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q038",
+      "query": "large array index throws memory limit exceeded error",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 650,
+          "end_sec": 820
+        }
+      ],
+      "labeler": "S",
+      "notes": "Max global array size 10^7 vs local array size 10^6 in C++.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q039",
+      "query": "difference between map and unordered_map in stl",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 2420,
+          "end_sec": 2580
+        }
+      ],
+      "labeler": "S",
+      "notes": "Red-Black self-balancing tree vs hash table implementation.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q040",
+      "query": "how to count frequencies of characters in a string without a map",
+      "type": "paraphrase",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 1340,
+          "end_sec": 1520
+        }
+      ],
+      "labeler": "S",
+      "notes": "Direct address array of size 26 or 256 using ascii character difference.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q041",
+      "query": "linear probing collision handling",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 3410.0,
+          "end_sec": 3515.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Open addressing searching sequentially for next empty bucket.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 3415,
+          "end_sec": 3520
+        }
+      ]
+    },
+    {
+      "id": "q044",
+      "query": "recursive call tree depth and maximum memory consumed",
+      "type": "paraphrase",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 910.0,
+          "end_sec": 1050.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Height of recursion tree determining maximum auxiliary stack space.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 920,
+          "end_sec": 1050
+        }
+      ]
+    },
+    {
+      "id": "q045",
+      "query": "segmentation fault when dereferencing next on null pointer in linked list",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "wiOo4DC5GGA",
+          "start_sec": 910,
+          "end_sec": 990
+        }
+      ],
+      "labeler": "S",
+      "notes": "Null check fast != NULL && fast->next != NULL order requirement.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q046",
+      "query": "in place partitioning without creating extra arrays",
+      "type": "paraphrase",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 620,
+          "end_sec": 790
+        }
+      ],
+      "labeler": "S",
+      "notes": "Swapping elements within input array bounds.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q047",
+      "query": "why can hash function not store negative numbers directly with modulo",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 1180.0,
+          "end_sec": 1310.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Negative integer modulo yielding negative index in array.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 1180,
+          "end_sec": 1310
+        }
+      ]
+    },
+    {
+      "id": "q048",
+      "query": "tail recursion",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 1275.0,
+          "end_sec": 1340.0
+        }
+      ],
+      "labeler": "S",
+      "notes": "Function call performed as the final action.",
+      "verified": true,
+      "verification_mode": "blind",
+      "label_source": "human",
+      "agent_relevant": [
+        {
+          "video_id": "yVdKa8dnKiE",
+          "start_sec": 1280,
+          "end_sec": 1340
+        }
+      ]
+    },
+    {
+      "id": "q049",
+      "query": "recursive step modifying input node link causes cycle in list",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "D2vI2DNJGd8",
+          "start_sec": 1340,
+          "end_sec": 1460
+        }
+      ],
+      "labeler": "S",
+      "notes": "Setting head->next = NULL at base case to terminate reversed tail.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q050",
+      "query": "two sum brute force nested loops time complexity",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "UXDSeD9mN-k",
+          "start_sec": 180,
+          "end_sec": 290
+        }
+      ],
+      "labeler": "S",
+      "notes": "O(N^2) pairs comparison checking i and j.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q051",
+      "query": "quick sort recursion tree depth in best vs worst case",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "WIrA4YexLRQ",
+          "start_sec": 1700,
+          "end_sec": 1810
+        }
+      ],
+      "labeler": "S",
+      "notes": "Log2(N) levels vs N levels of recursion.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q052",
+      "query": "hash map lookup time complexity best average and worst",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "KEs5UyBJ39g",
+          "start_sec": 2600,
+          "end_sec": 2790
+        }
+      ],
+      "labeler": "S",
+      "notes": "O(1) average constant time vs O(N) when all keys collide into same chain.",
+      "verified": true,
+      "verification_mode": "confirm",
+      "label_source": "agent_confirmed"
+    },
+    {
+      "id": "q053",
+      "query": "overlapping subproblems in dynamic programming",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "tyB0ztf0DNY",
+          "start_sec": 695,
+          "end_sec": 765
+        }
+      ],
+      "labeler": "S",
+      "notes": "Explaining that fib(2) and fib(3) are computed repeatedly in the recursion tree.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q054",
+      "query": "why memoization reduces exponential recursion to linear time",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "tyB0ztf0DNY",
+          "start_sec": 865,
+          "end_sec": 960
+        }
+      ],
+      "labeler": "S",
+      "notes": "Explains how memo table prevents recomputation of already solved subproblems.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q055",
+      "query": "top down approach with an array to store already computed states",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "tyB0ztf0DNY",
+          "start_sec": 875,
+          "end_sec": 980
+        }
+      ],
+      "labeler": "S",
+      "notes": "Passing a 1D dp array to cache answers.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q056",
+      "query": "recursive fibonacci takes forever to execute for n greater than 40",
+      "type": "symptom",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "tyB0ztf0DNY",
+          "start_sec": 620,
+          "end_sec": 715
+        }
+      ],
+      "labeler": "S",
+      "notes": "Discussing the exponential 2^N tree explosion causing lag.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q057",
+      "query": "how to convert top down memoization into bottom up tabulation",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "tyB0ztf0DNY",
+          "start_sec": 1480,
+          "end_sec": 1590
+        }
+      ],
+      "labeler": "S",
+      "notes": "Step by step translation of base case and recurrence into an iterative loop.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q058",
+      "query": "optimizing dp array to two variables for constant space",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "tyB0ztf0DNY",
+          "start_sec": 1810,
+          "end_sec": 1910
+        }
+      ],
+      "labeler": "S",
+      "notes": "Replacing the O(N) array with prev and prev2 variables.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q059",
+      "query": "breadth first search traversal in graph",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "-tgVpUgsQ5k",
+          "start_sec": 180,
+          "end_sec": 260
+        }
+      ],
+      "labeler": "S",
+      "notes": "Formal introduction of BFS algorithm on graph nodes.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q060",
+      "query": "why is a visited array required in graph traversal",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "-tgVpUgsQ5k",
+          "start_sec": 375,
+          "end_sec": 465
+        }
+      ],
+      "labeler": "S",
+      "notes": "Reasoning about cycle prevention and marking nodes upon entry to queue.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q061",
+      "query": "exploring graph nodes level by level starting from source",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "-tgVpUgsQ5k",
+          "start_sec": 210,
+          "end_sec": 310
+        }
+      ],
+      "labeler": "S",
+      "notes": "Explains nodes at distance 1, then distance 2 from start node.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q062",
+      "query": "graph traversal causes infinite loop on cyclic graph",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "-tgVpUgsQ5k",
+          "start_sec": 380,
+          "end_sec": 470
+        }
+      ],
+      "labeler": "S",
+      "notes": "Explains cycle entrapment without visited tracking.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q063",
+      "query": "time complexity of bfs traversal with v vertices and e edges",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "-tgVpUgsQ5k",
+          "start_sec": 1050,
+          "end_sec": 1140
+        }
+      ],
+      "labeler": "S",
+      "notes": "Deriving O(V) + O(2E) total work for adjacency list iteration.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q064",
+      "query": "depth first search in graphs",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "Qzf1a--rhp8",
+          "start_sec": 150,
+          "end_sec": 240
+        }
+      ],
+      "labeler": "S",
+      "notes": "Introduction of DFS concept and trajectory.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q065",
+      "query": "recursive exploration of graph going as deep as possible before backtracking",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "Qzf1a--rhp8",
+          "start_sec": 240,
+          "end_sec": 340
+        }
+      ],
+      "labeler": "S",
+      "notes": "Explaining the depth first motion and backtrack on dead ends.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q066",
+      "query": "difference in call stack depth between dfs and bfs",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "Qzf1a--rhp8",
+          "start_sec": 290,
+          "end_sec": 370
+        }
+      ],
+      "labeler": "S",
+      "notes": "Recursion call stack versus queue queue storage.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q067",
+      "query": "getting stack overflow error on deep graph traversal",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "Qzf1a--rhp8",
+          "start_sec": 300,
+          "end_sec": 380
+        }
+      ],
+      "labeler": "S",
+      "notes": "Discussing excessive recursion depth in large graphs.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q068",
+      "query": "square root using binary search",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "Bsv3FPUX_BA",
+          "start_sec": 80,
+          "end_sec": 165
+        }
+      ],
+      "labeler": "S",
+      "notes": "Introduction of binary search for monotonic answer ranges.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q069",
+      "query": "why the search space for integer square root is from 1 to n",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "Bsv3FPUX_BA",
+          "start_sec": 280,
+          "end_sec": 370
+        }
+      ],
+      "labeler": "S",
+      "notes": "Monotonicity proof that x^2 <= n is true then false.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q070",
+      "query": "finding largest integer whose square is less than or equal to n",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "Bsv3FPUX_BA",
+          "start_sec": 310,
+          "end_sec": 405
+        }
+      ],
+      "labeler": "S",
+      "notes": "Floor square root problem definition.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q071",
+      "query": "integer overflow when calculating mid times mid in binary search",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "Bsv3FPUX_BA",
+          "start_sec": 980,
+          "end_sec": 1025
+        }
+      ],
+      "labeler": "S",
+      "notes": "Explicit warning to use long long for mid * mid to avoid 32-bit overflow.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q072",
+      "query": "check for balanced parentheses",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "xwjS0iZhw4I",
+          "start_sec": 35,
+          "end_sec": 110
+        }
+      ],
+      "labeler": "S",
+      "notes": "Definition of balanced bracket sequences.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q073",
+      "query": "why stack last in first out property matches nested bracket pairs",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "xwjS0iZhw4I",
+          "start_sec": 230,
+          "end_sec": 320
+        }
+      ],
+      "labeler": "S",
+      "notes": "Intuition that most recently opened bracket must be first closed.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q074",
+      "query": "verifying if every opening symbol has a corresponding closing symbol in order",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "xwjS0iZhw4I",
+          "start_sec": 40,
+          "end_sec": 125
+        }
+      ],
+      "labeler": "S",
+      "notes": "Matching pairs order check.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q075",
+      "query": "empty stack exception when popping closing bracket on string starting with right parenthesis",
+      "type": "symptom",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "xwjS0iZhw4I",
+          "start_sec": 440,
+          "end_sec": 520
+        }
+      ],
+      "labeler": "S",
+      "notes": "Handling empty stack before calling top/pop.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q076",
+      "query": "inorder traversal of binary tree",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "jmy0LaGET1I",
+          "start_sec": 75,
+          "end_sec": 155
+        }
+      ],
+      "labeler": "S",
+      "notes": "Inorder traversal definition.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q077",
+      "query": "visiting left subtree then root then right subtree",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "jmy0LaGET1I",
+          "start_sec": 85,
+          "end_sec": 170
+        }
+      ],
+      "labeler": "S",
+      "notes": "Order of execution in recursive inorder.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q078",
+      "query": "difference between depth first and breadth first tree traversals",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "jmy0LaGET1I",
+          "start_sec": 25,
+          "end_sec": 105
+        }
+      ],
+      "labeler": "S",
+      "notes": "High level division into DFS traversals and BFS level order.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q079",
+      "query": "preorder traversal sequence",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "jmy0LaGET1I",
+          "start_sec": 160,
+          "end_sec": 245
+        }
+      ],
+      "labeler": "S",
+      "notes": "Root Left Right order explanation.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q080",
+      "query": "implement queue using array",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "tqQ5fTamIN4",
+          "start_sec": 1510,
+          "end_sec": 1610
+        }
+      ],
+      "labeler": "S",
+      "notes": "Introduction of queue array implementation.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q081",
+      "query": "why does a standard queue need front and rear pointers",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "tqQ5fTamIN4",
+          "start_sec": 1530,
+          "end_sec": 1640
+        }
+      ],
+      "labeler": "S",
+      "notes": "FIFO boundary pointer explanation.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q082",
+      "query": "circular array buffer to prevent wasted space in queue implementation",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "tqQ5fTamIN4",
+          "start_sec": 1790,
+          "end_sec": 1890
+        }
+      ],
+      "labeler": "S",
+      "notes": "Using modulo arithmetic (rear % n) for circular reuse.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q083",
+      "query": "stack overflow when pushing to fixed size array",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "tqQ5fTamIN4",
+          "start_sec": 470,
+          "end_sec": 560
+        }
+      ],
+      "labeler": "S",
+      "notes": "Array boundary check before pushing element.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q084",
+      "query": "best time to buy and sell stock",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "excAOvwF_Wk",
+          "start_sec": 30,
+          "end_sec": 105
+        }
+      ],
+      "labeler": "S",
+      "notes": "Problem statement for single transaction max profit.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q085",
+      "query": "why keeping track of the minimum price so far gives optimal profit",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "excAOvwF_Wk",
+          "start_sec": 180,
+          "end_sec": 275
+        }
+      ],
+      "labeler": "S",
+      "notes": "Derivation that selling on day i requires buying at min(prices[0..i-1]).",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q086",
+      "query": "single pass algorithm to find maximum difference between two elements where second comes after first",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "excAOvwF_Wk",
+          "start_sec": 190,
+          "end_sec": 290
+        }
+      ],
+      "labeler": "S",
+      "notes": "Linear time solution.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q087",
+      "query": "adjacency matrix versus adjacency list",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "M3_pLsDdeuU",
+          "start_sec": 340,
+          "end_sec": 440
+        }
+      ],
+      "labeler": "S",
+      "notes": "Comparison of graph representations.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q088",
+      "query": "space complexity comparison of matrix versus list representation of graph",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "M3_pLsDdeuU",
+          "start_sec": 410,
+          "end_sec": 510
+        }
+      ],
+      "labeler": "S",
+      "notes": "O(N^2) space of matrix compared to O(2E) space of adjacency list.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q089",
+      "query": "storing neighbor connections as array of lists instead of 2d grid",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "M3_pLsDdeuU",
+          "start_sec": 360,
+          "end_sec": 460
+        }
+      ],
+      "labeler": "S",
+      "notes": "Adjacency list structure.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q090",
+      "query": "full binary tree versus complete binary tree",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "_ANrF3FJm7I",
+          "start_sec": 220,
+          "end_sec": 310
+        }
+      ],
+      "labeler": "S",
+      "notes": "Definitions of full tree vs complete tree.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q091",
+      "query": "definition of balanced binary tree in terms of left and right subtree heights",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "_ANrF3FJm7I",
+          "start_sec": 390,
+          "end_sec": 480
+        }
+      ],
+      "labeler": "S",
+      "notes": "Condition abs(height(left) - height(right)) <= 1.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q092",
+      "query": "binary tree where every parent node has either zero or two children",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "_ANrF3FJm7I",
+          "start_sec": 230,
+          "end_sec": 320
+        }
+      ],
+      "labeler": "S",
+      "notes": "Full binary tree property.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q093",
+      "query": "frog jump problem dynamic programming",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "EgG3jsGoPvQ",
+          "start_sec": 60,
+          "end_sec": 150
+        }
+      ],
+      "labeler": "S",
+      "notes": "Introduction to 1D frog jump DP.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q094",
+      "query": "greedy choice fails for frog jump because future steps can be cheaper",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "EgG3jsGoPvQ",
+          "start_sec": 260,
+          "end_sec": 355
+        }
+      ],
+      "labeler": "S",
+      "notes": "Counterexample showing greedy selection of min jump is not globally optimal.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q095",
+      "query": "minimum energy required to reach last stair when jumping one or two steps",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "EgG3jsGoPvQ",
+          "start_sec": 70,
+          "end_sec": 165
+        }
+      ],
+      "labeler": "S",
+      "notes": "Paraphrase of problem goal.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q096",
+      "query": "index out of bounds when looking at i minus two state in frog jump",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "EgG3jsGoPvQ",
+          "start_sec": 510,
+          "end_sec": 595
+        }
+      ],
+      "labeler": "S",
+      "notes": "Handling if (i > 1) guard condition before taking jump-2 transition.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q097",
+      "query": "median of two sorted arrays binary search",
+      "type": "lexical",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "F9c7LpRZWVQ",
+          "start_sec": 110,
+          "end_sec": 205
+        }
+      ],
+      "labeler": "S",
+      "notes": "Median of 2 arrays problem setup.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q098",
+      "query": "partitioning two arrays such that all elements on the left are smaller than on the right",
+      "type": "conceptual",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "F9c7LpRZWVQ",
+          "start_sec": 680,
+          "end_sec": 785
+        }
+      ],
+      "labeler": "S",
+      "notes": "Partition symmetry: l1 <= r2 and l2 <= r1.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q099",
+      "query": "finding 50th percentile across two independent ordered collections in logarithmic time",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "F9c7LpRZWVQ",
+          "start_sec": 120,
+          "end_sec": 215
+        }
+      ],
+      "labeler": "S",
+      "notes": "Logarithmic time median.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q100",
+      "query": "edge case when all elements from the first array lie on the left side of partition",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "F9c7LpRZWVQ",
+          "start_sec": 1220,
+          "end_sec": 1315
+        }
+      ],
+      "labeler": "S",
+      "notes": "Using INT_MIN and INT_MAX when partition cut falls at array boundaries.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q101",
+      "query": "minimise maximum distance between gas stations",
+      "type": "lexical",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "kMSBvlZ-_HA",
+          "start_sec": 80,
+          "end_sec": 175
+        }
+      ],
+      "labeler": "S",
+      "notes": "Gas station problem introduction.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q102",
+      "query": "why binary search works on floating point distances between gas stations",
+      "type": "conceptual",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "kMSBvlZ-_HA",
+          "start_sec": 1710,
+          "end_sec": 1820
+        }
+      ],
+      "labeler": "S",
+      "notes": "Monotonic helper function countGasStations(dist) <= k.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q103",
+      "query": "placing k extra stations on highway to reduce gaps between consecutive points",
+      "type": "paraphrase",
+      "split": "test",
+      "relevant": [
+        {
+          "video_id": "kMSBvlZ-_HA",
+          "start_sec": 95,
+          "end_sec": 190
+        }
+      ],
+      "labeler": "S",
+      "notes": "Problem intuition.",
+      "verified": false,
+      "label_source": "agent"
+    },
+    {
+      "id": "q104",
+      "query": "precision issues with float comparison in binary search termination condition",
+      "type": "symptom",
+      "split": "dev",
+      "relevant": [
+        {
+          "video_id": "kMSBvlZ-_HA",
+          "start_sec": 2210,
+          "end_sec": 2300
+        }
+      ],
+      "labeler": "S",
+      "notes": "Iterating high - low > 1e-6 instead of integer low <= high.",
+      "verified": false,
+      "label_source": "agent"
+    }
+  ]
+}

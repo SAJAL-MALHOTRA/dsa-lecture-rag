@@ -1,0 +1,18 @@
+﻿query_id,mode,verdict,field,before,after,note
+q003,confirm,adjust,relevant,10m50s - 13m10s,10m30s - 13m10s,Adjusted start 20s earlier to include problem statement and initial distance d setup.
+q006,confirm,adjust,relevant,4m20s - 7m20s,7m00s - 11m00s,Agent span captured stack brute force; 3-pointer iterative method starts at 7m00s (420s) with prev/temp/front setup.
+q009,blind,found,relevant,28m40s - 30m20s,31m33s - 32m25s,Found in complexity summary section (1893s-1945s); agent's hidden span was earlier.
+q010,blind,found,relevant,5m14s - 7m45s,5m15s - 7m45s,Found hash map lookup approach with target - num.
+q012,blind,found,relevant,17m10s - 18m15s,17m10s - 18m20s,Explains index loss under sorting when indices must be returned.
+q013,blind,found,relevant,6m15s - 7m25s,6m15s - 7m30s,Covers edge case where target - arr[i] == arr[i] must not reuse same index.
+q018,blind,found,relevant,23m00s - 25m40s,25m50s - 28m30s,Explains why map.find(rem) should not overwrite earlier index when sum doesn't change due to zeros.
+q020,blind,found,relevant,4m00s - 7m40s,3m50s - 7m30s,Found high-level recursive divide step.
+q024,blind,found,relevant,39m00s - 41m10s,44m15s - 47m30s,Found derivation of 2 * T(N/2) + N recurrence and log2(N) levels.
+q026,blind,found,relevant,3m00s - 5m10s,3m45s - 4m35s,Found pivot selection guidelines.
+q033,blind,found,relevant,9m30s - 10m40s,9m15s - 10m45s,Found stack overflow explanation and compiler stack limitations.
+q036,blind,found,relevant,51m20s - 53m40s,51m15s - 53m45s,Modulo division method explained with arithmetic examples mapping 139 % 10.
+q041,blind,found,relevant,56m55s - 58m40s,56m50s - 58m35s,Covers open addressing / linear probing searching for next vacant cell.
+q042,confirm,drop,query,7m40s - 8m30s,(dropped),Lecture mentions finding middle as a prerequisite reference; full explanation belongs to dedicated middle of linked list video.
+q043,blind,drop,query,45m20s - 47m10s,(dropped),The lecture video focuses purely on array merge sort derivation; linked list quicksort tradeoffs are not addressed.
+q044,blind,found,relevant,15m20s - 17m30s,15m10s - 17m30s,Found call stack depth memory analysis.
+q048,blind,found,relevant,21m20s - 22m20s,21m15s - 22m20s,Found tail recursion discussion in summary.

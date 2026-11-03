@@ -155,7 +155,9 @@ async def lifespan(app: FastAPI):
         except Exception as e:
             print(f"[FastAPI Lifespan] Error during background index loading: {e}", file=sys.stderr, flush=True)
 
-    asyncio.create_task(_async_warmup())
+    warmup_task = asyncio.create_task(_async_warmup())
+    if os.getenv("PYTEST_CURRENT_TEST"):
+        await warmup_task
     yield
     state.clear()
 

@@ -174,7 +174,7 @@ class SegmentIndex:
         starts = self.starts.get(r.video_id, [])
         return [starts[i] for i in self._indices(r)]
 
-    def refine(self, r: Span, qtoks, pad: float) -> Span:
+    def refine(self, r: Span, qtoks, pad: float, max_forward_shift: float | None = None) -> Span:
         """Move the seek point to the best-scoring window inside the chunk.
         Falls back to the chunk start when there is no transcript or no lexical evidence."""
         idxs = self._indices(r)
@@ -190,7 +190,7 @@ class SegmentIndex:
             return r
         best_start = rows[best_i][0]
         shift = best_start - r.start
-        if shift > 22.0:
+        if max_forward_shift is not None and shift > max_forward_shift:
             refined_start = r.start + 12.0
         else:
             refined_start = max(r.start, best_start - pad)

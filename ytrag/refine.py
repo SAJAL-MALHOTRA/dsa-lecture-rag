@@ -28,7 +28,7 @@ class SegmentRefiner:
         transcripts: dict[str, list[tuple[float, float, str]]],
         window: int = 1,
         pad_sec: float = 3.0,
-        max_forward_shift: float = 22.0,
+        max_forward_shift: float | None = None,
         k1: float = 1.2,
         b: float = 0.75,
     ):
@@ -107,7 +107,7 @@ class SegmentRefiner:
         best_start = rows[best_i][0]
         shift = best_start - float(chunk.start_sec)
         # Conservative forward shift: prevents overshooting explanation onset when snapping to deep sub-segments
-        if shift > self.max_forward_shift:
+        if self.max_forward_shift is not None and shift > self.max_forward_shift:
             refined_start = float(chunk.start_sec) + 12.0
         else:
             refined_start = max(float(chunk.start_sec), best_start - self.pad_sec)

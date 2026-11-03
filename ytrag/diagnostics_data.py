@@ -11,9 +11,9 @@ from typing import Optional
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-def build_diagnostics_payload() -> dict:
+def build_diagnostics_payload(force: bool = False) -> dict:
     cache_file = BASE_DIR / "data" / "diagnostics_104.json"
-    if cache_file.exists():
+    if cache_file.exists() and not force:
         try:
             with open(cache_file, "r", encoding="utf-8") as f:
                 return json.load(f)
@@ -32,9 +32,15 @@ def build_diagnostics_payload() -> dict:
     run_bm25_p = BASE_DIR / "runs" / "run_104_bm25.json"
     run_en_p = BASE_DIR / "runs" / "run_104_hybrid_en.json"
     run_multi_p = BASE_DIR / "runs" / "run_104_hybrid_multi.json"
+    run_rerank_p = BASE_DIR / "runs" / "run_104_reranked.json"
 
     runs = {}
-    for name, p in [("bm25", run_bm25_p), ("hybrid_en", run_en_p), ("hybrid_multi", run_multi_p)]:
+    for name, p in [
+        ("bm25", run_bm25_p),
+        ("hybrid_en", run_en_p),
+        ("hybrid_multi", run_multi_p),
+        ("reranked", run_rerank_p),
+    ]:
         if p.exists():
             with open(p, "r", encoding="utf-8") as f:
                 runs[name] = json.load(f)
@@ -140,8 +146,11 @@ def build_diagnostics_payload() -> dict:
     }
 
 if __name__ == "__main__":
-    payload = build_diagnostics_payload()
-    print("Diagnostics payload built successfully!")
+    payload = build_diagnostics_payload(force=True)
+    cache_file = BASE_DIR / "data" / "diagnostics_104.json"
+    with open(cache_file, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
+    print("Diagnostics payload built and cached successfully!")
     print(f"Total queries: {payload.get('total_queries')}")
     print(f"Sample query 0: {payload['queries'][0]['id']} -> {payload['queries'][0]['query']}")
     print(f"Sample systems: {list(payload['queries'][0]['systems'].keys())}")
