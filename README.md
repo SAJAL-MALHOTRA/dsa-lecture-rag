@@ -1,5 +1,5 @@
 ---
-title: Striver DSA Platform
+title: DSA Lecture RAG
 emoji: ⚡
 colorFrom: blue
 colorTo: indigo
@@ -8,7 +8,11 @@ app_port: 7860
 pinned: false
 ---
 
-# YouTube Lecture RAG: Bias-Aware Timestamped Video Retrieval & Synthesis
+# DSA Lecture RAG: Bias-Aware Timestamped Video Retrieval & Synthesis
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://striver-dsa-platform.onrender.com)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-dsa--lecture--rag-181717?style=for-the-badge&logo=github)](https://github.com/SAJAL-MALHOTRA/dsa-lecture-rag)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 A precision-engineered retrieval-augmented generation (RAG) system for technical YouTube lecture videos. Built to solve the **video timestamp precision problem**: taking student programming doubts (symptom descriptions, conceptual confusion, algorithm mechanics) and navigating directly to the exact second where the explanation begins.
 
@@ -19,24 +23,25 @@ A precision-engineered retrieval-augmented generation (RAG) system for technical
 ```
 [Student Query]
        │
-       ├──► BM25 Lexical Channel (75s Windows, 15s Stride) ────────┐
-       │                                                            ▼
-       └──► Dense Semantic Channel (all-MiniLM-L6-v2 / BGE-small) ──► Reciprocal Rank Fusion (RRF, k=60)
-                                                                            │
-                                                                            ▼
-                                                                 Top-K Retrieved Chunks
-                                                                            │
-                                                                            ▼
-                                                                 Sub-Chunk Seek Refinement
-                                                            (BM25 over 1-seg sliding window, pad=3s)
-                                                                            │
-                                                                            ▼
-                                                                 Final Video Seek Timestamps
-                                                                            │
-                                                                            ▼
-                                                                 Answer Synthesis
-                                                            Default: Extractive Citation
-                                                            Optional: LoRA Qwen-0.5B Assistant
+       ├──► BM25 Lexical Channel (75s Windows, 15s Stride) ─────────────────────────┐
+       │                                                                            ▼
+       └──► Multilingual Dense Channel (paraphrase-multilingual-MiniLM-L12-v2) ───► Reciprocal Rank Fusion (RRF, k=60)
+                                                                                            │
+                                                                                            ▼
+                                                                                 Top-K Retrieved Chunks
+                                                                                            │
+                                                                                            ▼
+                                                                                 Sub-Chunk Seek Refinement
+                                                                            (BM25 over 1-seg sliding window, pad=3s)
+                                                                                            │
+                                                                                            ▼
+                                                                                 Final Video Seek Timestamps
+                                                                                            │
+                                                                                            ▼
+                                                                                 Answer Synthesis
+                                                                            Default: Extractive Citation (<50ms, 0% Hallucination)
+                                                                            Optional: BYOK Cloud LLMs (Groq / OpenAI)
+                                                                            Research Study: LoRA Qwen-0.5B (see EXPERIMENTS.md)
 ```
 
 ### Core Components
@@ -132,8 +137,8 @@ Fine-tuning records were strictly audited against the evaluation set using `leak
 
 ### Installation
 ```bash
-git clone https://github.com/your-username/yt-lecture-rag.git
-cd yt-lecture-rag
+git clone https://github.com/SAJAL-MALHOTRA/dsa-lecture-rag.git
+cd dsa-lecture-rag
 python -m venv .venv
 # Activate virtual environment
 pip install -r requirements.txt

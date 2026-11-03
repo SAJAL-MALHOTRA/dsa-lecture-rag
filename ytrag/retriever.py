@@ -88,12 +88,12 @@ class DenseRetriever:
     def __init__(
         self,
         chunks: list[Chunk],
-        model_name: str = "all-MiniLM-L6-v2",
+        model_name: Optional[str] = None,
         batch_size: int = 32,
         lazy: bool = False,
     ):
         self.chunks = chunks
-        self.model_name = model_name
+        self.model_name = model_name or os.getenv("EMBEDDER_MODEL", "paraphrase-multilingual-MiniLM-L12-v2")
         self.batch_size = batch_size
         self.model = None
         self.embeddings = None

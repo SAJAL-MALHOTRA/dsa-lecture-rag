@@ -210,29 +210,77 @@
       color: var(--ink-muted);
     }
 
-    /* Quick Suggestions */
+    /* Quick Suggestions & Benchmark Showcase */
+    .quick-chips-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: -4px;
+      margin-bottom: 4px;
+    }
+
+    .quick-chips-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .chips-subtitle {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
     .quick-chips {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
     .chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: var(--surface);
       border: 1px solid var(--border);
       color: var(--ink-secondary);
-      font-size: 12px;
-      padding: 4px 10px;
+      font-size: 11.5px;
+      padding: 4px 9px;
       border-radius: var(--radius);
       cursor: pointer;
       transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
     .chip-btn:hover {
       background: var(--surface-hover);
       border-color: var(--border-dark);
       color: var(--ink);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
     }
+
+    .chip-tag {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1.5px 5px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-lex { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .tag-con { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    .tag-par { background: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+    .tag-sym { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+    .tag-ood { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
 
     /* Matched DSA Algorithm Card (With Smooth Pop-Out Button) */
     .dsa-algo-banner {
@@ -2263,14 +2311,38 @@
         <span class="kbd">↵ Enter</span>
       </div>
 
-      <!-- Quick Suggestion Chips -->
-      <div class="quick-chips">
-        <button class="chip-btn" data-q="two sum">Two Sum</button>
-        <button class="chip-btn" data-q="kadane's algorithm">Kadane's Algorithm</button>
-        <button class="chip-btn" data-q="detect cycle in linked list">Cycle in Linked List</button>
-        <button class="chip-btn" data-q="merge sort">Merge Sort</button>
-        <button class="chip-btn" data-q="binary search">Binary Search</button>
-        <button class="chip-btn" data-q="longest subarray with sum k">Subarray Sum K</button>
+      <!-- Curated Evaluation Benchmark Queries -->
+      <div class="quick-chips-wrapper">
+        <div class="quick-chips-label">
+          <span>Curated Queries</span>
+          <span class="chips-subtitle">— click to test retrieval precision across benchmark categories:</span>
+        </div>
+        <div class="quick-chips">
+          <button class="chip-btn" data-q="tortoise and hare algorithm" title="Lexical exact match from pre-registered golden test set">
+            <span class="chip-tag tag-lex">Lexical</span> Tortoise &amp; Hare
+          </button>
+          <button class="chip-btn" data-q="how does kadane's algorithm work" title="Conceptual query matching maximum subarray explanation">
+            <span class="chip-tag tag-con">Conceptual</span> Kadane's Max Subarray
+          </button>
+          <button class="chip-btn" data-q="two pointer technique for 2 sum" title="Paraphrase query (different wording from video title)">
+            <span class="chip-tag tag-par">Paraphrase</span> 2-Pointer 2-Sum
+          </button>
+          <button class="chip-btn" data-q="why does floyd cycle algorithm work" title="Conceptual mathematical proof timestamp">
+            <span class="chip-tag tag-con">Conceptual</span> Floyd Cycle Proof
+          </button>
+          <button class="chip-btn" data-q="my recursive function never stops" title="Student bug/symptom query matching base case explanation">
+            <span class="chip-tag tag-sym">Symptom</span> Infinite Recursion
+          </button>
+          <button class="chip-btn" data-q="merge sort time complexity" title="Complexity derivation timestamp query">
+            <span class="chip-tag tag-lex">Lexical</span> Merge Sort Complexity
+          </button>
+          <button class="chip-btn" data-q="detect cycle in linked list" title="Classic DSA query with whiteboard dry run">
+            <span class="chip-tag tag-par">Paraphrase</span> Cycle in Linked List
+          </button>
+          <button class="chip-btn" data-q="react hooks state tutorial" title="Domain Gating: Non-DSA query correctly rejected by safety gate">
+            <span class="chip-tag tag-ood">Out-of-Domain</span> React Hooks
+          </button>
+        </div>
       </div>
 
       <!-- Matched DSA Algorithm Card with Smooth Pop-out Button -->

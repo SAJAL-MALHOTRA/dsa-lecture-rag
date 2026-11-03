@@ -134,7 +134,8 @@ async def lifespan(app: FastAPI):
         def _sync_load():
             chunks, raw_transcripts, videos_meta = load_corpus()
             bm25 = BM25Retriever(chunks)
-            dense = DenseRetriever(chunks, model_name="all-MiniLM-L6-v2", lazy=True)
+            dense_model = os.getenv("EMBEDDER_MODEL", "paraphrase-multilingual-MiniLM-L12-v2")
+            dense = DenseRetriever(chunks, model_name=dense_model, lazy=True)
             dense.load()
             hybrid = HybridRetriever(bm25, dense)
             segment_index = SegmentIndex(raw_transcripts, window=1)
