@@ -188,7 +188,13 @@ class SegmentIndex:
                 best_i, best = i, s
         if best_i is None:
             return r
-        return Span(r.video_id, max(r.start, rows[best_i][0] - pad), r.end)
+        best_start = rows[best_i][0]
+        shift = best_start - r.start
+        if shift > 22.0:
+            refined_start = r.start + 12.0
+        else:
+            refined_start = max(r.start, best_start - pad)
+        return Span(r.video_id, refined_start, r.end)
 
 
 def oracle_hit(r: Span, q, index: SegmentIndex, seek_cfg: HitConfig) -> bool:

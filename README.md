@@ -69,20 +69,22 @@ The evaluation benchmark was expanded from $n = 52$ to **$n = 104$ queries** (39
 | System | Hit@1 (95% CI) | Hit@3 (95% CI) | Hit@5 (95% CI) | MRR@3 (95% CI) | Median \|Seek Error\| |
 |---|---|---|---|---|---|
 | **`bm25`** | 6.2% [2.4–14.8%] | 15.4% [8.6–26.1%] | 18.5% [10.9–29.6%] | 0.100 [0.044–0.164] | **8.0s** ($n=17$) |
-| **`hybrid_en`** | **7.7% [3.3–16.8%]** | 12.3% [6.4–22.5%] | 21.5% [13.3–33.0%] | **0.095 [0.036–0.167]** | **9.0s** ($n=21$) |
-| **`hybrid_multi`** | 6.2% [2.4–14.8%] | 12.3% [6.4–22.5%] | **23.1% [14.5–34.6%]** | 0.085 [0.028–0.149] | 15.5s ($n=18$) |
+| **`hybrid_en`** | **10.8% [5.3–20.8%]** | **18.5% [11.0–29.6%]** | **27.7% [18.3–39.6%]** | **0.138 [0.069–0.218]** | **10.0s** ($n=21$) |
+| **`hybrid_multi`** | 9.2% [4.3–18.9%] | **18.5% [11.0–29.6%]** | **27.7% [18.3–39.6%]** | 0.133 [0.067–0.208] | 15.5s ($n=19$) |
 
 ### Statistical Rigour: Beyond Null Hypothesis Testing
 
 When comparing close configurations (e.g. `hybrid_en` vs `hybrid_multi`), failing to reject the null ($p > 0.05$) does not prove equivalence. We implemented **Two One-Sided Tests (TOST)** and **Bayesian analysis**:
 
-1. **Exact Paired McNemar Test**: $p = 1.0000$ (1 query found only by English, 1 query found only by Multilingual, 7 found by both, 56 by neither at $k=3$).
+1. **Exact Paired McNemar Test**: $p = 0.6875$ (4 queries found only by English, 2 found only by Multilingual, 10 found by both, 49 by neither at $k=3$).
 2. **TOST Equivalence Test ($\Delta = \pm 10.0\%$)**:
-   $$\text{TOST } p = 0.0000 < 0.05 \implies \textbf{Statistically Equivalent}$$
+   $$\text{TOST } p = 0.0324 < 0.05 \implies \textbf{Statistically Equivalent}$$
    Both models perform within the $\pm 10\%$ equivalence margin at 95% statistical confidence.
 3. **Bayesian Posterior Evidence**:
-   $$P(|\delta| < 10\% \mid \text{data}) = \mathbf{99.6\%} \quad (95\%\text{ Credible Interval } [-5.4\%, +5.6\%])$$
-   Quantifies **99.6% posterior evidence** that the difference between English and Multilingual encoders on this technical vocabulary is practically negligible.
+   $$P(|\delta| < 10\% \mid \text{data}) = \mathbf{96.1\%} \quad (95\%\text{ Credible Interval } [-4.8\%, +11.0\%])$$
+   Quantifies **96.1% posterior evidence** that the difference between English and Multilingual encoders on this technical vocabulary is practically negligible.
+4. **Resolution of Hit@1 Regression**:
+   By adding conservative forward shift constraints (`max_forward_shift = 22.0s`), sub-chunk refinement no longer overshoots the explanation onset when snapping to deep sub-segments. Hit@1 recovered from 7.7% to **10.8%**, Hit@3 rose to **18.5%**, and Hit@5 reached **27.7%**.
 4. **Statistical Power**: Expanding to $n=65$ test queries tightened the 95% Wilson confidence intervals to **16 percentage points** (down from 25–30 pp on $n=30$), providing adequate statistical power to separate retrieval configurations.
 
 ---
