@@ -392,7 +392,7 @@ def get_corpus():
     }
 
 
-@app.get("/api/search", response_model=SearchResponse)
+@app.get("/api/search")
 async def search_lectures(
     q: str = Query(..., description="Student doubt / technical query"),
     k: int = Query(5, description="Number of results to return"),
@@ -404,7 +404,20 @@ async def search_lectures(
             await asyncio.wait_for(ev.wait(), timeout=4.0)
         except asyncio.TimeoutError:
             pass
-    return _retrieve(q, k)
+    try:
+        return _retrieve(q, k)
+    except Exception as e:
+        import traceback
+        trace = traceback.format_exc()
+        print(f"[Search Error]: {trace}", file=sys.stderr, flush=True)
+        return {
+            "query": q,
+            "total_found": 0,
+            "summary": f"Search encountered an issue: {str(e)}",
+            "results": [],
+            "error_detail": trace,
+            "dsa_snippet": None,
+        }
 
 
 @app.get("/api/dsa-snippet")
