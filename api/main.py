@@ -282,12 +282,16 @@ def _retrieve(query: str, k: int = 5) -> SearchResponse:
     out_of_scope_terms = {"next", "react", "vue", "angular", "django", "spring", "flutter", "express", "sql"}
 
     is_out_of_domain = False
-    if bm25_score <= 0.0 and dense_score < 0.35:
-        is_out_of_domain = True
-    elif any(term in qtoks for term in out_of_scope_terms) and dense_score < 0.40:
-        is_out_of_domain = True
-    elif not qtoks and dense_score < 0.35:
-        is_out_of_domain = True
+    if dense_score > 0:
+        if bm25_score <= 0.0 and dense_score < 0.35:
+            is_out_of_domain = True
+        elif any(term in qtoks for term in out_of_scope_terms) and dense_score < 0.40:
+            is_out_of_domain = True
+    else:
+        if bm25_score <= 0.0:
+            is_out_of_domain = True
+        elif any(term in qtoks for term in out_of_scope_terms) and bm25_score < 1.0:
+            is_out_of_domain = True
 
     matched_dsa = None
     if dsa_index:

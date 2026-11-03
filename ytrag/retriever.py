@@ -106,12 +106,21 @@ class DenseRetriever:
         return self._ready and self.embeddings is not None
 
     def _get_model(self):
+        # On memory-constrained cloud environments (e.g. Render Free Tier 512MB RAM),
+        # dynamically loading PyTorch and SentenceTransformers triggers OOM crash or worker deadlock.
+        if os.getenv("DISABLE_DENSE", "").lower() in ("1", "true", "yes"):
+            return None
+        if os.getenv("RENDER") and not os.getenv("ENABLE_DENSE_ON_RENDER"):
+            return None
+
         if self.model is None:
             try:
                 from sentence_transformers import SentenceTransformer
                 try:
                     self.model = SentenceTransformer(self.model_name, local_files_only=True)
                 except Exception:
+                    if os.getenv("RENDER"):
+                        return None
                     self.model = SentenceTransformer(self.model_name)
             except Exception as e:
                 print(f"[DenseRetriever] SentenceTransformer could not be loaded ({e}). BM25 fallback active.")
