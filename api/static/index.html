@@ -4039,15 +4039,22 @@
         }
         answerBullets.innerHTML = "";
 
+        if (aData.approach_summary) {
+          const summaryDiv = document.createElement("div");
+          summaryDiv.style.cssText = "background: #f8fafc; border-left: 3px solid #6366f1; padding: 10px 14px; margin-bottom: 12px; border-radius: 6px; font-size: 13px; line-height: 1.5; color: var(--ink);";
+          summaryDiv.innerHTML = `<strong style="color: #6366f1; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; display: flex; align-items: center; gap: 5px; margin-bottom: 4px;"><span>💡</span> Striver's Approach Intuition (Brute → Optimal):</strong>${escapeHtml(aData.approach_summary)}`;
+          answerBullets.appendChild(summaryDiv);
+        }
+
         if (!aData.bullets || aData.bullets.length === 0) {
-          answerBullets.innerHTML = `<p style="color: var(--ink-muted); font-size: 13px;">${aData.message || 'No direct answer available.'}</p>`;
+          answerBullets.innerHTML += `<p style="color: var(--ink-muted); font-size: 13px;">${escapeHtml(aData.message || 'No direct answer available.')}</p>`;
         } else {
           aData.bullets.forEach(b => {
             const div = document.createElement("div");
             div.className = "answer-bullet";
             let cits = "";
             (b.citations || []).forEach(c => {
-              cits += `<button class="citation-btn" onclick="seekPlayer('${c.video_id}', ${c.seek_sec}, '${c.video_title} (${c.timestamp_display})')">▶ ${c.timestamp_display}</button>`;
+              cits += `<button class="citation-btn" onclick="seekPlayer('${c.video_id}', ${c.seek_sec}, '${escapeHtml(c.video_title)} (${c.timestamp_display})')">▶ ${c.timestamp_display}</button>`;
             });
             div.innerHTML = `• ${escapeHtml(b.text)} ${cits}`;
             answerBullets.appendChild(div);
