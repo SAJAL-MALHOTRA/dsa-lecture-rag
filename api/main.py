@@ -568,6 +568,47 @@ def grill_me_endpoint(req: GrillMeRequest):
         )
 
 
+def classify_user_intent(query: str) -> str:
+    """
+    Classifies user message into:
+    - 'greeting': 'hi', 'hello', 'hey', 'good morning', etc.
+    - 'beginner_roadmap': 'i dont know dsa', 'i am beginner', 'how to start', 'where to begin', 'confused about dsa', etc.
+    - 'thanks': 'thank you', 'thanks striver', 'awesome', 'great', etc.
+    - 'out_of_domain': non-dsa queries (web dev, devops, jokes, etc.)
+    - 'algorithm_query': technical/problem question
+    """
+    q = query.strip().lower()
+    q_clean = re.sub(r"[^a-z0-9\s]", " ", q)
+    words = set(q_clean.split())
+
+    greetings = {"hi", "hello", "hey", "hola", "yo", "namaste", "sup", "hey striver", "hello striver", "good morning", "good evening"}
+    if q_clean in greetings or (words & {"hi", "hello", "hey"} and len(words) <= 3):
+        return "greeting"
+
+    if words & {"thanks", "thank", "thx"} or "thank you" in q_clean or q_clean in ("nice", "cool", "awesome", "great", "got it", "understood"):
+        return "thanks"
+
+    beginner_patterns = [
+        r"\b(dont|don't|do not|didnt|didn't)\s+know\s+(dsa|dsaa|anything|programming|coding|algorithms|basics)\b",
+        r"\b(dont|don't|do not)\s+know\s+how\s+to\s+(start|code|solve|begin)\b",
+        r"\b(beginner|noob|fresher|zero|scratch|newbie|new to dsa)\b",
+        r"\b(how|where)\s+(to|should i|do i|can i)\s+(start|begin|learn|prepare)\b",
+        r"\b(roadmap|guide|study plan|how to study dsa|how to crack)\b",
+        r"\bi\s+(am|m)\s+(confused|lost|scared|struggling)\b",
+        r"\bwhat\s+is\s+(dsa|data structures|algorithms)\b",
+        r"^(dsa\s+roadmap|how\s+to\s+dsa|start\s+dsa|help\s+me\s+start)$",
+    ]
+    for pattern in beginner_patterns:
+        if re.search(pattern, q_clean):
+            return "beginner_roadmap"
+
+    ood_terms = {"react", "angular", "vue", "docker", "kubernetes", "css", "html", "django", "spring", "flask", "weather", "crypto", "bitcoin", "joke"}
+    if words & ood_terms:
+        return "out_of_domain"
+
+    return "algorithm_query"
+
+
 @app.post("/api/answer")
 def answer_query(request: AnswerRequest):
     """
@@ -575,6 +616,30 @@ def answer_query(request: AnswerRequest):
     Supports Grok, Groq, OpenAI, or local deterministic extractive fallback.
     """
     query = request.query.strip()
+    intent = classify_user_intent(query)
+    if intent == "beginner_roadmap":
+        return {
+            "query": query,
+            "provider": "extractive",
+            "bullets": [
+                {
+                    "text": "Start by picking ONE programming language (C++, Java, or Python) and learn the basic syntax (loops, functions, arrays).",
+                    "citations": []
+                },
+                {
+                    "text": "Follow the Striver A2Z Sheet step-by-step: begin with Basics & Math, then master Arrays and Two-Pointers before touching advanced topics.",
+                    "citations": []
+                },
+                {
+                    "text": "Golden Rule: Always dry run on paper with small sample arrays before writing code. Check the A2Z Roadmap tab to track your progress!",
+                    "citations": []
+                }
+            ],
+            "approach_summary": "Don't panic! Everyone starts from zero. Follow Striver's 4-step beginner roadmap: Language -> Big-O -> A2Z Sheet -> Dry Runs.",
+            "dsa_snippet": None,
+            "message": "Beginner guidance from Striver's Take U Forward curriculum.",
+        }
+
     retrieved = _retrieve(query, k=5)
     dsa_index: DSASheetIndex = state.get("dsa_index")
     matched_dsa = None
@@ -709,24 +774,98 @@ def striver_chat_endpoint(request: ChatRequest):
     if not query:
         raise HTTPException(status_code=400, detail="No user message provided.")
 
+    intent = classify_user_intent(query)
+
+    if intent == "beginner_roadmap":
+        reply = (
+            "Hey! Don't worry at all, take a deep breath. 😊\n\n"
+            "Everybody starts from complete zero—when I wrote my first line of code, I had the exact same feeling! "
+            "DSA is not about memorizing code; it's about training your brain to think with pure intuition step-by-step.\n\n"
+            "Here is the battle-tested roadmap to go from absolute beginner to interview-ready:\n\n"
+            "**1. Step 1: Pick ONE Programming Language (Week 1–2)**\n"
+            "Choose C++, Java, or Python. Master basic syntax: loops, conditionals, functions, and 1D/2D arrays. Don't switch languages midway.\n\n"
+            "**2. Step 2: Understand Time & Space Complexity (Week 2)**\n"
+            "Never memorize Big-O! Learn how to count operations: a single loop is O(N), nested loops are O(N²), dividing search space in half is O(log N).\n\n"
+            "**3. Step 3: Follow the Striver A2Z Sheet Step-by-Step**\n"
+            "Follow the syllabus in order—don't jump straight into Dynamic Programming or Graphs:\n"
+            "- **Basics & Math:** Digit extraction, GCD, basic recursion trees on paper.\n"
+            "- **Arrays (The Foundation):** Kadane's Algorithm, Two-Sum, Dutch National Flag (0s, 1s, 2s).\n"
+            "- **Binary Search:** On sorted arrays, then on search spaces (Book Allocation, Aggressive Cows).\n"
+            "- **Linked Lists, Stacks, Queues:** Pointer manipulation, Fast & Slow pointers.\n"
+            "- **Trees & Graphs:** BFS, DFS, Dijkstra, Topo Sort.\n\n"
+            "**4. Golden Rule of Learning:**\n"
+            "Always dry-run with pen and paper on small sample inputs (like `[2, 7, 11, 15]`) before touching your keyboard!\n\n"
+            "👉 **Action Item:** Click the **🗺️ A2Z Roadmap tab** in the top navigation bar to see the full 369-problem syllabus. "
+            "Which programming language (C++, Java, or Python) are you starting with?"
+        )
+        return {
+            "reply": reply,
+            "citations": [],
+            "dsa_snippet": None,
+            "provider": "extractive",
+        }
+
+    if intent == "greeting":
+        reply = (
+            "Hey everyone! Welcome back! 👋\n\n"
+            "I'm your Striver AI mentor, grounded directly in my 305 YouTube lectures and the complete A2Z DSA Sheet.\n\n"
+            "How can I help you today? You can:\n"
+            "- Ask any conceptual doubt (e.g. *\"Why do two pointers work in 2 Sum?\"*, *\"What is Kadane's negative numbers trap?\"*)\n"
+            "- Ask about any algorithmic pattern (Sliding Window, Binary Search on Answers, Cycle Detection)\n"
+            "- Or let me know what topic you're studying right now!"
+        )
+        return {
+            "reply": reply,
+            "citations": [],
+            "dsa_snippet": None,
+            "provider": "extractive",
+        }
+
+    if intent == "thanks":
+        reply = (
+            "You're very welcome! Keep practicing consistently. Remember: consistency beats intensity every single time. "
+            "Keep dry-running your code on paper, and feel free to ask anytime you get stuck on a problem! 🔥"
+        )
+        return {
+            "reply": reply,
+            "citations": [],
+            "dsa_snippet": None,
+            "provider": "extractive",
+        }
+
+    if intent == "out_of_domain":
+        reply = (
+            "Hey! That topic is outside our DSA curriculum.\n\n"
+            "I am specialized strictly in Data Structures, Algorithms, Competitive Programming, and Striver's A2Z Sheet "
+            "(Arrays, Linked Lists, Trees, Graphs, DP, Sorting, Recursion).\n\n"
+            "Feel free to ask any DSA problem, edge-case doubt, or time complexity question!"
+        )
+        return {
+            "reply": reply,
+            "citations": [],
+            "dsa_snippet": None,
+            "provider": "extractive",
+        }
+
     retrieved = _retrieve(query, k=5)
     dsa_index: DSASheetIndex = state.get("dsa_index")
     matched_dsa = None
     if dsa_index:
         sol, score = dsa_index.get_best_match(query)
-        if sol and score > 0.1:
+        if sol and score > 0.15:
             matched_dsa = sol.to_dict()
 
-    citations = [
-        {
-            "source_id": i + 1,
-            "video_id": item.video_id,
-            "video_title": item.video_title,
-            "seek_sec": item.seek_sec,
-            "timestamp_display": item.timestamp_display,
-        }
-        for i, item in enumerate(retrieved.results)
-    ]
+    citations = []
+    if retrieved.results and retrieved.total_found > 0:
+        for i, item in enumerate(retrieved.results):
+            if item.score and item.score > 0.005:
+                citations.append({
+                    "source_id": len(citations) + 1,
+                    "video_id": item.video_id,
+                    "video_title": item.video_title,
+                    "seek_sec": item.seek_sec,
+                    "timestamp_display": item.timestamp_display,
+                })
 
     provider = (request.provider or resolve_default_provider()).lower().strip()
     api_key = (
@@ -771,24 +910,38 @@ def striver_chat_endpoint(request: ChatRequest):
         except Exception as exc:
             logger.warning("Striver chat LLM error (%s), falling back to grounded extractive reply.", exc)
 
+    if not matched_dsa and not citations:
+        return {
+            "reply": (
+                f"Hey! I searched across all 6,881 lecture moments, but couldn't find a direct lecture match for *\"{query}\"*.\n\n"
+                "Try searching for the standard problem name (e.g., *'Two Sum'*, *'Kadane's Algorithm'*, *'Cycle in Linked List'*), "
+                "or browse the **🗺️ A2Z Roadmap tab** above to pick a problem to study!"
+            ),
+            "citations": [],
+            "dsa_snippet": None,
+            "provider": "extractive",
+        }
+
     # Conversational Extractive Fallback (Fast, Zero Hallucination, Striver Voice)
-    dsa_title = matched_dsa.get("title", "") if matched_dsa else "this algorithm"
+    dsa_title = matched_dsa.get("title", "") if matched_dsa else (citations[0]["video_title"] if citations else query)
     dsa_approach = matched_dsa.get("approach", "") if matched_dsa else ""
     tc = matched_dsa.get("time_complexity", "") if matched_dsa else "O(N)"
     sc = matched_dsa.get("space_complexity", "") if matched_dsa else "O(1)"
 
     reply_parts = [
-        f"Hey! Let's understand **{query}** with pure intuition, step-by-step just like we do on the whiteboard.\n"
+        f"Hey! Let's understand **{dsa_title}** with pure intuition, step-by-step just like we do on the whiteboard.\n"
     ]
     if dsa_approach:
         reply_parts.append(f"**💡 The Core Thought Process (Brute → Optimal):**\n{dsa_approach[:300].strip()}\n")
         reply_parts.append(f"**Complexity Target:** Time `{tc}` | Space `{sc}`.\n")
 
-    if retrieved.results:
+    if citations:
         reply_parts.append("**Verified Lecture Insights:**")
-        for i, item in enumerate(retrieved.results[:3]):
-            snip = item.snippet.strip().replace("\n", " ")[:180]
-            reply_parts.append(f"- At **{item.timestamp_display}** in *{item.video_title}*, Striver explains: *\"{snip}...\"* [Source {i+1}]")
+        for i, cit in enumerate(citations[:3]):
+            matching_item = next((r for r in retrieved.results if r.video_id == cit["video_id"]), None)
+            if matching_item:
+                snip = matching_item.snippet.strip().replace("\n", " ")[:180]
+                reply_parts.append(f"- At **{cit['timestamp_display']}** in *{cit['video_title']}*, Striver explains: *\"{snip}...\"* [Source {i+1}]")
 
     reply_parts.append("\n*Tip: Connect your free Groq API key in the top nav to unlock continuous conversational multi-turn dialogue with Striver!*")
 
