@@ -2275,6 +2275,267 @@
       background: var(--surface-hover);
       color: var(--ink);
     }
+
+    /* Floating Striver AI Chat Button */
+    .floating-chat-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 990;
+      background: #0f172a;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      padding: 10px 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .floating-chat-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.45);
+      background: #1e293b;
+    }
+    .floating-chat-btn .chat-btn-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Striver Chat Window */
+    .chat-widget-window {
+      position: fixed;
+      bottom: 80px;
+      right: 24px;
+      width: 380px;
+      max-width: calc(100vw - 32px);
+      height: 520px;
+      max-height: calc(100vh - 100px);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(18px) scale(0.96);
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .chat-widget-window.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .chat-widget-header {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .chat-widget-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chat-widget-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .chat-widget-title {
+      font-weight: 700;
+      font-size: 13.5px;
+      line-height: 1.2;
+    }
+    .chat-widget-subtitle {
+      font-size: 11px;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .chat-widget-close {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: color 0.15s ease;
+    }
+    .chat-widget-close:hover {
+      color: #ffffff;
+    }
+    .chat-messages-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #f8fafc;
+    }
+    .chat-msg {
+      display: flex;
+      flex-direction: column;
+      max-width: 88%;
+      gap: 4px;
+    }
+    .chat-msg.striver {
+      align-self: flex-start;
+    }
+    .chat-msg.user {
+      align-self: flex-end;
+    }
+    .chat-bubble {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .chat-msg.striver .chat-bubble {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #1e293b;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      border-bottom-left-radius: 3px;
+    }
+    .chat-msg.user .chat-bubble {
+      background: #2563eb;
+      color: #ffffff;
+      border-bottom-right-radius: 3px;
+    }
+    .chat-quick-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .chat-chip {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: left;
+    }
+    .chat-chip:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+    .chat-citations-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+    .chat-citation-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+    .chat-citation-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+      color: #2563eb;
+    }
+    .chat-widget-footer {
+      padding: 10px 12px;
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chat-widget-input {
+      flex: 1;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s ease;
+    }
+    .chat-widget-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+    .btn-chat-mic {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+    .btn-chat-mic.recording {
+      background: #fee2e2;
+      border-color: #ef4444;
+      animation: pulse-red 1.5s infinite;
+    }
+    .btn-chat-send {
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      flex-shrink: 0;
+    }
+    .btn-chat-send:hover {
+      background: #1e293b;
+    }
   </style>
 </head>
 <body>
@@ -2286,7 +2547,7 @@
       <span class="badge-corpus">Striver DSA</span>
     </a>
 
-    <!-- View Switcher Tabs (Search vs Roadmap) -->
+    <!-- View Switcher Tabs (Search vs Roadmap vs Chat) -->
     <div class="nav-tabs">
       <button id="nav-btn-search" class="nav-tab-btn active" title="Search lecture moments and video timestamps">
         <span>🔍 Search &amp; Moments</span>
@@ -2294,6 +2555,9 @@
       <button id="nav-btn-roadmap" class="nav-tab-btn" title="Topic-wise DSA Checklist inspired by roadmap.sh">
         <span>🗺️ A2Z Roadmap &amp; Checklist</span>
         <span id="nav-roadmap-badge" class="roadmap-counter-badge">0/369</span>
+      </button>
+      <button id="nav-btn-chat" class="nav-tab-btn" title="Open Striver AI conversational doubt assistant">
+        <span>💬 Ask Striver AI</span>
       </button>
     </div>
 
@@ -2776,6 +3040,57 @@
 
       <button id="modal-validate-btn" class="btn-submit">Connect Provider</button>
       <div id="modal-feedback" class="validation-feedback"></div>
+    </div>
+  </div>
+
+  <!-- Floating Striver AI Chat Button -->
+  <button id="floating-chat-btn" class="floating-chat-btn" title="Chat with Striver AI (Ask any doubt)">
+    <span style="font-size: 16px;">💬</span>
+    <span>Ask Striver AI</span>
+    <span class="chat-btn-pulse"></span>
+  </button>
+
+  <!-- Striver AI Chat Window -->
+  <div id="chat-widget-window" class="chat-widget-window">
+    <div class="chat-widget-header">
+      <div class="chat-widget-profile">
+        <div class="chat-widget-avatar">👨‍💻</div>
+        <div>
+          <div class="chat-widget-title">Striver AI Mentor</div>
+          <div class="chat-widget-subtitle">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+            <span>Grounded in 6,881 Moments</span>
+          </div>
+        </div>
+      </div>
+      <button id="close-chat-widget" class="chat-widget-close" title="Close Chat">&times;</button>
+    </div>
+
+    <div id="chat-messages-container" class="chat-messages-container">
+      <div class="chat-msg striver">
+        <div class="chat-bubble">
+          <strong>Hey everyone! 👋</strong><br>
+          I'm your Striver AI mentor. Stuck on an algorithm, confused about time complexity, or need an intuitive Brute → Better → Optimal breakdown? Ask me any doubt below!
+          <div class="chat-quick-chips">
+            <button class="chat-chip" data-q="Why do we use two pointers in 2 Sum?">Two-Pointer 2 Sum</button>
+            <button class="chat-chip" data-q="What happens in Kadane if all numbers are negative?">Kadane Negative Trap</button>
+            <button class="chat-chip" data-q="Explain how slow and fast pointers detect a cycle">Cycle Detection Proof</button>
+            <button class="chat-chip" data-q="Explain Morris Traversal O(1) space intuition">Morris Traversal O(1)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-widget-footer">
+      <input 
+        id="chat-widget-input" 
+        class="chat-widget-input" 
+        type="text" 
+        placeholder="Ask Striver any doubt... (Press Enter)" 
+        autocomplete="off"
+      />
+      <button id="btn-chat-mic" class="btn-chat-mic" title="Speak doubt with microphone">🎙️</button>
+      <button id="btn-chat-send" class="btn-chat-send">➤</button>
     </div>
   </div>
 
@@ -4675,6 +4990,199 @@
 
     if (btnExportCheatsheet) {
       btnExportCheatsheet.addEventListener("click", exportCheatSheet);
+    }
+
+    // -------------------------------------------------------------
+    // CONVERSATIONAL STRIVER AI CHAT WIDGET
+    // -------------------------------------------------------------
+    const floatingChatBtn = document.getElementById("floating-chat-btn");
+    const navBtnChat = document.getElementById("nav-btn-chat");
+    const chatWidgetWindow = document.getElementById("chat-widget-window");
+    const closeChatWidget = document.getElementById("close-chat-widget");
+    const chatMessagesContainer = document.getElementById("chat-messages-container");
+    const chatWidgetInput = document.getElementById("chat-widget-input");
+    const btnChatSend = document.getElementById("btn-chat-send");
+    const btnChatMic = document.getElementById("btn-chat-mic");
+
+    const chatHistory = [
+      { role: "assistant", content: "Hey everyone! 👋 I'm your Striver AI mentor. Stuck on an algorithm, confused about time complexity, or need an intuitive Brute → Better → Optimal breakdown? Ask me any doubt below!" }
+    ];
+
+    function toggleChatWidget(open) {
+      if (open === undefined) {
+        chatWidgetWindow.classList.toggle("open");
+      } else if (open) {
+        chatWidgetWindow.classList.add("open");
+      } else {
+        chatWidgetWindow.classList.remove("open");
+      }
+      if (chatWidgetWindow.classList.contains("open")) {
+        setTimeout(() => chatWidgetInput.focus(), 150);
+      }
+    }
+
+    if (floatingChatBtn) floatingChatBtn.addEventListener("click", () => toggleChatWidget());
+    if (navBtnChat) navBtnChat.addEventListener("click", () => toggleChatWidget(true));
+    if (closeChatWidget) closeChatWidget.addEventListener("click", () => toggleChatWidget(false));
+
+    function appendChatMessage(role, text, citations = []) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `chat-msg ${role === "user" ? "user" : "striver"}`;
+
+      let formattedText = escapeHtml(text).replace(/\n/g, "<br>");
+      formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+      formattedText = formattedText.replace(/`([^`]+)`/g, "<code style='background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3px;font-family:var(--font-mono);font-size:11.5px;'>$1</code>");
+
+      let citHtml = "";
+      if (citations && citations.length > 0) {
+        citHtml = `<div class="chat-citations-wrap">`;
+        citations.forEach(c => {
+          citHtml += `<button class="chat-citation-btn" onclick="seekPlayer('${c.video_id}', ${c.seek_sec}, '${escapeHtml(c.video_title)} (${c.timestamp_display})')">▶ ${c.timestamp_display}</button>`;
+        });
+        citHtml += `</div>`;
+      }
+
+      msgDiv.innerHTML = `
+        <div class="chat-bubble">
+          ${role === "striver" ? "<strong style='color:#6366f1;font-size:11px;display:block;margin-bottom:3px;'>👨‍💻 STRIVER:</strong>" : ""}
+          ${formattedText}
+          ${citHtml}
+        </div>
+      `;
+
+      chatMessagesContainer.appendChild(msgDiv);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+      return msgDiv;
+    }
+
+    async function sendChatMessage(queryText) {
+      const q = (queryText || chatWidgetInput.value).trim();
+      if (!q) return;
+
+      chatWidgetInput.value = "";
+      appendChatMessage("user", q);
+      chatHistory.push({ role: "user", content: q });
+
+      const loadingDiv = document.createElement("div");
+      loadingDiv.className = "chat-msg striver";
+      loadingDiv.innerHTML = `
+        <div class="chat-bubble" style="color:var(--ink-muted);font-size:12px;">
+          <span>⏳</span> Striver is thinking and pulling verified lecture moments...
+        </div>
+      `;
+      chatMessagesContainer.appendChild(loadingDiv);
+      chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+
+      try {
+        const resolvedProvider = state.apiKey ? (state.provider || "groq") : (isCloudHost ? "extractive" : (state.provider === "local" ? "local" : "extractive"));
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: chatHistory,
+            provider: resolvedProvider,
+            api_key: state.apiKey,
+            base_url: state.baseUrl,
+          }),
+        });
+        const data = await res.json();
+        if (loadingDiv.parentNode) chatMessagesContainer.removeChild(loadingDiv);
+
+        if (data.reply) {
+          appendChatMessage("striver", data.reply, data.citations || []);
+          chatHistory.push({ role: "assistant", content: data.reply });
+
+          if (data.dsa_snippet) {
+            updateDrawerContent(data.dsa_snippet);
+          }
+          if (data.citations && data.citations.length > 0) {
+            const first = data.citations[0];
+            seekPlayer(first.video_id, first.seek_sec, `${first.video_title} (${first.timestamp_display})`);
+          }
+        } else {
+          appendChatMessage("striver", data.error || "Could not retrieve an answer at this time.");
+        }
+      } catch (err) {
+        if (loadingDiv.parentNode) chatMessagesContainer.removeChild(loadingDiv);
+        appendChatMessage("striver", `Error connecting to mentor: ${err.message}`);
+      }
+    }
+
+    if (btnChatSend) {
+      btnChatSend.addEventListener("click", () => sendChatMessage());
+    }
+
+    if (chatWidgetInput) {
+      chatWidgetInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.keyCode === 13) {
+          e.preventDefault();
+          sendChatMessage();
+        }
+      });
+    }
+
+    chatMessagesContainer.addEventListener("click", (e) => {
+      const chip = e.target.closest(".chat-chip");
+      if (chip && chip.dataset.q) {
+        sendChatMessage(chip.dataset.q);
+      }
+    });
+
+    let isChatVoiceRecording = false;
+    if (btnChatMic) {
+      btnChatMic.addEventListener("click", () => {
+        if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+          alert("Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari.");
+          return;
+        }
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const rec = new SpeechRec();
+        rec.continuous = false;
+        rec.interimResults = false;
+        rec.lang = "en-US";
+
+        if (isChatVoiceRecording) {
+          rec.stop();
+          btnChatMic.classList.remove("recording");
+          btnChatMic.textContent = "🎙️";
+          isChatVoiceRecording = false;
+          return;
+        }
+
+        rec.onstart = () => {
+          isChatVoiceRecording = true;
+          btnChatMic.classList.add("recording");
+          btnChatMic.textContent = "⏹️";
+          chatWidgetInput.placeholder = "Listening to your doubt...";
+        };
+
+        rec.onresult = (evt) => {
+          const spoken = evt.results[0][0].transcript;
+          chatWidgetInput.value = spoken;
+          sendChatMessage(spoken);
+        };
+
+        rec.onerror = (err) => {
+          console.warn("Chat speech error:", err);
+          btnChatMic.classList.remove("recording");
+          btnChatMic.textContent = "🎙️";
+          chatWidgetInput.placeholder = "Ask Striver any doubt... (Press Enter)";
+          isChatVoiceRecording = false;
+        };
+
+        rec.onend = () => {
+          btnChatMic.classList.remove("recording");
+          btnChatMic.textContent = "🎙️";
+          chatWidgetInput.placeholder = "Ask Striver any doubt... (Press Enter)";
+          isChatVoiceRecording = false;
+        };
+
+        try {
+          rec.start();
+        } catch (e) {
+          console.warn("Could not start rec:", e);
+        }
+      });
     }
 
     // Initial search

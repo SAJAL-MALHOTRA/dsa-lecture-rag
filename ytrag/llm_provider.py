@@ -233,3 +233,93 @@ def generate_llm_answer(
     raw_content = body["choices"][0]["message"]["content"]
     parsed = json.loads(raw_content)
     return parsed
+
+
+def generate_striver_chat_reply(
+    messages: list[dict],
+    lecture_excerpts: list[dict],
+    dsa_context: Optional[dict] = None,
+    provider: str = "groq",
+    api_key: str = "",
+    model: str = "",
+    base_url: str = "",
+    timeout: float = 30.0,
+) -> str:
+    """
+    Generates a conversational, multi-turn Striver mentor reply.
+    """
+    p_clean = (provider or "").lower().strip()
+    if p_clean in ("local", "striver-rtx5050", "striver"):
+        from ytrag.local_llm import LocalTeachingAssistant
+        assistant = LocalTeachingAssistant.get_instance()
+        if not assistant.is_available:
+            raise RuntimeError("Local model weights not found on this machine.")
+        # Local model conversational generation
+        last_user_msg = next((m.get("content", "") for m in reversed(messages) if m.get("role") == "user"), "")
+        res = assistant.generate_answer(
+            query=last_user_msg,
+            lecture_excerpts=lecture_excerpts,
+            dsa_context=dsa_context,
+        )
+        bullets_text = "\n".join(f"- {b.get('text', '')}" for b in res.get("bullets", []))
+        summary = res.get("approach_summary", "")
+        return f"{summary}\n\n{bullets_text}".strip()
+
+    resolved_base_url, resolved_model = get_provider_details(provider, base_url, model)
+
+    context_lines = []
+    for i, item in enumerate(lecture_excerpts):
+        context_lines.append(
+            f"Source [{i + 1}]: {item.get('video_title', '')} ({item.get('timestamp_display', '')})\n"
+            f"Transcript snippet: {item.get('snippet', '')[:800]}"
+        )
+    lecture_block = "\n\n".join(context_lines)
+
+    dsa_block = ""
+    if dsa_context:
+        dsa_block = (
+            f"\nCanonical Striver A2Z Problem: {dsa_context.get('title', '')}\n"
+            f"Approach: {dsa_context.get('approach', '')[:500]}\n"
+            f"Time Complexity: {dsa_context.get('time_complexity', '')}\n"
+            f"Space Complexity: {dsa_context.get('space_complexity', '')}\n"
+        )
+
+    system_prompt = (
+        "You are Striver (Raj Vikramaditya) from 'take U forward', creator of the A2Z DSA Sheet and mentor to software engineers worldwide.\n"
+        "Talk directly to the student as their mentor ('Hey everyone!', 'Let's understand the intuition', 'Take a deep breath and write it down on paper').\n\n"
+        "Teaching Methodology:\n"
+        "1. Intuition-First (Brute -> Better -> Optimal): Always lead with the raw intuition ('What is the first naive thing that strikes your mind?'), point out why it's slow (e.g. O(N^2)), and then show how we optimize it (e.g. two-pointer, hashing, Kadane).\n"
+        "2. Step-by-Step Dry Runs: Use small sample inputs (like [2, 7, 11, 15]) and explain pointer movements, loop invariants, and base cases.\n"
+        "3. Strict Grounding & Citations: Ground your technical explanations strictly in the provided lecture moments and canonical problem knowledge. Reference valid sources like [1], [2] whenever explaining a concept from the lecture so the student can jump to the video.\n"
+        "4. Tone: Energetic, encouraging, warm, and crystal-clear on algorithmic thinking.\n\n"
+        f"Verified Lecture Moments:\n{lecture_block}\n{dsa_block}"
+    )
+
+    llm_messages = [{"role": "system", "content": system_prompt}]
+    for m in messages[-8:]:
+        role = "assistant" if m.get("role") in ("assistant", "striver", "bot") else "user"
+        llm_messages.append({"role": role, "content": m.get("content", "")})
+
+    payload = {
+        "model": resolved_model,
+        "temperature": 0.3,
+        "messages": llm_messages,
+    }
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {api_key}",
+    }
+
+    url = f"{resolved_base_url}/chat/completions"
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(payload).encode("utf-8"),
+        headers=headers,
+        method="POST",
+    )
+
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        body = json.loads(resp.read().decode("utf-8"))
+
+    return body["choices"][0]["message"]["content"]

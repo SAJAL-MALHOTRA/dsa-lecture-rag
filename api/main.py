@@ -17,12 +17,15 @@ Provides:
 from __future__ import annotations
 
 import json
+import logging
 import os
 import re
 import sys
 from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 # Ensure project root is on sys.path
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -205,6 +208,19 @@ class AnswerRequest(BaseModel):
     api_key: str = ""
     base_url: str = ""
     model: str = ""
+
+
+class ChatMessage(BaseModel):
+    role: str
+    content: str
+
+
+class ChatRequest(BaseModel):
+    messages: list[ChatMessage]
+    provider: Optional[str] = ""
+    api_key: Optional[str] = ""
+    base_url: Optional[str] = ""
+    model: Optional[str] = ""
 
 
 class CodeExecuteRequest(BaseModel):
@@ -591,7 +607,7 @@ def answer_query(request: AnswerRequest):
             can_use_local = False
 
     # Call LLM if local model or credentials are provided
-    if can_use_local or (api_key and provider not in ("extractive", "none")):
+    if (can_use_local and provider in ("local", "striver-rtx5050", "striver")) or (api_key and provider not in ("extractive", "none")):
         try:
             llm_res = generate_llm_answer(
                 query=query,
@@ -676,6 +692,111 @@ def answer_query(request: AnswerRequest):
         "approach_summary": matched_dsa.get("approach", "")[:250] if matched_dsa else "",
         "dsa_snippet": matched_dsa,
         "message": "Grounded directly from lecture transcripts and Striver's A2Z sheet.",
+    }
+
+
+@app.post("/api/chat")
+def striver_chat_endpoint(request: ChatRequest):
+    """
+    Conversational Striver AI chat endpoint for doubt clearing and mentorship.
+    Retrieves grounded lecture moments from Striver's 6,881 video moments
+    and returns a warm, intuitive Brute -> Better -> Optimal explanation with clickable citations.
+    """
+    if not request.messages:
+        raise HTTPException(status_code=400, detail="Messages list cannot be empty.")
+
+    query = next((m.content for m in reversed(request.messages) if m.role == "user"), "").strip()
+    if not query:
+        raise HTTPException(status_code=400, detail="No user message provided.")
+
+    retrieved = _retrieve(query, k=5)
+    dsa_index: DSASheetIndex = state.get("dsa_index")
+    matched_dsa = None
+    if dsa_index:
+        sol, score = dsa_index.get_best_match(query)
+        if sol and score > 0.1:
+            matched_dsa = sol.to_dict()
+
+    citations = [
+        {
+            "source_id": i + 1,
+            "video_id": item.video_id,
+            "video_title": item.video_title,
+            "seek_sec": item.seek_sec,
+            "timestamp_display": item.timestamp_display,
+        }
+        for i, item in enumerate(retrieved.results)
+    ]
+
+    provider = (request.provider or resolve_default_provider()).lower().strip()
+    api_key = (
+        request.api_key.strip()
+        if request.api_key
+        else (
+            os.getenv("LLM_API_KEY", "")
+            or os.getenv("GROK_API_KEY", "")
+            or os.getenv("GROQ_API_KEY", "")
+            or os.getenv("OPENAI_API_KEY", "")
+        )
+    )
+    base_url = request.base_url.strip() if request.base_url else os.getenv("LLM_BASE_URL", "")
+    model = request.model.strip() if request.model else os.getenv("LLM_MODEL", "")
+
+    can_use_local = False
+    if provider in ("local", "striver-rtx5050", "striver") and not os.getenv("RENDER"):
+        try:
+            from ytrag.local_llm import LocalTeachingAssistant
+            can_use_local = LocalTeachingAssistant.get_instance().is_available
+        except Exception:
+            can_use_local = False
+
+    if (can_use_local and provider in ("local", "striver-rtx5050", "striver")) or (api_key and provider not in ("extractive", "none")):
+        try:
+            from ytrag.llm_provider import generate_striver_chat_reply
+            reply_text = generate_striver_chat_reply(
+                messages=[m.model_dump() for m in request.messages],
+                lecture_excerpts=[item.model_dump() for item in retrieved.results],
+                dsa_context=matched_dsa,
+                provider=provider,
+                api_key=api_key,
+                model=model,
+                base_url=base_url,
+            )
+            return {
+                "reply": reply_text,
+                "citations": citations,
+                "dsa_snippet": matched_dsa,
+                "provider": provider,
+            }
+        except Exception as exc:
+            logger.warning("Striver chat LLM error (%s), falling back to grounded extractive reply.", exc)
+
+    # Conversational Extractive Fallback (Fast, Zero Hallucination, Striver Voice)
+    dsa_title = matched_dsa.get("title", "") if matched_dsa else "this algorithm"
+    dsa_approach = matched_dsa.get("approach", "") if matched_dsa else ""
+    tc = matched_dsa.get("time_complexity", "") if matched_dsa else "O(N)"
+    sc = matched_dsa.get("space_complexity", "") if matched_dsa else "O(1)"
+
+    reply_parts = [
+        f"Hey! Let's understand **{query}** with pure intuition, step-by-step just like we do on the whiteboard.\n"
+    ]
+    if dsa_approach:
+        reply_parts.append(f"**💡 The Core Thought Process (Brute → Optimal):**\n{dsa_approach[:300].strip()}\n")
+        reply_parts.append(f"**Complexity Target:** Time `{tc}` | Space `{sc}`.\n")
+
+    if retrieved.results:
+        reply_parts.append("**Verified Lecture Insights:**")
+        for i, item in enumerate(retrieved.results[:3]):
+            snip = item.snippet.strip().replace("\n", " ")[:180]
+            reply_parts.append(f"- At **{item.timestamp_display}** in *{item.video_title}*, Striver explains: *\"{snip}...\"* [Source {i+1}]")
+
+    reply_parts.append("\n*Tip: Connect your free Groq API key in the top nav to unlock continuous conversational multi-turn dialogue with Striver!*")
+
+    return {
+        "reply": "\n".join(reply_parts),
+        "citations": citations,
+        "dsa_snippet": matched_dsa,
+        "provider": "extractive",
     }
 
 
