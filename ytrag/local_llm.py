@@ -39,11 +39,17 @@ class LocalTeachingAssistant:
 
     @property
     def is_available(self) -> bool:
+        import os
+        if os.getenv("RENDER"):
+            return False
         return (self.adapter_dir / "adapter_model.safetensors").exists()
 
     def load(self):
         if self._loaded:
             return
+
+        if not self.is_available:
+            raise RuntimeError(f"Local model weights not found in {self.adapter_dir}. Aborting load to protect memory.")
 
         import torch
         from peft import PeftModel
@@ -59,7 +65,7 @@ class LocalTeachingAssistant:
         )
 
         self.tokenizer = AutoTokenizer.from_pretrained(
-            str(self.adapter_dir) if self.adapter_dir.exists() else BASE_MODEL_NAME,
+            str(self.adapter_dir),
             use_fast=True,
         )
         if self.tokenizer.pad_token_id is None:
@@ -72,12 +78,8 @@ class LocalTeachingAssistant:
             torch_dtype=torch.bfloat16,
         )
 
-        if self.is_available:
-            self.model = PeftModel.from_pretrained(base_model, str(self.adapter_dir))
-            logger.info("Injected fine-tuned Striver DSA LoRA weights.")
-        else:
-            self.model = base_model
-            logger.warning("Fine-tuned weights not found at %s; running base model.", self.adapter_dir)
+        self.model = PeftModel.from_pretrained(base_model, str(self.adapter_dir))
+        logger.info("Injected fine-tuned Striver DSA LoRA weights.")
 
         self.model.eval()
         self._loaded = True
@@ -93,6 +95,9 @@ class LocalTeachingAssistant:
         """
         Generates an evidence-grounded Striver-style answer with citations.
         """
+        if not self.is_available:
+            raise RuntimeError("Local model weights not found on this machine.")
+
         if not self._loaded:
             self.load()
 

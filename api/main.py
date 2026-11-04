@@ -102,17 +102,23 @@ def load_corpus() -> tuple[list[Chunk], dict, list[dict]]:
 
 
 def resolve_default_provider() -> str:
-    """Returns the default provider: respects DEFAULT_PROVIDER env, falls back to local if weights exist, else groq."""
+    """Returns the default provider: respects DEFAULT_PROVIDER env, falls back to local if weights exist, else groq or extractive."""
     env_p = os.getenv("DEFAULT_PROVIDER", "").strip().lower()
     if env_p:
         return env_p
+    if os.getenv("RENDER"):
+        if os.getenv("GROQ_API_KEY") or os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY"):
+            return "groq"
+        return "extractive"
     try:
         from ytrag.local_llm import LocalTeachingAssistant
         if LocalTeachingAssistant.get_instance().is_available:
             return "local"
     except Exception:
         pass
-    return "groq"
+    if os.getenv("GROQ_API_KEY") or os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY"):
+        return "groq"
+    return "extractive"
 
 
 @asynccontextmanager
@@ -575,8 +581,17 @@ def answer_query(request: AnswerRequest):
     base_url = request.base_url.strip() or os.getenv("LLM_BASE_URL", "")
     model = request.model.strip() or os.getenv("LLM_MODEL", "")
 
+    # Check if local model can be safely called without OOM
+    can_use_local = False
+    if provider in ("local", "striver-rtx5050", "striver") and not os.getenv("RENDER"):
+        try:
+            from ytrag.local_llm import LocalTeachingAssistant
+            can_use_local = LocalTeachingAssistant.get_instance().is_available
+        except Exception:
+            can_use_local = False
+
     # Call LLM if local model or credentials are provided
-    if provider in ("local", "striver-rtx5050", "striver") or api_key:
+    if can_use_local or (api_key and provider not in ("extractive", "none")):
         try:
             llm_res = generate_llm_answer(
                 query=query,
@@ -619,7 +634,7 @@ def answer_query(request: AnswerRequest):
             }
         except Exception as exc:
             # Fall back to extractive synthesis on LLM error
-            pass
+            logger.warning("LLM generation failed (%s), falling back to extractive synthesis.", exc)
 
     # Deterministic Extractive Citation Mode (Fast, 0% Hallucination)
     qtoks = set(eh.tokens(query))

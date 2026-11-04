@@ -8,7 +8,6 @@ and re-scores them using a full attention cross-encoder model.
 from __future__ import annotations
 
 from typing import Callable
-from sentence_transformers import CrossEncoder
 
 from .models import Chunk, RetrievalResult
 
@@ -26,6 +25,8 @@ class CrossEncoderReranker:
         device: str | None = None,
     ):
         import torch
+        from sentence_transformers import CrossEncoder
+
         if device is None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.base_retrieve = base_retrieve_fn

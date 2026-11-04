@@ -158,6 +158,8 @@ def generate_llm_answer(
     if p_clean in ("local", "striver-rtx5050", "striver"):
         from ytrag.local_llm import LocalTeachingAssistant
         assistant = LocalTeachingAssistant.get_instance()
+        if not assistant.is_available:
+            raise RuntimeError("Local model weights not found on this machine.")
         return assistant.generate_answer(
             query=query,
             lecture_excerpts=lecture_excerpts,

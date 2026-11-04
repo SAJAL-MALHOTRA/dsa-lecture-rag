@@ -2317,7 +2317,7 @@
       
       <!-- Tactile White Search Box -->
       <div class="search-box-container">
-        <span class="search-icon">🔍</span>
+        <span class="search-icon" id="search-icon-btn" style="cursor: pointer;" title="Search">🔍</span>
         <input 
           id="search-input" 
           class="search-input" 
@@ -2781,9 +2781,10 @@
 
   <script>
     // State
+    const isCloudHost = window.location.hostname.includes("render.com") || (!window.location.hostname.includes("localhost") && window.location.hostname !== "127.0.0.1");
     const state = {
       query: "two sum",
-      provider: localStorage.getItem("dsa_provider") || "local",
+      provider: localStorage.getItem("dsa_provider") || (isCloudHost ? "groq" : "local"),
       apiKey: localStorage.getItem("dsa_api_key") || "",
       baseUrl: localStorage.getItem("dsa_base_url") || "",
       currentDsa: null,
@@ -4013,12 +4014,13 @@
 
       // 2. Answer (Grounded Synthesis)
       try {
+        const resolvedProvider = state.apiKey ? (state.provider || "groq") : (isCloudHost ? "extractive" : (state.provider === "local" ? "local" : "extractive"));
         const aRes = await fetch("/api/answer", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             query: q,
-            provider: (state.provider === "local" || state.apiKey) ? state.provider : "local",
+            provider: resolvedProvider,
             api_key: state.apiKey,
             base_url: state.baseUrl,
           }),
@@ -4028,6 +4030,9 @@
         if (aData.provider === "local") {
           providerBadge.textContent = "⚡ LOCAL RTX 5050";
           providerBadge.style.color = "var(--brand-accent)";
+        } else if (aData.provider === "extractive") {
+          providerBadge.textContent = "EXTRACTIVE (GROUNDED)";
+          providerBadge.style.color = "var(--ink-secondary)";
         } else {
           providerBadge.textContent = aData.provider ? aData.provider.toUpperCase() : "EXTRACTIVE";
           providerBadge.style.color = "";
@@ -4058,6 +4063,13 @@
     const searchEnterBtn = document.getElementById("search-enter-btn");
     if (searchEnterBtn) {
       searchEnterBtn.addEventListener("click", () => {
+        executeSearch();
+      });
+    }
+
+    const searchIconBtn = document.getElementById("search-icon-btn");
+    if (searchIconBtn) {
+      searchIconBtn.addEventListener("click", () => {
         executeSearch();
       });
     }
