@@ -1,0 +1,1468 @@
+{
+  "math": {
+    "canonical_topic": "math",
+    "display_name": "Mathematics & Number Theory",
+    "module_order": 1,
+    "prerequisites": [],
+    "next_topics": [
+      "bit_manipulation",
+      "arrays"
+    ],
+    "practice_problems": [
+      {
+        "title": "Theory",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/program-to-find-absolute-value-of-a-given-number/",
+        "difficulty": "Easy",
+        "tag": "abs()"
+      },
+      {
+        "title": "Theory",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/program-celsius-fahrenheit-conversion/",
+        "difficulty": "Easy",
+        "tag": "Math"
+      },
+      {
+        "title": "Theory",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/program-to-find-the-roots-of-quadratic-equation/",
+        "difficulty": "Easy",
+        "tag": "Math"
+      },
+      {
+        "title": "Factorial Of Number",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/factorial5739/1",
+        "difficulty": "Easy",
+        "tag": "Math"
+      },
+      {
+        "title": "Count digits in a factorial",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/count-digits-in-a-factorial3957/1",
+        "difficulty": "Easy",
+        "tag": "Factorial, Math"
+      },
+      {
+        "title": "Series GP",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/series-gp4646/1",
+        "difficulty": "Easy",
+        "tag": "Basic Math"
+      },
+      {
+        "title": "Prime Number",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/prime-number2314/1",
+        "difficulty": "Easy",
+        "tag": "Basic Math"
+      },
+      {
+        "title": "Theory",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/numbers-exactly-3-divisors/",
+        "difficulty": "Easy",
+        "tag": "Basic Math"
+      },
+      {
+        "title": "Theory",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/sum-of-two-numbers-modulo-m/",
+        "difficulty": "Easy",
+        "tag": "Modulo"
+      },
+      {
+        "title": "Theory",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/multiply-large-integers-under-large-modulo/",
+        "difficulty": "Easy",
+        "tag": "Modulo"
+      },
+      {
+        "title": "Modular Multiplicative Inverse",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/modular-multiplicative-inverse-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Modulo"
+      },
+      {
+        "title": "Trailing zeroes in factorial",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/trailing-zeroes-in-factorial5134/1",
+        "difficulty": "Medium",
+        "tag": "Logic"
+      },
+      {
+        "title": "Prime Factors",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/prime-factors5052/1",
+        "difficulty": "Medium",
+        "tag": "Prime"
+      }
+    ]
+  },
+  "bit_manipulation": {
+    "canonical_topic": "bit_manipulation",
+    "display_name": "Bit Manipulation",
+    "module_order": 2,
+    "prerequisites": [
+      "math"
+    ],
+    "next_topics": [
+      "arrays"
+    ],
+    "practice_problems": [
+      {
+        "title": "Find first set bit",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/find-first-set-bit-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Bits, Modulo"
+      },
+      {
+        "title": "Rightmost different bit",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/rightmost-different-bit-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "XOR, Modulo"
+      },
+      {
+        "title": "Check whether K-th bit is set or not",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/check-whether-k-th-bit-is-set-or-not-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "XOR, Modulo"
+      },
+      {
+        "title": "Count total set bits",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1",
+        "difficulty": "Medium",
+        "tag": "RIght shift"
+      },
+      {
+        "title": "Bit Difference",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/bit-difference-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Bits"
+      },
+      {
+        "title": "Number is sparse or not",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/number-is-sparse-or-not-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Bits"
+      },
+      {
+        "title": "Longest Consecutive 1's",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/longest-consecutive-1s-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Bits"
+      },
+      {
+        "title": "Gray Code",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/gray-code4907/1",
+        "difficulty": "Easy",
+        "tag": "Xor, Right Shift"
+      },
+      {
+        "title": "Gray to Binary equivalent",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/gray-to-binary-equivalent-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Xor, Right Shift"
+      },
+      {
+        "title": "Power of 2",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/power-of-2-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "AND"
+      },
+      {
+        "title": "Swap all odd and even bits",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/swap-all-odd-and-even-bits-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "OR"
+      },
+      {
+        "title": "Maximum AND Value",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/maximum-and-value-1587115620/1",
+        "difficulty": "Medium",
+        "tag": "AND"
+      }
+    ]
+  },
+  "arrays": {
+    "canonical_topic": "arrays",
+    "display_name": "Arrays & Hashing Foundations",
+    "module_order": 3,
+    "prerequisites": [
+      "math"
+    ],
+    "next_topics": [
+      "two_pointers",
+      "sliding_window",
+      "sorting_searching"
+    ],
+    "practice_problems": [
+      {
+        "title": "What is Multidimensional Arrays c++",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/",
+        "difficulty": "Easy",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Sum of upper and lower triangles",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/sum-of-upper-and-lower-triangles-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Transpose of Matrix",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/transpose-of-matrix-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Rotate by 90 degree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/rotate-by-90-degree-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Multiply the matrices",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/multiply-the-matrices-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Spirally traversing a matrix",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1",
+        "difficulty": "Medium",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Interchanging the rows of a Matrix",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/reversing-the-rows-of-a-matrix-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Matrix Interchange",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/matrix-interchange/1",
+        "difficulty": "Easy",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Search in a row-column sorted Matrix",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/search-in-a-matrix-1587115621/1",
+        "difficulty": "Medium",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Boolean Matrix",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/boolean-matrix-problem-1587115620/1",
+        "difficulty": "Medium",
+        "tag": "Matrix, Array"
+      },
+      {
+        "title": "Two Sum",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/two-sum/",
+        "difficulty": "Easy",
+        "tag": "Arrays, Hash Table"
+      },
+      {
+        "title": "Best Time to Buy and Sell Stock",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+        "difficulty": "Easy",
+        "tag": "Arrays, Dynamic Programming"
+      },
+      {
+        "title": "Maximum Subarray (Kadane's Algorithm)",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/maximum-subarray/",
+        "difficulty": "Medium",
+        "tag": "Arrays, Divide and Conquer"
+      }
+    ]
+  },
+  "two_pointers": {
+    "canonical_topic": "two_pointers",
+    "display_name": "Two Pointers Technique",
+    "module_order": 4,
+    "prerequisites": [
+      "arrays"
+    ],
+    "next_topics": [
+      "sliding_window",
+      "linked_list"
+    ],
+    "practice_problems": [
+      {
+        "title": "Two Sum II - Input Array Is Sorted",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+        "difficulty": "Medium",
+        "tag": "Two Pointers, Binary Search"
+      },
+      {
+        "title": "3Sum",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/3sum/",
+        "difficulty": "Medium",
+        "tag": "Two Pointers, Sorting"
+      },
+      {
+        "title": "Container With Most Water",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/container-with-most-water/",
+        "difficulty": "Medium",
+        "tag": "Two Pointers, Greedy"
+      }
+    ]
+  },
+  "sliding_window": {
+    "canonical_topic": "sliding_window",
+    "display_name": "Sliding Window Pattern",
+    "module_order": 5,
+    "prerequisites": [
+      "arrays",
+      "two_pointers"
+    ],
+    "next_topics": [
+      "hashing"
+    ],
+    "practice_problems": [
+      {
+        "title": "Implement strStr()",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/implement-strstr/",
+        "difficulty": "Easy",
+        "tag": "Pattern"
+      },
+      {
+        "title": "Binary String",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/binary-string-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Anagram",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/anagram-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Check if string is rotated by two places",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/check-if-string-is-rotated-by-two-places-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Check if strings are rotations of each other or not",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/check-if-strings-are-rotations-of-each-other-or-not-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Isomorphic Strings",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/isomorphic-strings-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Check if a string is Isogram or not",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/check-if-a-string-is-isogram-or-not-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Keypad typing",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/keypad-typing0119/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Repeated Character",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/repeated-character2058/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Non Repeating Character",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/non-repeating-character-1587115620/1",
+        "difficulty": "Medium",
+        "tag": "string"
+      },
+      {
+        "title": "Maximum Occuring Character",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/maximum-occuring-character-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Remove common characters and concatenate",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/remove-common-characters-and-concatenate-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Reverse words in a given string",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/reverse-words-in-a-given-string5459/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Sum of numbers in string",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/sum-of-numbers-in-string-1587115621/1",
+        "difficulty": "Medium",
+        "tag": "string"
+      },
+      {
+        "title": "Pangram Checking",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/pangram-checking-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Minimum indexed character",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/minimum-indexed-character-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "string"
+      },
+      {
+        "title": "Smallest window in a string containing all the characters of another string",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/smallest-window-in-a-string-containing-all-the-characters-of-another-string-1587115621/1",
+        "difficulty": "Medium",
+        "tag": "string"
+      },
+      {
+        "title": "Nth number made of prime digits",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/nth-number-made-of-prime-digits4319/1",
+        "difficulty": "Easy",
+        "tag": "Prime, string"
+      },
+      {
+        "title": "Longest Substring Without Repeating Characters",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+        "difficulty": "Medium",
+        "tag": "Sliding Window, Hash Table"
+      },
+      {
+        "title": "Minimum Window Substring",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/minimum-window-substring/",
+        "difficulty": "Hard",
+        "tag": "Sliding Window, Hash Table"
+      },
+      {
+        "title": "Max Consecutive Ones III",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/max-consecutive-ones-iii/",
+        "difficulty": "Medium",
+        "tag": "Sliding Window, Prefix Sum"
+      }
+    ]
+  },
+  "sorting_searching": {
+    "canonical_topic": "sorting_searching",
+    "display_name": "Sorting & Binary Search",
+    "module_order": 6,
+    "prerequisites": [
+      "arrays"
+    ],
+    "next_topics": [
+      "hashing",
+      "linked_list"
+    ],
+    "practice_problems": [
+      {
+        "title": "Binary Search",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/binary-search/",
+        "difficulty": "Easy",
+        "tag": "Binary Search"
+      },
+      {
+        "title": "Search in Rotated Sorted Array",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+        "difficulty": "Medium",
+        "tag": "Binary Search"
+      },
+      {
+        "title": "Koko Eating Bananas",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/koko-eating-bananas/",
+        "difficulty": "Medium",
+        "tag": "Binary Search on Answer"
+      }
+    ]
+  },
+  "hashing": {
+    "canonical_topic": "hashing",
+    "display_name": "Hashing & Hash Tables",
+    "module_order": 7,
+    "prerequisites": [
+      "arrays"
+    ],
+    "next_topics": [
+      "linked_list",
+      "stacks_queues"
+    ],
+    "practice_problems": [
+      {
+        "title": "Pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/Hashing%20in%20Data%20Structure.pdf",
+        "difficulty": "Easy",
+        "tag": "Hashing"
+      },
+      {
+        "title": "Pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/code%20of%20Hashing%20in%20C%2B%2B.pdf",
+        "difficulty": "Easy",
+        "tag": "Hashing"
+      },
+      {
+        "title": "Pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Leetcode/what%20is%20hashing%20data%20structure%20and%20direct%20access%20table.pdf",
+        "difficulty": "Easy",
+        "tag": "Hash"
+      },
+      {
+        "title": "Pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Leetcode/collision%20in%20hashing%20data%20structure.pdf",
+        "difficulty": "Easy",
+        "tag": "Hash"
+      },
+      {
+        "title": "Pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Leetcode/Hashing/unordered_set.pdf",
+        "difficulty": "Easy",
+        "tag": "Hash"
+      },
+      {
+        "title": "GFG",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/unordered_map-in-cpp-stl/",
+        "difficulty": "Easy",
+        "tag": "Hash"
+      },
+      {
+        "title": "Non Repeating Element",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/non-repeating-element3958/1",
+        "difficulty": "Easy",
+        "tag": "Hashing"
+      },
+      {
+        "title": "First Repeating Element",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/first-repeating-element4018/1",
+        "difficulty": "Easy",
+        "tag": "Hashing"
+      },
+      {
+        "title": "Union of two arrays",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/union-of-two-arrays3538/1",
+        "difficulty": "Easy",
+        "tag": "Hashing"
+      },
+      {
+        "title": "Intersection of Two Arrays",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/intersection-of-two-arrays2404/1",
+        "difficulty": "Easy",
+        "tag": "unordered_set"
+      },
+      {
+        "title": "Key Pair",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/key-pair5616/1",
+        "difficulty": "Easy",
+        "tag": "unordered_map"
+      },
+      {
+        "title": "Subarray with sum 0",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/subarray-with-0-sum-1587115621/1",
+        "difficulty": "Medium",
+        "tag": "unordered_set"
+      },
+      {
+        "title": "Winner of an election",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/winner-of-an-election-where-votes-are-represented-as-candidate-names-1587115621/1",
+        "difficulty": "Easy",
+        "tag": "unordered_map"
+      },
+      {
+        "title": "Pairs with Positive Negative values",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/pairs-with-positive-negative-values3719/1",
+        "difficulty": "Easy",
+        "tag": "map, Vector"
+      },
+      {
+        "title": "Print Anagrams Together",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/print-anagrams-together/1",
+        "difficulty": "Medium",
+        "tag": "unordered_map, string"
+      },
+      {
+        "title": "Relative Sort Array",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/relative-sort-array/",
+        "difficulty": "Medium",
+        "tag": "Map"
+      },
+      {
+        "title": "Custom Sort String",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/custom-sort-string/",
+        "difficulty": "Medium",
+        "tag": "map"
+      },
+      {
+        "title": "Sort Array by Increasing Frequency",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/sort-array-by-increasing-frequency/",
+        "difficulty": "Easy",
+        "tag": "map, Lambda"
+      },
+      {
+        "title": "Longest Consecutive Sequence",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+        "difficulty": "Medium",
+        "tag": "map"
+      }
+    ]
+  },
+  "linked_list": {
+    "canonical_topic": "linked_list",
+    "display_name": "Linked Lists",
+    "module_order": 8,
+    "prerequisites": [
+      "arrays",
+      "two_pointers"
+    ],
+    "next_topics": [
+      "stacks_queues",
+      "trees"
+    ],
+    "practice_problems": [
+      {
+        "title": "Reverse Linked List",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/reverse-linked-list/",
+        "difficulty": "Easy",
+        "tag": "Linked List, Recursion"
+      },
+      {
+        "title": "Linked List Cycle (Floyd's Algorithm)",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/linked-list-cycle/",
+        "difficulty": "Easy",
+        "tag": "Linked List, Two Pointers"
+      },
+      {
+        "title": "Middle of the Linked List",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/middle-of-the-linked-list/",
+        "difficulty": "Easy",
+        "tag": "Linked List, Two Pointers"
+      },
+      {
+        "title": "Merge Two Sorted Lists",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+        "difficulty": "Easy",
+        "tag": "Linked List, Recursion"
+      }
+    ]
+  },
+  "stacks_queues": {
+    "canonical_topic": "stacks_queues",
+    "display_name": "Stacks & Queues",
+    "module_order": 9,
+    "prerequisites": [
+      "linked_list"
+    ],
+    "next_topics": [
+      "trees",
+      "graphs"
+    ],
+    "practice_problems": [
+      {
+        "title": "GFG Link",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/stack-data-structure-introduction-program/",
+        "difficulty": "Easy",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "Implement stack using array",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/implement-stack-using-array/1",
+        "difficulty": "Easy",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "Implement Stack using Linked List",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/implement-stack-using-linked-list/1",
+        "difficulty": "Easy",
+        "tag": "Stack, Linked List"
+      },
+      {
+        "title": "Remove All Adjacent Duplicates In String",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/",
+        "difficulty": "Easy",
+        "tag": "Stack, string"
+      },
+      {
+        "title": "Remove All Adjacent Duplicates in String II",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/",
+        "difficulty": "Medium",
+        "tag": "Stack, string"
+      },
+      {
+        "title": "Valid Parentheses",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/valid-parentheses/",
+        "difficulty": "Easy",
+        "tag": "Stack, string"
+      },
+      {
+        "title": "Implement two stacks in an array",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/implement-two-stacks-in-an-array/1",
+        "difficulty": "Easy",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "Get min at pop",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/get-min-at-pop/1/",
+        "difficulty": "Easy",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "Min Stack",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/min-stack/",
+        "difficulty": "Easy",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "Delete middle element of a stack",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/delete-middle-element-of-a-stack/1",
+        "difficulty": "Easy",
+        "tag": "Stack, STL"
+      },
+      {
+        "title": "Infix to Postfix",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/infix-to-postfix-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Stack"
+      },
+      {
+        "title": "Evaluate Reverse Polish Notation",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+        "difficulty": "Medium",
+        "tag": "Stack, Evaluation of Postfix Expression"
+      },
+      {
+        "title": "Online Stock Span",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/online-stock-span/",
+        "difficulty": "Medium",
+        "tag": "Stack, Stock span problem"
+      },
+      {
+        "title": "Next Greater Element II",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/next-greater-element-ii/",
+        "difficulty": "Medium",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "Largest Rectangle in Histogram",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+        "difficulty": "Hard",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "The Celebrity Problem",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/the-celebrity-problem/1/",
+        "difficulty": "Medium",
+        "tag": "Stack, Array"
+      },
+      {
+        "title": "GFG Link",
+        "platform": "GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/",
+        "difficulty": "Easy",
+        "tag": "Queue, STL"
+      },
+      {
+        "title": "Implement Queue using array",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/implement-queue-using-array/1",
+        "difficulty": "Easy",
+        "tag": "Queue, Array"
+      },
+      {
+        "title": "Implement Queue using Linked List",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/implement-queue-using-linked-list/1",
+        "difficulty": "Easy",
+        "tag": "Queue, Linked List"
+      },
+      {
+        "title": "Queue Reversal",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/queue-reversal/1/",
+        "difficulty": "Easy",
+        "tag": "Queue, Stack"
+      },
+      {
+        "title": "Queue using two Stacks",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/queue-using-two-stacks/1",
+        "difficulty": "Easy",
+        "tag": "Queue, Stack"
+      },
+      {
+        "title": "Implement Queue using Stacks",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/implement-queue-using-stacks/",
+        "difficulty": "Easy",
+        "tag": "Stack, Queue"
+      },
+      {
+        "title": "Stack using two queues",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/stack-using-two-queues/1",
+        "difficulty": "Easy",
+        "tag": "Stack, Queue"
+      },
+      {
+        "title": "Generate Binary Numbers",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/generate-binary-numbers-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Queue"
+      },
+      {
+        "title": "Reverse First K elements of Queue",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/reverse-first-k-elements-of-queue/1",
+        "difficulty": "Easy",
+        "tag": "Queue, Stack"
+      },
+      {
+        "title": "Circular tour",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/circular-tour-1587115620/1",
+        "difficulty": "Medium",
+        "tag": "Queue, Sliding window"
+      }
+    ]
+  },
+  "recursion": {
+    "canonical_topic": "recursion",
+    "display_name": "Recursion & Backtracking",
+    "module_order": 10,
+    "prerequisites": [
+      "math",
+      "stacks_queues"
+    ],
+    "next_topics": [
+      "trees",
+      "dynamic_programming"
+    ],
+    "practice_problems": [
+      {
+        "title": "Print 1 to n without using loops",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/print-1-to-n-without-using-loops3621/1",
+        "difficulty": "Easy",
+        "tag": "Recursion"
+      },
+      {
+        "title": "Sum Of Digits",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/sum-of-digits1742/1",
+        "difficulty": "Easy",
+        "tag": "Recursion"
+      },
+      {
+        "title": "Count Total Digits in a Number",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/count-total-digits-in-a-number/1",
+        "difficulty": "Easy",
+        "tag": "Recursion"
+      },
+      {
+        "title": "Digital Root",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/digital-root/1/",
+        "difficulty": "Medium",
+        "tag": "Recursion"
+      },
+      {
+        "title": "Fibonacci Using Recursion",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/fibonacci-using-recursion/1/",
+        "difficulty": "Easy",
+        "tag": "Recursion"
+      },
+      {
+        "title": "Tower Of Hanoi",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/tower-of-hanoi-1587115621/1",
+        "difficulty": "Medium",
+        "tag": "Recursion"
+      },
+      {
+        "title": "Josephus problem",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/josephus-problem/1",
+        "difficulty": "Medium",
+        "tag": "Recursion"
+      }
+    ]
+  },
+  "trees": {
+    "canonical_topic": "trees",
+    "display_name": "Binary Trees & BST",
+    "module_order": 11,
+    "prerequisites": [
+      "recursion",
+      "stacks_queues"
+    ],
+    "next_topics": [
+      "heaps",
+      "graphs",
+      "tries"
+    ],
+    "practice_problems": [
+      {
+        "title": "pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/Tree%20data_structure.pdf",
+        "difficulty": "Easy",
+        "tag": "Tree, Theory"
+      },
+      {
+        "title": "pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/Binary_tree.pdf",
+        "difficulty": "Easy",
+        "tag": "Tree, Binary Tree"
+      },
+      {
+        "title": "pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/properties%20of%20Binary%20tree.pdf",
+        "difficulty": "Easy",
+        "tag": "Tree, Node"
+      },
+      {
+        "title": "pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/Types%20of%20Binary%20Tree.pdf",
+        "difficulty": "Easy",
+        "tag": "Binary Tree"
+      },
+      {
+        "title": "pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/Tree%20traversal%20data_structure.pdf",
+        "difficulty": "Easy",
+        "tag": "Traversal, Inorder"
+      },
+      {
+        "title": "pdf",
+        "platform": "External",
+        "url": "https://github.com/helloworldbyprince/Hello_world-Competiitve-Programming/blob/master/Tree/Code%20of%20Inorder%20Traversal.pdf",
+        "difficulty": "Easy",
+        "tag": "Inorder Traversal"
+      },
+      {
+        "title": "Binary Tree Inorder Traversal",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+        "difficulty": "Easy",
+        "tag": "Recursion, Tree"
+      },
+      {
+        "title": "Binary Tree Preorder Traversal",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/binary-tree-preorder-traversal/",
+        "difficulty": "Easy",
+        "tag": "Recursion, Tree"
+      },
+      {
+        "title": "Binary Tree Postorder Traversal",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/binary-tree-postorder-traversal/",
+        "difficulty": "Easy",
+        "tag": "Recursion, Tree"
+      },
+      {
+        "title": "Same Tree",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/same-tree/",
+        "difficulty": "Easy",
+        "tag": "Tree Traversal"
+      },
+      {
+        "title": "Maximum Depth of Binary Tree",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "difficulty": "Medium",
+        "tag": "Recursion, Tree"
+      },
+      {
+        "title": "Children Sum Parent",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/children-sum-parent/1/",
+        "difficulty": "Easy",
+        "tag": "Recursion, Tree"
+      },
+      {
+        "title": "Binary Tree Level Order Traversal",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+        "difficulty": "Medium",
+        "tag": "Queue, Tree"
+      },
+      {
+        "title": "Level order traversal Line by Line",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/level-order-traversal-line-by-line/1/",
+        "difficulty": "Easy",
+        "tag": "stack, Tree"
+      },
+      {
+        "title": "Binary Tree Zigzag Level Order Traversal",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
+        "difficulty": "Medium",
+        "tag": "Queue, Tree"
+      },
+      {
+        "title": "Maximum Width of Tree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/maximum-width-of-tree/1",
+        "difficulty": "Easy",
+        "tag": "Tree"
+      },
+      {
+        "title": "Balanced Binary Tree",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/balanced-binary-tree/",
+        "difficulty": "Easy",
+        "tag": "Tree"
+      },
+      {
+        "title": "Left View of Binary Tree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1",
+        "difficulty": "Easy",
+        "tag": "Tree"
+      },
+      {
+        "title": "Right View of Binary Tree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/right-view-of-binary-tree/1",
+        "difficulty": "Easy",
+        "tag": "Tree"
+      },
+      {
+        "title": "Lowest Common Ancestor in a Binary Tree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/lowest-common-ancestor-in-a-binary-tree/1/",
+        "difficulty": "Medium",
+        "tag": "Tree"
+      },
+      {
+        "title": "Diameter of Binary Tree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/diameter-of-binary-tree/1/",
+        "difficulty": "Easy",
+        "tag": "Tree"
+      },
+      {
+        "title": "Vertical Width of a Binary Tree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/vertical-width-of-a-binary-tree/1/",
+        "difficulty": "Easy",
+        "tag": "Tree"
+      },
+      {
+        "title": "Mirror Tree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/mirror-tree/1/",
+        "difficulty": "Easy",
+        "tag": "Tree"
+      },
+      {
+        "title": "Check if subtree",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/check-if-subtree/1/",
+        "difficulty": "Medium",
+        "tag": "Tree"
+      },
+      {
+        "title": "Make Binary Tree From Linked List",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/make-binary-tree/1",
+        "difficulty": "Medium",
+        "tag": "Tree"
+      },
+      {
+        "title": "Inorder traversal of a BST",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/inorder-traversal-of-a-bst/1/",
+        "difficulty": "Easy",
+        "tag": "BST, Tree"
+      },
+      {
+        "title": "Search in a Binary Search Tree",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/search-in-a-binary-search-tree/",
+        "difficulty": "Easy",
+        "tag": "BST, Tree"
+      }
+    ]
+  },
+  "heaps": {
+    "canonical_topic": "heaps",
+    "display_name": "Heaps & Priority Queues",
+    "module_order": 12,
+    "prerequisites": [
+      "arrays",
+      "trees"
+    ],
+    "next_topics": [
+      "graphs",
+      "greedy"
+    ],
+    "practice_problems": [
+      {
+        "title": "Heap sort",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/heap-sort/1",
+        "difficulty": "Easy",
+        "tag": "Heap Basic"
+      },
+      {
+        "title": "Kth Largest Element in an Array",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+        "difficulty": "Easy",
+        "tag": "Heap Basic"
+      },
+      {
+        "title": "Kth Largest Element in a Stream",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+        "difficulty": "Easy",
+        "tag": "Heap Basic"
+      },
+      {
+        "title": "Top K Frequent Elements",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+        "difficulty": "Easy",
+        "tag": "Heap Basic"
+      },
+      {
+        "title": "Minimum Cost of ropes",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1",
+        "difficulty": "Easy",
+        "tag": "Heap Basic"
+      },
+      {
+        "title": "Find K Closest Elements",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/find-k-closest-elements/",
+        "difficulty": "Medium",
+        "tag": "Heap Medium"
+      },
+      {
+        "title": "Merge k Sorted Arrays",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/merge-k-sorted-arrays/1",
+        "difficulty": "Medium",
+        "tag": "Heap Medium"
+      },
+      {
+        "title": "Find median in a stream",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/find-median-in-a-stream-1587115620/1",
+        "difficulty": "Hard",
+        "tag": "Heap Hard"
+      }
+    ]
+  },
+  "greedy": {
+    "canonical_topic": "greedy",
+    "display_name": "Greedy Algorithms",
+    "module_order": 13,
+    "prerequisites": [
+      "sorting_searching",
+      "heaps"
+    ],
+    "next_topics": [
+      "graphs",
+      "dynamic_programming"
+    ],
+    "practice_problems": [
+      {
+        "title": "Jump Game",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/jump-game/",
+        "difficulty": "Medium",
+        "tag": "Greedy, Dynamic Programming"
+      },
+      {
+        "title": "Gas Station",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/gas-station/",
+        "difficulty": "Medium",
+        "tag": "Greedy"
+      },
+      {
+        "title": "Task Scheduler",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/task-scheduler/",
+        "difficulty": "Medium",
+        "tag": "Greedy, Heap"
+      }
+    ]
+  },
+  "graphs": {
+    "canonical_topic": "graphs",
+    "display_name": "Graph Algorithms & BFS/DFS",
+    "module_order": 14,
+    "prerequisites": [
+      "trees",
+      "stacks_queues",
+      "heaps"
+    ],
+    "next_topics": [
+      "dynamic_programming"
+    ],
+    "practice_problems": [
+      {
+        "title": "Find If Path Exists in Graph",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/find-if-path-exists-in-graph/",
+        "difficulty": "Easy",
+        "tag": "Graph BFS"
+      },
+      {
+        "title": "Find the Town Judge",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/find-the-town-judge/",
+        "difficulty": "Easy",
+        "tag": "Graph BFS"
+      },
+      {
+        "title": "Number of Islands",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/number-of-islands/",
+        "difficulty": "Medium",
+        "tag": "Graph DFS"
+      },
+      {
+        "title": "Flood Fill",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/flood-fill/",
+        "difficulty": "Easy",
+        "tag": "Graph Theory"
+      },
+      {
+        "title": "Topological sort (Kahn's BFS)",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/topological-sort/1",
+        "difficulty": "Easy",
+        "tag": "Graph"
+      },
+      {
+        "title": "Detect Cycle in a Directed Graph",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1",
+        "difficulty": "Medium",
+        "tag": "Graph GFG"
+      }
+    ]
+  },
+  "dynamic_programming": {
+    "canonical_topic": "dynamic_programming",
+    "display_name": "Dynamic Programming",
+    "module_order": 15,
+    "prerequisites": [
+      "recursion",
+      "arrays"
+    ],
+    "next_topics": [
+      "segment_tree"
+    ],
+    "practice_problems": [
+      {
+        "title": "Fibonacci Numbers - Top Down DP",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/fibonacci-numbers-top-down-dp/1",
+        "difficulty": "Easy",
+        "tag": "Recursion"
+      },
+      {
+        "title": "Climbing Stairs",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/climbing-stairs/",
+        "difficulty": "Easy",
+        "tag": "Dynamic Programming"
+      },
+      {
+        "title": "Coin Change",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/coin-change/",
+        "difficulty": "Medium",
+        "tag": "Dynamic Programming, Knapsack"
+      },
+      {
+        "title": "Longest Common Subsequence",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/longest-common-subsequence/",
+        "difficulty": "Medium",
+        "tag": "Dynamic Programming, Strings"
+      }
+    ]
+  },
+  "tries": {
+    "canonical_topic": "tries",
+    "display_name": "Tries (Prefix Trees)",
+    "module_order": 16,
+    "prerequisites": [
+      "trees",
+      "hashing"
+    ],
+    "next_topics": [
+      "segment_tree"
+    ],
+    "practice_problems": [
+      {
+        "title": "Insert and Search",
+        "platform": "GeeksforGeeks",
+        "url": "https://practice.geeksforgeeks.org/problems/trie-insert-and-search0651/1",
+        "difficulty": "Medium",
+        "tag": "Trie"
+      },
+      {
+        "title": "Implement Trie (Prefix Tree)",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+        "difficulty": "Medium",
+        "tag": "Trie, Design"
+      },
+      {
+        "title": "Design Add and Search Words Data Structure",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/design-add-and-search-words-data-structure/",
+        "difficulty": "Medium",
+        "tag": "Trie, Backtracking"
+      },
+      {
+        "title": "Maximum XOR of Two Numbers in an Array",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/",
+        "difficulty": "Medium",
+        "tag": "Trie, Bit Manipulation"
+      }
+    ]
+  },
+  "segment_tree": {
+    "canonical_topic": "segment_tree",
+    "display_name": "Segment Trees & Fenwick Trees",
+    "module_order": 17,
+    "prerequisites": [
+      "trees",
+      "arrays"
+    ],
+    "next_topics": [],
+    "practice_problems": [
+      {
+        "title": "Range Sum Query - Mutable",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/range-sum-query-mutable/",
+        "difficulty": "Medium",
+        "tag": "Segment Tree, Binary Indexed Tree"
+      },
+      {
+        "title": "Count of Smaller Numbers After Self",
+        "platform": "LeetCode",
+        "url": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+        "difficulty": "Hard",
+        "tag": "Segment Tree, Binary Indexed Tree"
+      }
+    ]
+  }
+}

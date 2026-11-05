@@ -1,0 +1,849 @@
+{
+  "arrays": {
+    "canonical_topic": "arrays",
+    "display_name": "Arrays",
+    "visualizers": [
+      {
+        "title": "VisuAlgo - Array Operations & Memory",
+        "url": "https://visualgo.net/en/array",
+        "description": "Fixed-size vs dynamic array allocation visualizer.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [
+      {
+        "title": "Big-O Cheat Sheet",
+        "url": "https://www.bigocheatsheet.com/",
+        "description": "Curated algorithmic cheat sheet / quick reference.",
+        "category": "cheat_sheet"
+      }
+    ],
+    "learning_links": [
+      {
+        "title": "Arrays - GFG",
+        "url": "https://www.geeksforgeeks.org/array-data-structure/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Sliding Window Pattern - NeetCode",
+        "url": "https://neetcode.io/courses/advanced-algorithms/1",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Two Pointers Technique",
+        "url": "https://www.geeksforgeeks.org/two-pointers-technique/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "String Problems - LeetCode Tag",
+        "url": "https://leetcode.com/tag/string/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Prefix Sum Explainer",
+        "url": "https://cp-algorithms.com/algebra/prefix-sums.html",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Kadane's Algorithm Visualization",
+        "url": "https://visualgo.net/en/recursion",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "sliding_window": {
+    "canonical_topic": "sliding_window",
+    "display_name": "Sliding Window",
+    "visualizers": [
+      {
+        "title": "Algorithm Visualizer - Sliding Window",
+        "url": "https://algorithm-visualizer.org/",
+        "description": "Contiguous window left/right boundary movement simulator.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [
+      {
+        "title": "Sliding Window Template",
+        "url": "https://leetcode.com/discuss/general-discussion/657507/Sliding-Window-for-Beginners",
+        "description": "Curated algorithmic cheat sheet / quick reference.",
+        "category": "cheat_sheet"
+      }
+    ],
+    "learning_links": [
+      {
+        "title": "Arrays - GFG",
+        "url": "https://www.geeksforgeeks.org/array-data-structure/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Sliding Window Pattern - NeetCode",
+        "url": "https://neetcode.io/courses/advanced-algorithms/1",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Two Pointers Technique",
+        "url": "https://www.geeksforgeeks.org/two-pointers-technique/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "String Problems - LeetCode Tag",
+        "url": "https://leetcode.com/tag/string/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Prefix Sum Explainer",
+        "url": "https://cp-algorithms.com/algebra/prefix-sums.html",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Kadane's Algorithm Visualization",
+        "url": "https://visualgo.net/en/recursion",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "two_pointers": {
+    "canonical_topic": "two_pointers",
+    "display_name": "Two Pointers",
+    "visualizers": [
+      {
+        "title": "VisuAlgo - Two Pointers / Linear Structures",
+        "url": "https://visualgo.net/en",
+        "description": "Interactive array convergence and partition animation.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Arrays - GFG",
+        "url": "https://www.geeksforgeeks.org/array-data-structure/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Sliding Window Pattern - NeetCode",
+        "url": "https://neetcode.io/courses/advanced-algorithms/1",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Two Pointers Technique",
+        "url": "https://www.geeksforgeeks.org/two-pointers-technique/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "String Problems - LeetCode Tag",
+        "url": "https://leetcode.com/tag/string/",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Prefix Sum Explainer",
+        "url": "https://cp-algorithms.com/algebra/prefix-sums.html",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Kadane's Algorithm Visualization",
+        "url": "https://visualgo.net/en/recursion",
+        "description": "Resource from Arrays & Strings",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "linked_list": {
+    "canonical_topic": "linked_list",
+    "display_name": "Linked List",
+    "visualizers": [
+      {
+        "title": "VisuAlgo - Linked List Data Structure",
+        "url": "https://visualgo.net/en/list",
+        "description": "Singly, doubly, and circular linked list pointer operations visualizer.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Linked List - mycodeschool",
+        "url": "https://www.youtube.com/playlist?list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P",
+        "description": "Resource from Linked Lists",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Fast & Slow Pointers",
+        "url": "https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/",
+        "description": "Resource from Linked Lists",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Linked List Problems - LeetCode",
+        "url": "https://leetcode.com/tag/linked-list/",
+        "description": "Resource from Linked Lists",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Reverse a Linked List - All Methods",
+        "url": "https://www.geeksforgeeks.org/reverse-a-linked-list/",
+        "description": "Resource from Linked Lists",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "stacks_queues": {
+    "canonical_topic": "stacks_queues",
+    "display_name": "Stacks Queues",
+    "visualizers": [
+      {
+        "title": "USFCA Stack and Queue Visualizer",
+        "url": "https://www.cs.usfca.edu/~galles/visualization/StackArray.html",
+        "description": "Array and linked-list implementations of LIFO/FIFO operations.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Stack - Visualgo",
+        "url": "https://visualgo.net/en/list",
+        "description": "Resource from Stacks & Queues",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Monotonic Stack Pattern",
+        "url": "https://leetcode.com/tag/monotonic-stack/",
+        "description": "Resource from Stacks & Queues",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Stack Problems - LeetCode",
+        "url": "https://leetcode.com/tag/stack/",
+        "description": "Resource from Stacks & Queues",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Queue Problems - LeetCode",
+        "url": "https://leetcode.com/tag/queue/",
+        "description": "Resource from Stacks & Queues",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Stacks & Queues - William Fiset",
+        "url": "https://www.youtube.com/watch?v=L3ud3rXpIxA",
+        "description": "Resource from Stacks & Queues",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "trees": {
+    "canonical_topic": "trees",
+    "display_name": "Trees",
+    "visualizers": [
+      {
+        "title": "Binary Search Tree & AVL Tree Visualizer",
+        "url": "https://www.cs.usfca.edu/~galles/visualization/BST.html",
+        "description": "Interactive USFCA tree insertion, deletion, and rotation animation.",
+        "category": "visualizer"
+      },
+      {
+        "title": "VisuAlgo - Binary Search Tree",
+        "url": "https://visualgo.net/en/bst",
+        "description": "Step-by-step BST traversal and balance visualizer.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Binary Trees - Striver",
+        "url": "https://takeuforward.org/binary-tree/all-binary-tree-problems/",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Binary Search Tree",
+        "url": "https://visualgo.net/en/bst",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "DFS & BFS - William Fiset",
+        "url": "https://www.youtube.com/watch?v=7fujbpJ0LB4",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Graph Algorithms - cp-algorithms.com",
+        "url": "https://cp-algorithms.com/graph/breadth-first-search.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Trees - LeetCode Tag",
+        "url": "https://leetcode.com/tag/tree/",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Graph - LeetCode Tag",
+        "url": "https://leetcode.com/tag/graph/",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Dijkstra's, Bellman-Ford, Floyd-Warshall",
+        "url": "https://cp-algorithms.com/graph/dijkstra.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Topological Sort",
+        "url": "https://cp-algorithms.com/graph/topological-sort.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Minimum Spanning Tree (Kruskal + Prim)",
+        "url": "https://cp-algorithms.com/graph/mst_kruskal.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "graphs": {
+    "canonical_topic": "graphs",
+    "display_name": "Graphs",
+    "visualizers": [
+      {
+        "title": "CS Academy Graph Editor",
+        "url": "https://csacademy.com/app/graph_editor/",
+        "description": "Interactive graph visualizer & layout simulator with custom edge weights.",
+        "category": "visualizer"
+      },
+      {
+        "title": "VisuAlgo - Graph Traversal (DFS/BFS)",
+        "url": "https://visualgo.net/en/dfsbfs",
+        "description": "Animated breadth-first and depth-first graph search simulator.",
+        "category": "visualizer"
+      },
+      {
+        "title": "Pathfinding Visualizer",
+        "url": "https://clementmihailescu.github.io/Pathfinding-Visualizer/",
+        "description": "Grid-based Dijkstra, A*, and BFS shortest-path animation.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Binary Trees - Striver",
+        "url": "https://takeuforward.org/binary-tree/all-binary-tree-problems/",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Binary Search Tree",
+        "url": "https://visualgo.net/en/bst",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "DFS & BFS - William Fiset",
+        "url": "https://www.youtube.com/watch?v=7fujbpJ0LB4",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Graph Algorithms - cp-algorithms.com",
+        "url": "https://cp-algorithms.com/graph/breadth-first-search.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Trees - LeetCode Tag",
+        "url": "https://leetcode.com/tag/tree/",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Graph - LeetCode Tag",
+        "url": "https://leetcode.com/tag/graph/",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Dijkstra's, Bellman-Ford, Floyd-Warshall",
+        "url": "https://cp-algorithms.com/graph/dijkstra.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Topological Sort",
+        "url": "https://cp-algorithms.com/graph/topological-sort.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Minimum Spanning Tree (Kruskal + Prim)",
+        "url": "https://cp-algorithms.com/graph/mst_kruskal.html",
+        "description": "Resource from Trees & Graphs",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Union-Find - cp-algorithms",
+        "url": "https://cp-algorithms.com/data_structures/disjoint_set_union.html",
+        "description": "Resource from Disjoint Set Union (DSU)",
+        "category": "learning_resource"
+      },
+      {
+        "title": "DSU - William Fiset",
+        "url": "https://www.youtube.com/watch?v=ibjEGG7ylHk",
+        "description": "Resource from Disjoint Set Union (DSU)",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Path Compression & Union by Rank",
+        "url": "https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/",
+        "description": "Resource from Disjoint Set Union (DSU)",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "dynamic_programming": {
+    "canonical_topic": "dynamic_programming",
+    "display_name": "Dynamic Programming",
+    "visualizers": [
+      {
+        "title": "Algorithm Visualizer - Dynamic Programming",
+        "url": "https://algorithm-visualizer.org/",
+        "description": "Visual DP table memoization grid filling.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "DP Roadmap - Striver",
+        "url": "https://takeuforward.org/dynamic-programming/striver-dp-series-dynamic-programming-problems/",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      },
+      {
+        "title": "DP Patterns - Leetcode Discuss",
+        "url": "https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      },
+      {
+        "title": "AtCoder Educational DP Contest",
+        "url": "https://atcoder.jp/contests/dp",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      },
+      {
+        "title": "DP - Errichto (YouTube)",
+        "url": "https://www.youtube.com/watch?v=YBSt1jYwVfU",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Dynamic Programming - MIT OCW",
+        "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/pages/lecture-videos/",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      },
+      {
+        "title": "DP - LeetCode Tag",
+        "url": "https://leetcode.com/tag/dynamic-programming/",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Grid DP, Knapsack, LCS, LIS - GFG",
+        "url": "https://www.geeksforgeeks.org/dynamic-programming/",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      },
+      {
+        "title": "DP on Trees",
+        "url": "https://codeforces.com/blog/entry/20935",
+        "description": "Resource from Dynamic Programming",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "recursion": {
+    "canonical_topic": "recursion",
+    "display_name": "Recursion",
+    "visualizers": [
+      {
+        "title": "Recursion Tree Visualizer",
+        "url": "https://recursion.vercel.app/",
+        "description": "Interactive visualizer generating recursion call trees and stack states.",
+        "category": "visualizer"
+      },
+      {
+        "title": "Python Tutor Code Visualizer",
+        "url": "https://pythontutor.com/",
+        "description": "Step-by-step call stack, heap memory, and pointer diagram execution.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Recursion - mycodeschool",
+        "url": "https://www.youtube.com/watch?v=neuDuf_i8Sg",
+        "description": "Resource from Recursion & Backtracking",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Backtracking - LeetCode Patterns",
+        "url": "https://leetcode.com/tag/backtracking/",
+        "description": "Resource from Recursion & Backtracking",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Recursion Visualizer",
+        "url": "https://recursion.vercel.app/",
+        "description": "Resource from Recursion & Backtracking",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Backtracking - NeetCode",
+        "url": "https://neetcode.io/courses/advanced-algorithms/8",
+        "description": "Resource from Recursion & Backtracking",
+        "category": "learning_resource"
+      },
+      {
+        "title": "N-Queens, Sudoku Solver, Permutations - GFG",
+        "url": "https://www.geeksforgeeks.org/backtracking-algorithms/",
+        "description": "Resource from Recursion & Backtracking",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "sorting_searching": {
+    "canonical_topic": "sorting_searching",
+    "display_name": "Sorting Searching",
+    "visualizers": [
+      {
+        "title": "VisuAlgo - Sorting Algorithms",
+        "url": "https://visualgo.net/en/sorting",
+        "description": "Side-by-side comparison of QuickSort, MergeSort, and HeapSort.",
+        "category": "visualizer"
+      },
+      {
+        "title": "Sort Visualizer",
+        "url": "https://www.sortvisualizer.com/",
+        "description": "Live audio-visual sorting algorithm benchmarks.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [
+      {
+        "title": "Sorting Algorithms Cheat Sheet",
+        "url": "https://www.interviewcake.com/sorting-algorithm-cheat-sheet",
+        "description": "Curated algorithmic cheat sheet / quick reference.",
+        "category": "cheat_sheet"
+      }
+    ],
+    "learning_links": [
+      {
+        "title": "Sorting Algorithms Visualizer",
+        "url": "https://visualgo.net/en/sorting",
+        "description": "Resource from Sorting & Searching",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Binary Search - Patterns Guide",
+        "url": "https://leetcode.com/discuss/general-discussion/786126/Python-Powerful-Ultimate-Binary-Search-Template",
+        "description": "Resource from Sorting & Searching",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Binary Search - LeetCode Tag",
+        "url": "https://leetcode.com/tag/binary-search/",
+        "description": "Resource from Sorting & Searching",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Sorting Algorithms - GFG",
+        "url": "https://www.geeksforgeeks.org/sorting-algorithms/",
+        "description": "Resource from Sorting & Searching",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Merge Sort, Quick Sort, Heap Sort Explained",
+        "url": "https://www.geeksforgeeks.org/merge-sort/",
+        "description": "Resource from Sorting & Searching",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Binary Search on Answer Technique",
+        "url": "https://codeforces.com/blog/entry/9901",
+        "description": "Resource from Sorting & Searching",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "heaps": {
+    "canonical_topic": "heaps",
+    "display_name": "Heaps",
+    "visualizers": [
+      {
+        "title": "VisuAlgo - Binary Heap / Priority Queue",
+        "url": "https://visualgo.net/en/heap",
+        "description": "Interactive Min-Heap and Max-Heap sift-up and sift-down visualizer.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Heap - Visualgo",
+        "url": "https://visualgo.net/en/heap",
+        "description": "Resource from Heaps & Priority Queues",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Heap - William Fiset",
+        "url": "https://www.youtube.com/watch?v=t0Cq6tVNRBA",
+        "description": "Resource from Heaps & Priority Queues",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Heap Problems - LeetCode",
+        "url": "https://leetcode.com/tag/heap-priority-queue/",
+        "description": "Resource from Heaps & Priority Queues",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Top K Elements Pattern",
+        "url": "https://www.geeksforgeeks.org/kth-largest-element-in-a-stream/",
+        "description": "Resource from Heaps & Priority Queues",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "hashing": {
+    "canonical_topic": "hashing",
+    "display_name": "Hashing",
+    "visualizers": [],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Hash Tables - CS Dojo",
+        "url": "https://www.youtube.com/watch?v=shs0KM3wKv8",
+        "description": "Resource from Hashing",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Hashing - LeetCode Tag",
+        "url": "https://leetcode.com/tag/hash-table/",
+        "description": "Resource from Hashing",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Hashing in Practice - GFG",
+        "url": "https://www.geeksforgeeks.org/hashing-data-structure/",
+        "description": "Resource from Hashing",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Robin-Karp & Rabin Hashing",
+        "url": "https://cp-algorithms.com/string/rabin-karp.html",
+        "description": "Resource from Hashing",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "greedy": {
+    "canonical_topic": "greedy",
+    "display_name": "Greedy",
+    "visualizers": [],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Greedy - GFG",
+        "url": "https://www.geeksforgeeks.org/greedy-algorithms/",
+        "description": "Resource from Greedy Algorithms",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Greedy - LeetCode Tag",
+        "url": "https://leetcode.com/tag/greedy/",
+        "description": "Resource from Greedy Algorithms",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Activity Selection, Fractional Knapsack, Huffman",
+        "url": "https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/",
+        "description": "Resource from Greedy Algorithms",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Greedy vs DP - Difference Explained",
+        "url": "https://www.geeksforgeeks.org/difference-between-greedy-algorithm-and-dynamic-programming/",
+        "description": "Resource from Greedy Algorithms",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "bit_manipulation": {
+    "canonical_topic": "bit_manipulation",
+    "display_name": "Bit Manipulation",
+    "visualizers": [],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Bit Tricks - GFG",
+        "url": "https://www.geeksforgeeks.org/bit-manipulation-tricks/",
+        "description": "Resource from Bit Manipulation",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Bit Manipulation - LeetCode Tag",
+        "url": "https://leetcode.com/tag/bit-manipulation/",
+        "description": "Resource from Bit Manipulation",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Bit Hacks - Stanford",
+        "url": "https://graphics.stanford.edu/~seander/bithacks.html",
+        "description": "Resource from Bit Manipulation",
+        "category": "learning_resource"
+      },
+      {
+        "title": "XOR Problems Pattern",
+        "url": "https://leetcode.com/discuss/general-discussion/1073220/A-summary-of-bitwise-problems",
+        "description": "Resource from Bit Manipulation",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "math": {
+    "canonical_topic": "math",
+    "display_name": "Math",
+    "visualizers": [],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Number Theory - cp-algorithms",
+        "url": "https://cp-algorithms.com/algebra/fundamentals-of-combinatorics.html",
+        "description": "Resource from Math & Number Theory",
+        "category": "learning_resource"
+      },
+      {
+        "title": "GCD, LCM, Sieve of Eratosthenes",
+        "url": "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html",
+        "description": "Resource from Math & Number Theory",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Modular Arithmetic",
+        "url": "https://cp-algorithms.com/algebra/module-inverse.html",
+        "description": "Resource from Math & Number Theory",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Combinatorics Basics - GFG",
+        "url": "https://www.geeksforgeeks.org/combinatorics-gq/",
+        "description": "Resource from Math & Number Theory",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Math - LeetCode Tag",
+        "url": "https://leetcode.com/tag/math/",
+        "description": "Resource from Math & Number Theory",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "segment_tree": {
+    "canonical_topic": "segment_tree",
+    "display_name": "Segment Tree",
+    "visualizers": [],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Segment Tree - cp-algorithms",
+        "url": "https://cp-algorithms.com/data_structures/segment_tree.html",
+        "description": "Resource from Segment Trees & Fenwick Trees",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Fenwick Tree (BIT) - cp-algorithms",
+        "url": "https://cp-algorithms.com/data_structures/fenwick.html",
+        "description": "Resource from Segment Trees & Fenwick Trees",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Segment Tree - Errichto",
+        "url": "https://www.youtube.com/watch?v=ZBHKZF5w4YU",
+        "description": "Resource from Segment Trees & Fenwick Trees",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Lazy Propagation",
+        "url": "https://cp-algorithms.com/data_structures/segment_tree.html#toc-tgt-5",
+        "description": "Resource from Segment Trees & Fenwick Trees",
+        "category": "learning_resource"
+      }
+    ]
+  },
+  "tries": {
+    "canonical_topic": "tries",
+    "display_name": "Tries",
+    "visualizers": [
+      {
+        "title": "USFCA Trie (Prefix Tree) Visualizer",
+        "url": "https://www.cs.usfca.edu/~galles/visualization/Trie.html",
+        "description": "Interactive prefix tree node insertion and substring search simulator.",
+        "category": "visualizer"
+      }
+    ],
+    "cheat_sheets": [],
+    "learning_links": [
+      {
+        "title": "Trie - GFG",
+        "url": "https://www.geeksforgeeks.org/trie-insert-and-search/",
+        "description": "Resource from Tries",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Trie - NeetCode",
+        "url": "https://neetcode.io/courses/advanced-algorithms/11",
+        "description": "Resource from Tries",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Trie Visualizer",
+        "url": "https://www.cs.usfca.edu/~galles/visualization/Trie.html",
+        "description": "Resource from Tries",
+        "category": "learning_resource"
+      },
+      {
+        "title": "Trie Problems - LeetCode",
+        "url": "https://leetcode.com/tag/trie/",
+        "description": "Resource from Tries",
+        "category": "learning_resource"
+      }
+    ]
+  }
+}

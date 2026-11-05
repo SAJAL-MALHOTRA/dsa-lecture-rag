@@ -144,13 +144,50 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+### Running the Multi-Source Ingestion Pipeline
+```bash
+# Ingest and build topic_resources.json, curriculum_graph.json, and patterns_corpus.json
+python scripts/ingest_external_dsa.py
+```
+
 ### Running the API & UI
 ```bash
 # Start FastAPI backend (serves web UI at http://localhost:8000)
 uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-### Reproducing Evaluations
+---
+
+## 7. Multi-Source DSA Architecture & Catalog Integration
+
+To provide students with complete interview readiness beyond video timestamps, the platform integrates three external open-source DSA repositories, strictly decoupling retrievable content from structured routing metadata:
+
+| Source Repository | Role in Pipeline | Ingestion Target & Artifact |
+| :--- | :--- | :--- |
+| **`ashishps1/awesome-leetcode-resources`** | Vector & Code Corpus | `data/patterns_corpus.json` (50 chunks: C++/Python pattern templates, 20+ prose pattern explanations, must-read LeetCode article templates). |
+| **`avinash201199/DSA-KIT`** | Visualizers & Tools Catalog (Not embedded) | `data/topic_resources.json` (Deterministic catalog mapping canonical tags to VisuAlgo, CS Academy, USFCA visualizers & cheat sheets). |
+| **`helloworldbyprince/Complete-DSA-Preparation`** | Curriculum & Prerequisite Graph (Not embedded) | `data/curriculum_graph.json` (17 sequential modules, prerequisite DAG, next topics, and curated LeetCode/GFG practice problems). |
+
+### Production Cloud vs Local Benchmark Configuration
+- **Benchmark Evaluation**: In our rigorous 104-query benchmark, the hybrid retriever (BM25 + multilingual MiniLM dense embeddings with RRF and seek refinement) achieves 30.0% Hit@3 on verified moments.
+- **Render Cloud Deployment**: On Render's 512 MB free tier instance, PyTorch neural model initialization exceeds the strict RAM ceiling (exit 137 OOM). Render defaults to our highly optimized BM25Okapi retriever (<65MB RSS, 0ms torch footprint), with dense retrieval toggleable via `ENABLE_DENSE_ON_RENDER=1` for instances with $\ge 1\text{GB}$ RAM.
+- **Client Compute Offloading**: Python code execution runs client-side in the student's browser via WebAssembly (Pyodide), ensuring zero cloud server load, zero latency, and complete security isolation.
+
+---
+
+## 8. Attribution & Upstream Acknowledgements
+
+This project builds upon and honors the work of the computer science open-source and educational community:
+1. **Raj Vikramaditya (take U forward / Striver)**: For the 305 foundational DSA lecture videos, whiteboard intuitions, and the A2Z DSA sheet structure.
+2. **`Codensity30/Strivers-A2Z-DSA-Sheet`**: For community problem templates and solutions.
+3. **Ashish Pratap Singh (`ashishps1/awesome-leetcode-resources`)**: For curated coding pattern implementations, explanations, and LeetCode study guides.
+4. **Avinash Sharma (`avinash201199/DSA-KIT`)**: For the visualizer catalog, online compiler directories, and algorithmic cheat sheets.
+5. **Prince Kumar (`helloworldbyprince/Complete-DSA-Preparation`)**: For the sequential DSA course curriculum, practice problem collections, and topic roadmaps.
+
+---
+
+## 9. License
+MIT License.
 ```bash
 # 1. Run all unit tests
 python -m pytest tests/

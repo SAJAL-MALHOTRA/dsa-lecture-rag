@@ -24,7 +24,7 @@ DISALLOWED_PY_MODULES = {
     "builtins", "signal", "threading", "http", "urllib", "requests", "httpx"
 }
 
-DISALLOWED_PY_CALLS = {"eval", "exec", "__import__"}
+DISALLOWED_PY_CALLS = {"eval", "exec", "__import__", "open", "compile"}
 DISALLOWED_PY_ATTRS = {"__subclasses__", "__globals__", "system", "popen", "spawn"}
 
 
@@ -66,7 +66,7 @@ def validate_code_security(language: str, code: str) -> tuple[bool, Optional[str
         forbidden_headers = [
             "windows.h", "unistd.h", "sys/socket.h", "sys/types.h",
             "sys/stat.h", "netinet/in.h", "arpa/inet.h", "process.h",
-            "direct.h", "winsock2.h", "conio.h",
+            "direct.h", "winsock2.h", "conio.h", "fstream", "filesystem",
         ]
         for h in forbidden_headers:
             if f"<{h}>" in cpp_lower or f'"{h}"' in cpp_lower:
@@ -79,6 +79,10 @@ def validate_code_security(language: str, code: str) -> tuple[bool, Optional[str
             (r"\bexec(ve|vp|v|l|lp)\s*\(", "exec()"),
             (r"\bkill\s*\(", "kill()"),
             (r"\bsocket\s*\(", "socket()"),
+            (r"\bfopen\b", "fopen"),
+            (r"\bfreopen\b", "freopen"),
+            (r"\bifstream\b", "ifstream"),
+            (r"\bofstream\b", "ofstream"),
             (r"\bCreateProcess", "CreateProcess"),
             (r"\bShellExecute", "ShellExecute"),
             (r"\bWinExec", "WinExec"),
@@ -236,6 +240,15 @@ def _execute_python(
     src_file = work_dir / "solution.py"
     src_file.write_text(prepared_code, encoding="utf-8")
 
+    clean_env = {
+        "PATH": os.environ.get("PATH", ""),
+        "SYSTEMROOT": os.environ.get("SYSTEMROOT", "C:\\Windows"),
+        "WINDIR": os.environ.get("WINDIR", "C:\\Windows"),
+        "TEMP": str(work_dir),
+        "TMP": str(work_dir),
+        "PYTHONNOUSERSITE": "1",
+    }
+
     t_start = time.perf_counter()
     try:
         proc = subprocess.run(
@@ -245,6 +258,7 @@ def _execute_python(
             text=True,
             timeout=timeout_sec,
             cwd=str(work_dir),
+            env=clean_env,
         )
         duration_ms = round((time.perf_counter() - t_start) * 1000, 2)
         stdout = _clean_output(proc.stdout)
@@ -296,6 +310,14 @@ def _execute_cpp(
     exe_file = work_dir / ("solution.exe" if os.name == "nt" else "solution")
     src_file.write_text(prepared_code, encoding="utf-8")
 
+    clean_env = {
+        "PATH": os.environ.get("PATH", ""),
+        "SYSTEMROOT": os.environ.get("SYSTEMROOT", "C:\\Windows"),
+        "WINDIR": os.environ.get("WINDIR", "C:\\Windows"),
+        "TEMP": str(work_dir),
+        "TMP": str(work_dir),
+    }
+
     t_start = time.perf_counter()
     # 1. Compilation
     try:
@@ -305,6 +327,7 @@ def _execute_cpp(
             text=True,
             timeout=10.0,
             cwd=str(work_dir),
+            env=clean_env,
         )
     except FileNotFoundError:
         return {
@@ -346,6 +369,7 @@ def _execute_cpp(
             text=True,
             timeout=timeout_sec,
             cwd=str(work_dir),
+            env=clean_env,
         )
         duration_ms = round((time.perf_counter() - t_run_start) * 1000, 2)
         stdout = _clean_output(run_proc.stdout)

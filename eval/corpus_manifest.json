@@ -1,0 +1,37 @@
+{
+  "corpus_name": "strivers_dsa_core8",
+  "videos": [
+    {
+      "video_id": "KEs5UyBJ39g",
+      "title": "Hashing | Maps | Time Complexity"
+    },
+    {
+      "video_id": "yVdKa8dnKiE",
+      "title": "Introduction to Recursion | Recursion Tree | Stack Space"
+    },
+    {
+      "video_id": "ogjf7ORKfd8",
+      "title": "Merge Sort | Algorithm | Code"
+    },
+    {
+      "video_id": "WIrA4YexLRQ",
+      "title": "Quick Sort For Beginners"
+    },
+    {
+      "video_id": "UXDSeD9mN-k",
+      "title": "2 Sum Problem | Brute-Better-Optimal"
+    },
+    {
+      "video_id": "frf7qxiN2qU",
+      "title": "Longest Subarray with sum K"
+    },
+    {
+      "video_id": "wiOo4DC5GGA",
+      "title": "Detect a loop or cycle in LinkedList"
+    },
+    {
+      "video_id": "D2vI2DNJGd8",
+      "title": "Reverse a LinkedList | Iterative and Recursive"
+    }
+  ]
+}

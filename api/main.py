@@ -48,6 +48,9 @@ from ytrag.summarize import GroundedSummarizer
 from ytrag.dsa_sheet import DSASheetIndex, DSASolution
 from ytrag.llm_provider import validate_api_key, generate_llm_answer, get_provider_details
 from ytrag.query_expander import expand_dsa_query
+from ytrag.pattern_retriever import PatternRetriever, get_pattern_retriever
+from ytrag.context_enricher import ContextEnricher, get_context_enricher
+from ytrag.topic_classifier import classify_canonical_topics
 
 # Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,6 +133,8 @@ async def lifespan(app: FastAPI):
     # 1. Instantly load DSA Sheet index (< 0.05s) so core metadata is available immediately
     dsa_index = DSASheetIndex(DSA_SHEET_DIR)
     state["dsa_index"] = dsa_index
+    state["pattern_retriever"] = get_pattern_retriever()
+    state["context_enricher"] = get_context_enricher()
     state["chunks"] = []
     state["videos_meta"] = []
     state["is_ready"] = False
@@ -193,6 +198,9 @@ class SearchResponse(BaseModel):
     summary: str = ""
     results: list[SearchResultItem]
     dsa_snippet: Optional[dict] = None
+    canonical_topics: list[str] = []
+    pattern_chunks: list[dict] = []
+    enrichment: Optional[dict] = None
 
 
 class KeyValidationRequest(BaseModel):
@@ -274,6 +282,21 @@ def _retrieve(query: str, k: int = 5) -> SearchResponse:
     if not query:
         return SearchResponse(query=query, total_found=0, results=[])
 
+    # Multi-Source Integration: Topic Classification, Patterns, and Context Enrichment
+    canonical_topics = classify_canonical_topics(query)
+    pattern_retriever = state.get("pattern_retriever") or get_pattern_retriever()
+    pattern_chunks = []
+    if pattern_retriever:
+        matched_patterns = pattern_retriever.retrieve(
+            query,
+            k=2,
+            canonical_topic=canonical_topics[0] if canonical_topics else None,
+        )
+        pattern_chunks = [p.model_dump() for p, _ in matched_patterns]
+
+    enricher = state.get("context_enricher") or get_context_enricher()
+    enrichment_data = enricher.enrich(canonical_topics) if enricher else None
+
     hybrid: Optional[HybridRetriever] = state.get("hybrid")
     segment_index: Optional[SegmentIndex] = state.get("segment_index")
     dsa_index: Optional[DSASheetIndex] = state.get("dsa_index")
@@ -294,6 +317,9 @@ def _retrieve(query: str, k: int = 5) -> SearchResponse:
             summary="Retriever indexes are warming up in the background. Full lecture moments will be searchable in a few moments.",
             results=[],
             dsa_snippet=matched_dsa,
+            canonical_topics=canonical_topics,
+            pattern_chunks=pattern_chunks,
+            enrichment=enrichment_data,
         )
 
     # 1. Relevance / Domain Gate
@@ -329,12 +355,28 @@ def _retrieve(query: str, k: int = 5) -> SearchResponse:
             matched_dsa = sol.to_dict()
 
     if is_out_of_domain:
-        return SearchResponse(query=query, total_found=0, results=[], dsa_snippet=matched_dsa)
+        return SearchResponse(
+            query=query,
+            total_found=0,
+            results=[],
+            dsa_snippet=matched_dsa,
+            canonical_topics=canonical_topics,
+            pattern_chunks=pattern_chunks,
+            enrichment=enrichment_data,
+        )
 
     # 2. Retrieve candidate pool with expanded pedagogical concepts
     raw_results = hybrid.retrieve(expanded_query, k=25)
     if not raw_results:
-        return SearchResponse(query=query, total_found=0, results=[], dsa_snippet=matched_dsa)
+        return SearchResponse(
+            query=query,
+            total_found=0,
+            results=[],
+            dsa_snippet=matched_dsa,
+            canonical_topics=canonical_topics,
+            pattern_chunks=pattern_chunks,
+            enrichment=enrichment_data,
+        )
 
     # 3. Deduplicate
     spans = [
@@ -379,7 +421,31 @@ def _retrieve(query: str, k: int = 5) -> SearchResponse:
                 dsa_snippet=video_dsa,
             )
         )
-    return SearchResponse(query=query, total_found=len(out_items), results=out_items, dsa_snippet=matched_dsa)
+    # 5. Multi-Source Retrieval & Context Enrichment
+    canonical_topics = classify_canonical_topics(query)
+    pattern_retriever = state.get("pattern_retriever") or get_pattern_retriever()
+    pattern_chunks = []
+    if pattern_retriever:
+        matched_patterns = pattern_retriever.retrieve(
+            query,
+            k=2,
+            canonical_topic=canonical_topics[0] if canonical_topics else None,
+        )
+        pattern_chunks = [p.model_dump() for p, _ in matched_patterns]
+
+    enricher = state.get("context_enricher") or get_context_enricher()
+    enrichment_data = enricher.enrich(canonical_topics) if enricher else None
+
+    return SearchResponse(
+        query=query,
+        total_found=len(out_items),
+        summary=f"Found {len(out_items)} direct lecture whiteboard moments for your doubt.",
+        results=out_items,
+        dsa_snippet=matched_dsa,
+        canonical_topics=canonical_topics,
+        pattern_chunks=pattern_chunks,
+        enrichment=enrichment_data,
+    )
 
 
 @app.get("/api/health")
@@ -417,32 +483,28 @@ def get_corpus():
     }
 
 
-@app.get("/api/search")
-async def search_lectures(
+@app.get("/api/search", response_model=SearchResponse)
+def search_lectures(
     q: str = Query(..., description="Student doubt / technical query"),
     k: int = Query(5, description="Number of results to return"),
 ):
     ev = state.get("ready_event")
     if ev is not None and not ev.is_set():
-        import asyncio
-        try:
-            await asyncio.wait_for(ev.wait(), timeout=4.0)
-        except asyncio.TimeoutError:
-            pass
+        ev.wait(timeout=3.0)
     try:
         return _retrieve(q, k)
     except Exception as e:
-        import traceback
-        trace = traceback.format_exc()
-        print(f"[Search Error]: {trace}", file=sys.stderr, flush=True)
-        return {
-            "query": q,
-            "total_found": 0,
-            "summary": f"Search encountered an issue: {str(e)}",
-            "results": [],
-            "error_detail": trace,
-            "dsa_snippet": None,
-        }
+        logger.exception("Search encountered an unhandled exception")
+        return SearchResponse(
+            query=q,
+            total_found=0,
+            summary="Search encountered an issue. Please retry with standard algorithm terms.",
+            results=[],
+            dsa_snippet=None,
+            canonical_topics=[],
+            pattern_chunks=[],
+            enrichment=None,
+        )
 
 
 @app.get("/api/dsa-snippet")
@@ -489,6 +551,15 @@ def execute_code_endpoint(req: CodeExecuteRequest):
     """
     Executes Python or C++ code in a sandboxed scratch environment with strict timeouts.
     """
+    if os.getenv("RENDER"):
+        return CodeExecuteResponse(
+            success=False,
+            stdout="",
+            stderr="Server-side execution is disabled on cloud instances. Python execution runs directly inside your browser via WebAssembly (Pyodide) with 0ms server latency and complete client isolation.",
+            execution_time_ms=0.0,
+            exit_code=1,
+            message="Server execution disabled in cloud production (use client Pyodide Wasm).",
+        )
     from ytrag.code_runner import execute_code
     return execute_code(
         language=req.language,
@@ -518,11 +589,14 @@ def grill_me_endpoint(req: GrillMeRequest):
     from ytrag.stress_tester import generate_grill_question, evaluate_grill_answer
 
     provider = (req.provider or resolve_default_provider()).lower().strip()
-    api_key = (
-        req.api_key.strip()
-        if req.api_key
-        else (os.getenv("LLM_API_KEY", "") or os.getenv("GROQ_API_KEY", "") or os.getenv("GROK_API_KEY", "") or os.getenv("OPENAI_API_KEY", ""))
-    )
+    if os.getenv("RENDER"):
+        api_key = req.api_key.strip()
+    else:
+        api_key = (
+            req.api_key.strip()
+            if req.api_key
+            else (os.getenv("LLM_API_KEY", "") or os.getenv("GROQ_API_KEY", "") or os.getenv("GROK_API_KEY", "") or os.getenv("OPENAI_API_KEY", ""))
+        )
     base_url = req.base_url.strip() if req.base_url else os.getenv("LLM_BASE_URL", "")
     model = req.model.strip() if req.model else os.getenv("LLM_MODEL", "")
 
@@ -656,9 +730,12 @@ def answer_query(request: AnswerRequest):
             "message": "No relevant lecture moments were found for this query.",
         }
 
-    # Resolve API Key & Provider
+    # Resolve API Key & Provider (Enforce BYOK on Cloud Render)
     provider = request.provider.lower().strip() or resolve_default_provider()
-    api_key = request.api_key.strip() or os.getenv("LLM_API_KEY", "") or os.getenv("GROK_API_KEY", "") or os.getenv("GROQ_API_KEY", "") or os.getenv("OPENAI_API_KEY", "")
+    if os.getenv("RENDER"):
+        api_key = request.api_key.strip()
+    else:
+        api_key = request.api_key.strip() or os.getenv("LLM_API_KEY", "") or os.getenv("GROK_API_KEY", "") or os.getenv("GROQ_API_KEY", "") or os.getenv("OPENAI_API_KEY", "")
     base_url = request.base_url.strip() or os.getenv("LLM_BASE_URL", "")
     model = request.model.strip() or os.getenv("LLM_MODEL", "")
 
@@ -678,6 +755,8 @@ def answer_query(request: AnswerRequest):
                 query=query,
                 lecture_excerpts=[item.model_dump() for item in retrieved.results],
                 dsa_context=matched_dsa,
+                pattern_excerpts=retrieved.pattern_chunks,
+                enrichment_metadata=retrieved.enrichment,
                 provider=provider,
                 api_key=api_key,
                 model=model,
@@ -711,6 +790,9 @@ def answer_query(request: AnswerRequest):
                 "bullets": bullets,
                 "approach_summary": llm_res.get("approach_summary", ""),
                 "dsa_snippet": matched_dsa,
+                "canonical_topics": retrieved.canonical_topics,
+                "pattern_chunks": retrieved.pattern_chunks,
+                "enrichment": retrieved.enrichment,
                 "message": f"Generated via {provider.upper()} and grounded in verified lecture timestamps.",
             }
         except Exception as exc:
@@ -756,6 +838,9 @@ def answer_query(request: AnswerRequest):
         "bullets": bullets,
         "approach_summary": matched_dsa.get("approach", "")[:250] if matched_dsa else "",
         "dsa_snippet": matched_dsa,
+        "canonical_topics": retrieved.canonical_topics,
+        "pattern_chunks": retrieved.pattern_chunks,
+        "enrichment": retrieved.enrichment,
         "message": "Grounded directly from lecture transcripts and Striver's A2Z sheet.",
     }
 
@@ -868,16 +953,16 @@ def striver_chat_endpoint(request: ChatRequest):
                 })
 
     provider = (request.provider or resolve_default_provider()).lower().strip()
-    api_key = (
-        request.api_key.strip()
-        if request.api_key
-        else (
-            os.getenv("LLM_API_KEY", "")
+    if os.getenv("RENDER"):
+        api_key = request.api_key.strip()
+    else:
+        api_key = (
+            request.api_key.strip()
+            or os.getenv("LLM_API_KEY", "")
             or os.getenv("GROK_API_KEY", "")
             or os.getenv("GROQ_API_KEY", "")
             or os.getenv("OPENAI_API_KEY", "")
         )
-    )
     base_url = request.base_url.strip() if request.base_url else os.getenv("LLM_BASE_URL", "")
     model = request.model.strip() if request.model else os.getenv("LLM_MODEL", "")
 
@@ -896,6 +981,8 @@ def striver_chat_endpoint(request: ChatRequest):
                 messages=[m.model_dump() for m in request.messages],
                 lecture_excerpts=[item.model_dump() for item in retrieved.results],
                 dsa_context=matched_dsa,
+                pattern_excerpts=retrieved.pattern_chunks,
+                enrichment_metadata=retrieved.enrichment,
                 provider=provider,
                 api_key=api_key,
                 model=model,
@@ -906,6 +993,9 @@ def striver_chat_endpoint(request: ChatRequest):
                 "citations": citations,
                 "dsa_snippet": matched_dsa,
                 "provider": provider,
+                "canonical_topics": retrieved.canonical_topics,
+                "pattern_chunks": retrieved.pattern_chunks,
+                "enrichment": retrieved.enrichment,
             }
         except Exception as exc:
             logger.warning("Striver chat LLM error (%s), falling back to grounded extractive reply.", exc)
@@ -920,6 +1010,9 @@ def striver_chat_endpoint(request: ChatRequest):
             "citations": [],
             "dsa_snippet": None,
             "provider": "extractive",
+            "canonical_topics": retrieved.canonical_topics,
+            "pattern_chunks": retrieved.pattern_chunks,
+            "enrichment": retrieved.enrichment,
         }
 
     # Conversational Extractive Fallback (Fast, Zero Hallucination, Striver Voice)
@@ -945,11 +1038,21 @@ def striver_chat_endpoint(request: ChatRequest):
 
     reply_parts.append("\n*Tip: Connect your free Groq API key in the top nav to unlock continuous conversational multi-turn dialogue with Striver!*")
 
+    final_reply = "\n".join(reply_parts)
+    if retrieved.enrichment:
+        from ytrag.context_enricher import get_context_enricher
+        enrichment_section = get_context_enricher().format_markdown_section(retrieved.enrichment)
+        if enrichment_section and enrichment_section not in final_reply:
+            final_reply += "\n\n" + enrichment_section
+
     return {
-        "reply": "\n".join(reply_parts),
+        "reply": final_reply,
         "citations": citations,
         "dsa_snippet": matched_dsa,
         "provider": "extractive",
+        "canonical_topics": retrieved.canonical_topics,
+        "pattern_chunks": retrieved.pattern_chunks,
+        "enrichment": retrieved.enrichment,
     }
 
 
@@ -974,9 +1077,33 @@ def get_roadmap():
 
         diff = "Medium"
         sub_lower = sub_name.lower()
-        if "easy" in sub_lower or "1. single" in sub_lower or "1. learning" in sub_lower or "1. theory" in sub_lower or "1. traversals" in sub_lower or "1. concept" in sub_lower:
+        if (
+            "easy" in sub_lower
+            or "1. single" in sub_lower
+            or "1. learning" in sub_lower
+            or "1. theory" in sub_lower
+            or "1. traversals" in sub_lower
+            or "1. concept" in sub_lower
+            or "1d arrays" in sub_lower
+            or "1. intro" in sub_lower
+            or "1. learn" in sub_lower
+            or "1.get strong" in sub_lower
+            or "2.doubly" in sub_lower
+        ):
             diff = "Easy"
-        elif "hard" in sub_lower:
+        elif (
+            "hard" in sub_lower
+            or "promblems" in sub_lower
+            or "in search space" in sub_lower
+            or "3.try out" in sub_lower
+            or "3. advanced" in sub_lower
+            or "4. implementation" in sub_lower
+            or "5. mst" in sub_lower
+            or "6. other algorithms" in sub_lower
+            or "7. dp on lis" in sub_lower
+            or "8. dp on partition" in sub_lower
+            or "9. dp on squares" in sub_lower
+        ):
             diff = "Hard"
 
         topic_map[t_name][sub_name].append({

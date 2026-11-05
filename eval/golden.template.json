@@ -1,0 +1,28 @@
+{
+  "_note": "Template with placeholder entries. Replace video ids and delete these examples. Fields starting with _ are ignored.",
+  "queries": [
+    {
+      "id": "q001",
+      "query": "technique with two pointers moving at different speeds",
+      "type": "paraphrase",
+      "split": "dev",
+      "relevant": [
+        {"video_id": "VIDEO_ID_1", "start_sec": 140, "end_sec": 245}
+      ],
+      "labeler": "A",
+      "notes": "Explanation starts at 'so what if we move one pointer twice as fast'"
+    },
+    {
+      "id": "q002",
+      "query": "why does my recursive function never stop",
+      "type": "symptom",
+      "split": "test",
+      "relevant": [
+        {"video_id": "VIDEO_ID_2", "start_sec": 610, "end_sec": 700},
+        {"video_id": "VIDEO_ID_2", "start_sec": 1405, "end_sec": 1470}
+      ],
+      "labeler": "A",
+      "notes": "Second span is a genuine re-explanation, not a recap"
+    }
+  ]
+}

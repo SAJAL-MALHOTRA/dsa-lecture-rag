@@ -1,0 +1,31 @@
+{
+  "systems": {
+    "bm25": "BM25 baseline over 75s windows, 15s stride",
+    "hybrid": "BM25 + Dense (all-MiniLM-L6-v2) fused via Reciprocal Rank Fusion",
+    "hybrid_refined": "Hybrid (MiniLM) + sub-chunk seek refinement to best transcript segment (w=1, pad=3s)",
+    "bge_refined": "Hybrid (BAAI/bge-small-en-v1.5) + sub-chunk seek refinement (w=1, pad=3s)"
+  },
+  "eval": {
+    "split": "test",
+    "verified_only": false,
+    "hit_def": "both",
+    "k": [1, 3, 5, 10],
+    "primary_k": 3,
+    "dedup_overlap": 0.5,
+    "lead_tol": 20.0,
+    "seek_max_frac": 0.5,
+    "overlap_frac": 0.5,
+    "overlap_cap": 30.0
+  },
+  "code": [
+    "eval_harness.py",
+    "run_experiments.py",
+    "run_embedder_comparison.py",
+    "ytrag/retriever.py",
+    "ytrag/refine.py",
+    "ytrag/dump_run.py",
+    "ytrag/chunk.py",
+    "ytrag/models.py"
+  ],
+  "notes": "Primary comparison: hit definition seek, k=3, hybrid_refined vs hybrid. Decision rule: claim improvement iff paired McNemar p < 0.05 on the 30 test queries; otherwise report no detectable difference. bm25 and bge_refined are descriptive comparisons reported regardless of outcome. All candidate systems were shaped by exploration on the 22 dev queries."
+}

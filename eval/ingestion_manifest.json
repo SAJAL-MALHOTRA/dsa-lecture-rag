@@ -1,0 +1,509 @@
+{
+  "videos": {
+    "0bHoB32fuj0": {
+      "video_id": "0bHoB32fuj0",
+      "title": "Don't watch my A2Z DSA Course",
+      "status": "success",
+      "segment_count": 204,
+      "sha256": "d3aabd619433c6650e701b1da49436c3ef34036c4b35350ec830b41387edefad"
+    },
+    "h3uDCJ5mvgw": {
+      "video_id": "h3uDCJ5mvgw",
+      "title": "How to setup VS code for DSA and CP | Input / Output split format",
+      "status": "success",
+      "segment_count": 239,
+      "sha256": "8a6e72bb75d04f027ef72686c08dc63e14594d7b9e22dcd90cf119e35c6c0509"
+    },
+    "EAR7De6Goz4": {
+      "video_id": "EAR7De6Goz4",
+      "title": "C++ Basics in One Shot - Strivers A2Z DSA Course - L1",
+      "status": "success",
+      "segment_count": 2266,
+      "sha256": "f3dd50daa416986eaa08056bf1ce86fb4c2e18fb879b33b0cfabc8b02f918fa8"
+    },
+    "FPu9Uld7W-E": {
+      "video_id": "FPu9Uld7W-E",
+      "title": "Time and Space Complexity - Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 816,
+      "sha256": "f905cd34d73d16623c44dc8627945c74a6534f39febe5c6c64e435a4d948e246"
+    },
+    "tNm_NNSB3_w": {
+      "video_id": "tNm_NNSB3_w",
+      "title": "Solve any Pattern Question - Trick Explained | 22 Patterns in 1 Shot | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 1914,
+      "sha256": "bbecb4253f51d2510d8aed2e1c932ae5988033d8578ed07c416430726dff4571"
+    },
+    "RRVYpIET_RU": {
+      "video_id": "RRVYpIET_RU",
+      "title": "Complete C++ STL in 1 Video | Time Complexity and Notes",
+      "status": "success",
+      "segment_count": 1809,
+      "sha256": "480a6fec6ac2afad0b6e33143dc31d2f2955e658e5034c240adf87ec6cb20c12"
+    },
+    "1xNbjMdbjug": {
+      "video_id": "1xNbjMdbjug",
+      "title": "Basic Maths for DSA | Euclidean Algorithm | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 1626,
+      "sha256": "9f84783f992eb9c1577ac9803f85b23ec727475e479ecc5ce26ca84635b50deb"
+    },
+    "yVdKa8dnKiE": {
+      "video_id": "yVdKa8dnKiE",
+      "title": "Re 1. Introduction to Recursion | Recursion Tree | Stack Space | Strivers A2Z DSA Course",
+      "status": "cached",
+      "segment_count": 611,
+      "sha256": "e017539a2dc731775617c3057c647319dccd2023f6cc997ae0c27bbce9425e77"
+    },
+    "un6PLygfXrA": {
+      "video_id": "un6PLygfXrA",
+      "title": "Re 2. Problems on Recursion | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 573,
+      "sha256": "450146412073f74fd2beabe2f50e9bae21601b49b8db1925818be025ee44bd96"
+    },
+    "69ZCDFy-OUo": {
+      "video_id": "69ZCDFy-OUo",
+      "title": "Re 3. Parameterised and Functional Recursion | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 485,
+      "sha256": "205d62c2e29f3397e12a9cbe997a5f538d1db4983865807e68b0e28673883f78"
+    },
+    "twuC1F6gLI8": {
+      "video_id": "twuC1F6gLI8",
+      "title": "Re 4. Problems on Functional Recursion | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 536,
+      "sha256": "98cdf69baa1ce515f44fdb5dcaee9b51f075e3fd4cf9a16cd8af356c4246d728"
+    },
+    "kvRjNm4rVBE": {
+      "video_id": "kvRjNm4rVBE",
+      "title": "Re 5. Multiple Recursion Calls | Problems | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 439,
+      "sha256": "75239b71e959fe0d47b80742cb1c7d192507850686cd615f613aa9f1d289ea50"
+    },
+    "KEs5UyBJ39g": {
+      "video_id": "KEs5UyBJ39g",
+      "title": "Hashing | Maps | Time Complexity | Collisions | Division Rule of Hashing | Strivers A2Z DSA Course",
+      "status": "cached",
+      "segment_count": 1446,
+      "sha256": "0d9410d41c98d29da029269db1371b710ae738ffa503196878292ed1413e5aa8"
+    },
+    "HGk_ypEuS24": {
+      "video_id": "HGk_ypEuS24",
+      "title": "Sorting - Part 1 | Selection Sort, Bubble Sort, Insertion Sort | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 889,
+      "sha256": "e5f4f4030d31436eab8edfeff5caa95541f2048c07862f1583b29f1772229fd4"
+    },
+    "ogjf7ORKfd8": {
+      "video_id": "ogjf7ORKfd8",
+      "title": "Merge Sort | Algorithm | Pseudocode | Dry Run | Code | Strivers A2Z DSA Course",
+      "status": "cached",
+      "segment_count": 1087,
+      "sha256": "9cbaa845e9fb8bffefa3bfbd57ef474fe668d47d61e08cd1b276051a06768a6b"
+    },
+    "WIrA4YexLRQ": {
+      "video_id": "WIrA4YexLRQ",
+      "title": "Quick Sort For Beginners | Strivers A2Z DSA Course",
+      "status": "cached",
+      "segment_count": 867,
+      "sha256": "52317baa4918e376a9df0e7b2b60bee2ff92370dd03bbae8a10c030e791653b7"
+    },
+    "37E9ckMDdTk": {
+      "video_id": "37E9ckMDdTk",
+      "title": "Find Second Largest Element in Array | Remove duplicates from Sorted Array | Arrays Intro Video",
+      "status": "success",
+      "segment_count": 994,
+      "sha256": "bb1a080cf20c3b275a24b03c918a118043864961dbe1e9e8898ff670d74b657a"
+    },
+    "wvcQg43_V8U": {
+      "video_id": "wvcQg43_V8U",
+      "title": "Rotate Array by K places | Union, Intersection of Sorted Arrays | Move Zeros to End | Arrays Part-2",
+      "status": "success",
+      "segment_count": 1734,
+      "sha256": "391d143be66af83e172eba975f0acf6ebdbbb34d90f5e494ae865b530210d9e8"
+    },
+    "bYWLJb3vCWY": {
+      "video_id": "bYWLJb3vCWY",
+      "title": "Find element that appears once | Find missing number | Max Consecutive number of 1's | Arrays Part-3",
+      "status": "success",
+      "segment_count": 898,
+      "sha256": "de7fed9afa7b4655b100abeef1bd0a9ef6983f87784dcde320504411379072d4"
+    },
+    "frf7qxiN2qU": {
+      "video_id": "frf7qxiN2qU",
+      "title": "Longest Subarray with sum K | Brute - Better - Optimal | Generate Subarrays",
+      "status": "cached",
+      "segment_count": 1004,
+      "sha256": "9666e11b7e54afa9630a9e053b696159a910dbd272d59b67f7e6b5d1caace2cf"
+    },
+    "UXDSeD9mN-k": {
+      "video_id": "UXDSeD9mN-k",
+      "title": "2 Sum Problem | 2 types of the same problem for Interviews | Brute-Better-Optimal",
+      "status": "cached",
+      "segment_count": 460,
+      "sha256": "27cb3c3a5cd1386618cd95a32849ac6a44c5a89487b5f9e46ade6595d59f1299"
+    },
+    "tp8JIuCXBaU": {
+      "video_id": "tp8JIuCXBaU",
+      "title": "Sort an array of 0's 1's & 2's | Intuition of Algo🔥 | C++ Java Python | Brute-Better-Optimal",
+      "status": "success",
+      "segment_count": 611,
+      "sha256": "125919550926d875d8dc9af47d91d05127e2c8e6cbe3b37e234c2aa90a3db79f"
+    },
+    "nP_ns3uSh80": {
+      "video_id": "nP_ns3uSh80",
+      "title": "Majority Element I | Brute-Better-Optimal | Moore's Voting Algorithm | Intuition 🔥|Brute to Optimal",
+      "status": "success",
+      "segment_count": 458,
+      "sha256": "c13c5ca9296d635437670c4c9744134321ee1a57f89a2c294d8788d848a9abf4"
+    },
+    "AHZpyENo7k4": {
+      "video_id": "AHZpyENo7k4",
+      "title": "Kadane's Algorithm | Maximum Subarray Sum | Finding and Printing",
+      "status": "success",
+      "segment_count": 512,
+      "sha256": "3611a88fe002038ddb10f31859558ecd489875738e361a7375d68e768e5e195f"
+    },
+    "excAOvwF_Wk": {
+      "video_id": "excAOvwF_Wk",
+      "title": "DP 35. Best Time to Buy and Sell Stock | DP on Stocks 🔥",
+      "status": "success",
+      "segment_count": 200,
+      "sha256": "4cb5015b7f18e91cd7815f7ccfe67b889ff0ae61fba231f2903a278a53dcd41c"
+    },
+    "h4aBagy4Uok": {
+      "video_id": "h4aBagy4Uok",
+      "title": "Rearrange Array Elements by Sign | 2 Varieties of same Problem",
+      "status": "success",
+      "segment_count": 559,
+      "sha256": "2a86096b61f6b6b33056ffcc00400a1bcfadb39aae8a58c5600ed8d32132b6c5"
+    },
+    "JDOXKqF60RQ": {
+      "video_id": "JDOXKqF60RQ",
+      "title": "Next Permutation - Intuition in Detail 🔥 | Brute to Optimal",
+      "status": "success",
+      "segment_count": 722,
+      "sha256": "f04664083234297217d1e8678ac4e1de14f44d9f8c5648ba405bedf1023baddb"
+    },
+    "cHrH9CQ8pmY": {
+      "video_id": "cHrH9CQ8pmY",
+      "title": "Leaders in an Array | Brute - Optimal | Strivers A2Z DSA Course",
+      "status": "success",
+      "segment_count": 324,
+      "sha256": "9a9cf4af380d08d154c2fe845261ff512a8c9d1d788c89cb7f463175cb7c5a66"
+    },
+    "oO5uLE7EUlM": {
+      "video_id": "oO5uLE7EUlM",
+      "title": "Longest Consecutive Sequence | Google Interview Question | Brute Better Optimal",
+      "status": "success",
+      "segment_count": 606,
+      "sha256": "ef8e6bdaa343ae42242a2fbed1312bd2336fc59ba50b3914102cf140773c62d9"
+    },
+    "N0MgLvceX7M": {
+      "video_id": "N0MgLvceX7M",
+      "title": "Set Matrix Zeroes | O(1) Space Approach | Brute - Better - Optimal",
+      "status": "success",
+      "segment_count": 738,
+      "sha256": "8aa8962cc7cbf45187f9753a2e9b5ddd8abe76a603ae46cf76d5b22a604ef7fe"
+    },
+    "Z0R2u6gd3GU": {
+      "video_id": "Z0R2u6gd3GU",
+      "title": "Rotate Matrix/Image by 90 Degrees | Brute - Optimal",
+      "status": "success",
+      "segment_count": 405,
+      "sha256": "4e1e955067b80ed2ef73b6447ebd3a1188211b15b5d2252164999f8e82f6272e"
+    },
+    "3Zv-s9UUrFM": {
+      "video_id": "3Zv-s9UUrFM",
+      "title": "Spiral Traversal of a Matrix | Spiral Matrix",
+      "status": "success",
+      "segment_count": 381,
+      "sha256": "5b9592d8138db23322af59411939ae9282156a506bfd6a5781ee40ba9c52e685"
+    },
+    "xvNwoz-ufXA": {
+      "video_id": "xvNwoz-ufXA",
+      "title": "Count Subarray sum Equals K | Brute - Better -Optimal",
+      "status": "success",
+      "segment_count": 595,
+      "sha256": "5ad204bb10245ebf52f08bf948cacd55c50a9cc3903efee0f087f4a89df3aec8"
+    },
+    "bR7mQgwQ_o8": {
+      "video_id": "bR7mQgwQ_o8",
+      "title": "Pascal Triangle | Finding nCr in minimal time",
+      "status": "success",
+      "segment_count": 627,
+      "sha256": "10664d37b359f5d153aeaddf87eeb0bd8ca7e320c75595c00a37b6f6f7f5768b"
+    },
+    "vwZj1K0e9U8": {
+      "video_id": "vwZj1K0e9U8",
+      "title": "Majority Element II | Brute-Better-Optimal",
+      "status": "success",
+      "segment_count": 660,
+      "sha256": "dea9a9357888cafd0afa20f2b6d501afd280762e677b8a03a0ede9a3fd7962c0"
+    },
+    "DhFh8Kw7ymk": {
+      "video_id": "DhFh8Kw7ymk",
+      "title": "3 Sum | Brute -  Better - Optimal with Codes",
+      "status": "success",
+      "segment_count": 888,
+      "sha256": "c0c2e27d723a85511b23040aad12b56a3f17b4359900c1ff5fbfe4f35bf02c45"
+    },
+    "eD95WRfh81c": {
+      "video_id": "eD95WRfh81c",
+      "title": "4 Sum | Brute - Better - Optimal with Codes",
+      "status": "success",
+      "segment_count": 711,
+      "sha256": "71e8e59b3f5a9b87282c14d10f56b0ab5ca3bebf68069610c7b97e690d0b8616"
+    },
+    "eZr-6p0B7ME": {
+      "video_id": "eZr-6p0B7ME",
+      "title": "Number of Subarrays with xor K | Brute - Better - Optimal",
+      "status": "success",
+      "segment_count": 553,
+      "sha256": "114760d7ab08c89e9daf008e85935528e984e737b2736319e6e4250b37e4aa2c"
+    },
+    "IexN60k62jo": {
+      "video_id": "IexN60k62jo",
+      "title": "Merge Overlapping Intervals | Brute, Optimal with Precise TC analysis",
+      "status": "success",
+      "segment_count": 527,
+      "sha256": "0a51a33799aebe3d10bcc4c43ca57298bd06939a1f8c6730cc1df412f8fb1ba5"
+    },
+    "n7uwj04E0I4": {
+      "video_id": "n7uwj04E0I4",
+      "title": "Merge Sorted Arrays Without Extra Space | 2 Optimal Solution",
+      "status": "success",
+      "segment_count": 806,
+      "sha256": "a2631634fa3b2b75f2c8878875c81b2221265bdce762b023b4b7b5cb60db1c2e"
+    },
+    "2D0D8HE6uak": {
+      "video_id": "2D0D8HE6uak",
+      "title": "Find the Missing and Repeating Number | 4 Approaches 🔥",
+      "status": "success",
+      "segment_count": 1030,
+      "sha256": "2887bba4bd255fcfda5703d3dc9f7fd96ee12cb25b00c0bf7179db1103927b6e"
+    },
+    "AseUmwVNaoY": {
+      "video_id": "AseUmwVNaoY",
+      "title": "Count Inversions in an Array | Brute and Optimal",
+      "status": "success",
+      "segment_count": 614,
+      "sha256": "076fdc2d34fbcdaffc3d62434657103c43cc377625463189aedc0ab91d251e0b"
+    },
+    "0e4bZaP3MDI": {
+      "video_id": "0e4bZaP3MDI",
+      "title": "Reverse Pairs | Hard Interview Question",
+      "status": "success",
+      "segment_count": 813,
+      "sha256": "d6741b409c2693bffbdd9b53b6a585403a1586e8d2e46701c14962048ffddd31"
+    },
+    "hnswaLJvr6g": {
+      "video_id": "hnswaLJvr6g",
+      "title": "Maximum Product Subarray - Best Intuitive Approach Discussed",
+      "status": "success",
+      "segment_count": 497,
+      "sha256": "cdc36af9733888920429b5bef3db40a16e4a145937bf32f5ee2370aa394ec148"
+    },
+    "MHf6awe89xw": {
+      "video_id": "MHf6awe89xw",
+      "title": "BS-1. Binary Search Introduction | Real Life Example | Iterative | Recursive | Overflow Cases",
+      "status": "success",
+      "segment_count": 838,
+      "sha256": "e01544605c695f2fb6e908f8dffcb101d713ed29d884e8272492861fa31993f2"
+    },
+    "6zhGS79oQ4k": {
+      "video_id": "6zhGS79oQ4k",
+      "title": "BS-2. Implement Lower Bound and Upper Bound | Search Insert Position | Floor and Ceil",
+      "status": "success",
+      "segment_count": 778,
+      "sha256": "3bb0da090b4658d4a2505bc44fb05b337c9590b0a1d1089c1a3d8019b3c85ebe"
+    },
+    "hjR1IYVx9lY": {
+      "video_id": "hjR1IYVx9lY",
+      "title": "BS-3. First and Last Occurrences in Array | Count occurrences in Array",
+      "status": "success",
+      "segment_count": 610,
+      "sha256": "99b82ad113a510a2ff2b808a09e2ff1c7ff6c3a53027ae0d47b64d4436c038a7"
+    },
+    "5qGrJbHhqFs": {
+      "video_id": "5qGrJbHhqFs",
+      "title": "BS-4. Search Element in Rotated Sorted Array - I",
+      "status": "success",
+      "segment_count": 423,
+      "sha256": "29c5b7a3abeaf3fdf23acb07492c67f86ec2dacd4134892674605d47a49b949e"
+    },
+    "w2G2W8l__pc": {
+      "video_id": "w2G2W8l__pc",
+      "title": "BS-5. Search Element in Rotated Sorted Array II",
+      "status": "success",
+      "segment_count": 310,
+      "sha256": "19cf8b0ecb9362410cf9b0d56adf0cbac99ac65f8a5fd1e53c1cd460834a3f33"
+    },
+    "nhEMDKMB44g": {
+      "video_id": "nhEMDKMB44g",
+      "title": "BS-6. Minimum in Rotated Sorted Array",
+      "status": "success",
+      "segment_count": 419,
+      "sha256": "2f46df967b47d2ea808f554ad6d345a89471df619248367881f397f2a157940c"
+    },
+    "jtSiWTPLwd0": {
+      "video_id": "jtSiWTPLwd0",
+      "title": "BS-7. Find out how many times array has been rotated",
+      "status": "success",
+      "segment_count": 134,
+      "sha256": "0d89a0ace28b6574ab9c29a6025f343a9f6eaf3ad0e7038b741b5ac950f00f18"
+    },
+    "AZOmHuHadxQ": {
+      "video_id": "AZOmHuHadxQ",
+      "title": "BS-8. Single Element in Sorted Array",
+      "status": "success",
+      "segment_count": 533,
+      "sha256": "48fd687e48e0c5a2c7c341b20d3fa547b1f8cd5e64f93a98d3952be03d98d31e"
+    },
+    "cXxmbemS6XM": {
+      "video_id": "cXxmbemS6XM",
+      "title": "BS-9. Find Peak Element",
+      "status": "success",
+      "segment_count": 780,
+      "sha256": "d70a86180f8690999d4ba1ad1cef21f1e0e50ff8c881744604785e73054e0db4"
+    },
+    "Bsv3FPUX_BA": {
+      "video_id": "Bsv3FPUX_BA",
+      "title": "BS-10. Finding Sqrt of a number using Binary Search",
+      "status": "success",
+      "segment_count": 447,
+      "sha256": "480459106ddd29d61305d87d3fcc18d1dbdb8c7f7c993c2edb2b66dc4815f195"
+    },
+    "rjEJeYCasHs": {
+      "video_id": "rjEJeYCasHs",
+      "title": "BS-11. Find the Nth root of an Integer",
+      "status": "success",
+      "segment_count": 495,
+      "sha256": "605b5eb73451f8cadfa64d198c134fd17ebc5e15939763186beb702ba21f9804"
+    },
+    "qyfekrNni90": {
+      "video_id": "qyfekrNni90",
+      "title": "BS-12. Koko Eating Bananas",
+      "status": "success",
+      "segment_count": 523,
+      "sha256": "57f2f07cbd155768569744ce4341746b75dfe8f89db41fb5a08581813938fd19"
+    },
+    "TXAuxeYBTdg": {
+      "video_id": "TXAuxeYBTdg",
+      "title": "BS-13. Minimum days to make M bouquets | Binary Search",
+      "status": "success",
+      "segment_count": 648,
+      "sha256": "c97a9e0ec0bfba4901169d556c5c45a231e306400f27509cd5fe3fa8b8d91417"
+    },
+    "UvBKTVaG6U8": {
+      "video_id": "UvBKTVaG6U8",
+      "title": "BS-14. Find the Smallest Divisor Given a Threshold | Binary Search",
+      "status": "success",
+      "segment_count": 387,
+      "sha256": "b830b49389c5b054a97704f03b3e8acd82ed8bc3e543cda1463f1aaf41df1037"
+    },
+    "MG-Ac4TAvTY": {
+      "video_id": "MG-Ac4TAvTY",
+      "title": "BS-15. Capacity to Ship Packages within D Days",
+      "status": "success",
+      "segment_count": 481,
+      "sha256": "ba46478ea3d6172675302c0d63ec83639ea5de13f8a353e2c83f48d6619b000d"
+    },
+    "uZ0N_hZpyps": {
+      "video_id": "uZ0N_hZpyps",
+      "title": "BS-16. Kth Missing Positive Number | Maths + Binary Search",
+      "status": "success",
+      "segment_count": 553,
+      "sha256": "635aca432c24cc70d877a2d4963600306d165e036a6b2b66a46378973dcd0ed6"
+    },
+    "R_Mfw4ew-Vo": {
+      "video_id": "R_Mfw4ew-Vo",
+      "title": "BS-17. Aggressive Cows | Binary Search Hard",
+      "status": "success",
+      "segment_count": 693,
+      "sha256": "da894b7908352d78257bcc4a8f0714d63358a0e4f4d60d877d7b1695c1ed92df"
+    },
+    "Z0hwjftStI4": {
+      "video_id": "Z0hwjftStI4",
+      "title": "BS-18. Allocate Books or Book Allocation | Hard Binary Search",
+      "status": "success",
+      "segment_count": 646,
+      "sha256": "44071974a238e3f4f2cdadd643da93ca61e248923d20377029c92a66b8cd7b4d"
+    },
+    "thUd_WJn6wk": {
+      "video_id": "thUd_WJn6wk",
+      "title": "BS 19. Painter's Partition and Split Array - Largest Sum",
+      "status": "success",
+      "segment_count": 274,
+      "sha256": "df18d8e956b54dd5e63196cef7c61cd27fef43abc63128e6d6e878bad786c878"
+    },
+    "kMSBvlZ-_HA": {
+      "video_id": "kMSBvlZ-_HA",
+      "title": "BS-20. Minimise Maximum Distance between Gas Stations | 3 Approaches | Heap | Binary Search",
+      "status": "success",
+      "segment_count": 1483,
+      "sha256": "dac224bf4a9d5c061d7a623b3be09d0fcca9f5cec944386443a0a5cb40152eb2"
+    },
+    "C2rRzz-JDk8": {
+      "video_id": "C2rRzz-JDk8",
+      "title": "BS 21: Median of two Sorted Arrays of Different Sizes | Brute and Better Approach",
+      "status": "success",
+      "segment_count": 441,
+      "sha256": "ae33c8592311f37ff2d16738532bfa02da4e4081173e33365e7b8a06f4c1a352"
+    },
+    "F9c7LpRZWVQ": {
+      "video_id": "F9c7LpRZWVQ",
+      "title": "BS-21. Median of two Sorted Arrays of Different Sizes | Binary Search Approach With Intuition",
+      "status": "success",
+      "segment_count": 871,
+      "sha256": "eeb514abd9207807511c99fcceba713f4674d5b8d9e6c88fb469c526296ff5a8"
+    },
+    "D1oDwWCq50g": {
+      "video_id": "D1oDwWCq50g",
+      "title": "Bs-22. K-th element of two sorted arrays | Binary Search Approach",
+      "status": "success",
+      "segment_count": 298,
+      "sha256": "9092534da87ec054ff1035c9574107f763dd9812376dc3aa37ad9516b58df59e"
+    },
+    "SCz-1TtYxDI": {
+      "video_id": "SCz-1TtYxDI",
+      "title": "BS 23. Row with maximum number of 1s | Binary Search on 2D Arrays",
+      "status": "success",
+      "segment_count": 248,
+      "sha256": "ae4bdfabd4d30cf0b2dd30c53f8ff9df76a2b11c253dbcd32abb58fd2b8b17f4"
+    },
+    "JXU4Akft7yk": {
+      "video_id": "JXU4Akft7yk",
+      "title": "BS-24. Search in a 2D Matrix - I | Binary Search of 2D",
+      "status": "success",
+      "segment_count": 351,
+      "sha256": "7c665684d1bfa3e21f1f02b6494572b2e5869dec638c81c75e2d691e371d637b"
+    },
+    "9ZbB397jU4k": {
+      "video_id": "9ZbB397jU4k",
+      "title": "BS-25. Search in a 2D Matrix - II  |  Binary Search on 2D",
+      "status": "success",
+      "segment_count": 377,
+      "sha256": "7e5ef77adabcbdd8aa2bd712780d14f4e90ccab90bbf382728acaf2ab179c38e"
+    },
+    "nGGp5XBzC4g": {
+      "video_id": "nGGp5XBzC4g",
+      "title": "BS-26. Find Peak Element-II | Binary Search",
+      "status": "success",
+      "segment_count": 488,
+      "sha256": "628bbc5c4422a720dd35642cc66a68a5673d8f71731fdab09d69bd16d2a5df18"
+    },
+    "Q9wXgdxJq48": {
+      "video_id": "Q9wXgdxJq48",
+      "title": "BS-27. Median in a Row Wise Sorted Matrix",
+      "status": "success",
+      "segment_count": 552,
+      "sha256": "63decd9f420fc26efb6472aeb167762124bcbbae5c46bcfd420bfbbc5926c977"
+    }
+  },
+  "last_updated_utc": "2026-10-21T11:03:54.626695+00:00"
+}

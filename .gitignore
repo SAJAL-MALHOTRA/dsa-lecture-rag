@@ -16,6 +16,7 @@ runs/
 *.pt
 eval/.cache/
 data/fine_tuning/
+data/external_sources/
 
 # OS specific
 Thumbs.db
