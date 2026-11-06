@@ -539,6 +539,233 @@
       transform: translateY(-1px);
     }
 
+    /* LeetCode Direct Links & shuzijun/leetcode-editor Integration */
+    .btn-leetcode-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: #FFF7ED;
+      border: 1px solid #FDBA74;
+      color: #C2410C;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow-xs);
+      flex-shrink: 0;
+    }
+
+    .btn-leetcode-link:hover {
+      background: #FFEDD5;
+      border-color: #EA580C;
+      color: #9A3412;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-leetcode-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      background: #FFF7ED;
+      border: 1px solid #FDBA74;
+      color: #C2410C;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-leetcode-header:hover {
+      background: #FFEDD5;
+      border-color: #EA580C;
+      color: #9A3412;
+    }
+
+    .btn-leetcode-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      background: #16845B;
+      border: 1px solid #106646;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow-xs);
+      flex-shrink: 0;
+    }
+
+    .btn-leetcode-submit:hover {
+      background: #0E5C3E;
+      transform: translateY(-1px);
+    }
+
+    .btn-card-lc {
+      text-decoration: none;
+      color: #C2410C !important;
+      background: #FFF7ED !important;
+      border-color: #FDBA74 !important;
+      font-weight: 600 !important;
+    }
+
+    .btn-card-lc:hover {
+      background: #FFEDD5 !important;
+      border-color: #EA580C !important;
+    }
+
+    .drawer-title-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.15s ease;
+    }
+
+    .drawer-title-link:hover .drawer-title {
+      color: var(--accent-primary);
+    }
+
+    .lc-title-icon {
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: color 0.15s ease;
+    }
+
+    .drawer-title-link:hover .lc-title-icon {
+      color: var(--accent-primary);
+    }
+
+    .lc-editor-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 20px;
+      background: var(--surface-secondary);
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      flex-shrink: 0;
+    }
+
+    .lc-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 4px 9px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .lc-tab-btn:hover {
+      background: var(--surface-primary);
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+
+    .lc-tab-btn.active {
+      background: var(--surface-primary);
+      color: var(--accent-primary);
+      border-color: var(--border-color);
+      font-weight: 600;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .lc-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #20242B;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 99999;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+
+    .lc-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .lc-testcases-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+    }
+
+    .lc-example-chip {
+      background: var(--surface-code);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .lc-example-chip:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      background: var(--accent-soft);
+    }
+
+    .btn-run-testcase {
+      background: #16845B;
+      border: 1px solid #106646;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-run-testcase:hover {
+      background: #0E5C3E;
+    }
+
+
     /* Grounded Synthesis Card */
     .answer-card {
       background: var(--surface-primary);
@@ -3033,19 +3260,25 @@
         </div>
       </div>
 
-      <!-- Matched DSA Algorithm Card with Smooth Pop-out Button -->
+      <!-- Matched DSA Algorithm Card with Smooth Pop-out Button & Direct LeetCode Redirect -->
       <div id="algo-banner" class="dsa-algo-banner active">
         <div class="algo-info">
           <div class="algo-title-row">
             <span id="banner-algo-name" class="algo-name">Two Sum Problem</span>
+            <span id="banner-algo-diff" class="diff-badge diff-easy">Easy</span>
             <span id="banner-algo-topic" class="badge-tp">Arrays</span>
             <span id="banner-algo-tc" class="badge-tc">Time: O(N)</span>
             <span id="banner-algo-sc" class="badge-sc">Space: O(N)</span>
           </div>
         </div>
-        <button id="btn-open-drawer" class="btn-popout-code">
-          <span>&lt;/&gt;</span> Pop Out Code &amp; Approach
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <a id="banner-leetcode-link" class="btn-leetcode-link" href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer" title="Directly solve this problem on LeetCode">
+            <span>&#128992;</span> Solve on LeetCode &#8599;
+          </a>
+          <button id="btn-open-drawer" class="btn-popout-code" title="Open in-browser LeetCode Editor">
+            <span>&lt;/&gt;</span> Code &amp; Editor
+          </button>
+        </div>
       </div>
 
       <!-- Grounded Synthesis Card -->
@@ -3089,6 +3322,7 @@
             <div class="moment-top">
               <span class="moment-lecture-title">Two Sum | Optimal Hash Map Intuition &amp; Lookup</span>
               <div class="moment-actions">
+                <a href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-lc" title="Directly solve on LeetCode" onclick="event.stopPropagation();"><span>&#128992;</span> LC &#8599;</a>
                 <button class="btn-card-action btn-card-trace" title="Open Whiteboard Pointer Trace" onclick="event.stopPropagation(); seekPlayer('UXDSeD9mN-k', 300); openDrawer();">🎨 Whiteboard</button>
                 <button class="btn-card-action btn-card-code" title="View Code Solution" onclick="event.stopPropagation(); openDrawer();">&lt;/&gt; Code</button>
               </div>
@@ -3175,9 +3409,14 @@
               <span id="player-status-text">Synced: Click any timestamp to seek</span>
             </div>
           </div>
-          <button id="btn-player-drawer" class="btn-popout-code">
-            &lt;/&gt; Code
-          </button>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <a id="player-leetcode-link" class="btn-leetcode-link" href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer" title="Directly solve this problem on LeetCode">
+              <span>&#128992;</span> LeetCode &#8599;
+            </a>
+            <button id="btn-player-drawer" class="btn-popout-code">
+              &lt;/&gt; Code
+            </button>
+          </div>
         </div>
       </div>
 
@@ -3309,20 +3548,45 @@
       
       <div class="drawer-header">
         <div class="drawer-title-box">
-          <h2 id="drawer-algo-title" class="drawer-title">2 Sum Problem</h2>
-          <div style="display: flex; gap: 6px; margin-top: 4px;">
-            <span id="drawer-topic-badge" class="badge-tp">Arrays / Medium</span>
-            <span id="drawer-tc-badge" class="badge-tc">O(N)</span>
-            <span id="drawer-sc-badge" class="badge-sc">O(N)</span>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <a id="drawer-leetcode-title-link" href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer" class="drawer-title-link" title="Open question directly on LeetCode">
+              <h2 id="drawer-algo-title" class="drawer-title">2 Sum Problem</h2>
+              <span class="lc-title-icon">&#8599;</span>
+            </a>
+            <span id="drawer-diff-badge" class="diff-badge diff-easy">Easy</span>
+          </div>
+          <div style="display: flex; gap: 6px; margin-top: 4px; align-items: center; flex-wrap: wrap;">
+            <span id="drawer-topic-badge" class="badge-tp">Arrays</span>
+            <span id="drawer-tc-badge" class="badge-tc">Time: O(N)</span>
+            <span id="drawer-sc-badge" class="badge-sc">Space: O(N)</span>
           </div>
         </div>
-        <button id="btn-close-drawer" class="drawer-close-btn">&times;</button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <a id="drawer-leetcode-btn" class="btn-leetcode-header" href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer" title="Open question directly on LeetCode">
+            <span>&#128992;</span> Open on LeetCode &#8599;
+          </a>
+          <button id="btn-submit-leetcode" class="btn-leetcode-submit" title="Copy code to clipboard and open LeetCode to submit">
+            <span>&#128640;</span> Submit on LeetCode &#8599;
+          </button>
+          <button id="btn-close-drawer" class="drawer-close-btn" title="Close Drawer">&times;</button>
+        </div>
+      </div>
+
+      <!-- shuzijun/leetcode-editor Workspace Tabs -->
+      <div class="lc-editor-tabs-bar">
+        <button class="lc-tab-btn active" data-tab="section-editor"><span>&#128187;</span> Editor</button>
+        <button class="lc-tab-btn" data-tab="section-problem"><span>&#128196;</span> Description</button>
+        <button class="lc-tab-btn" data-tab="section-testcases"><span>&#9889;</span> Test Cases</button>
+        <button class="lc-tab-btn" data-tab="section-approach"><span>&#128161;</span> Striver's Intuition</button>
+        <button class="lc-tab-btn" data-tab="section-dryrun"><span>&#128202;</span> Whiteboard Dry-Run</button>
+        <button class="lc-tab-btn" data-tab="section-grill"><span>&#127919;</span> FAANG Drill</button>
+        <button class="lc-tab-btn" data-tab="section-notes"><span>&#128221;</span> Notes</button>
       </div>
 
       <div class="drawer-content">
         
         <!-- Multi-Language Code Implementation -->
-        <div>
+        <div id="section-editor">
           <div class="section-label">Multi-Language Code Implementation</div>
           <div class="drawer-code-container">
             <div class="drawer-code-header">
@@ -3377,7 +3641,7 @@
         </div>
 
         <!-- Interactive FAANG Interview Drill -->
-        <div>
+        <div id="section-grill">
           <div class="section-label">Interactive FAANG Interview Drill</div>
           <div id="drawer-grill-card" class="grill-panel">
             <div class="grill-header">
@@ -3418,7 +3682,7 @@
         </div>
 
         <!-- Interactive Whiteboard Dry-Run Simulator -->
-        <div>
+        <div id="section-dryrun">
           <div class="section-label">Interactive Whiteboard Dry-Run &amp; Pointer Trace</div>
           <div id="dry-run-container" class="dry-run-panel">
             <div class="dry-run-header">
@@ -3464,20 +3728,20 @@
         </div>
 
         <!-- Step-by-Step Approach -->
-        <div>
+        <div id="section-approach">
           <div class="section-label">Striver's Step-by-Step Intuition &amp; Approach</div>
           <div id="drawer-approach-text" class="text-box"></div>
         </div>
 
 
         <!-- Problem Statement & Examples -->
-        <div>
+        <div id="section-problem">
           <div class="section-label">Problem Statement &amp; Examples</div>
           <div id="drawer-question-text" class="text-box"></div>
         </div>
 
         <!-- Personal Revision Notes Scratchpad -->
-        <div class="drawer-notes-section">
+        <div id="section-notes" class="drawer-notes-section">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
             <div class="section-label" style="margin-bottom: 0;">📝 My Revision Notes &amp; Key Intuitions</div>
             <div style="display: flex; align-items: center; gap: 8px;">
@@ -3619,6 +3883,16 @@
     const bannerAlgoTopic = document.getElementById("banner-algo-topic");
     const bannerAlgoTc = document.getElementById("banner-algo-tc");
     const bannerAlgoSc = document.getElementById("banner-algo-sc");
+    const bannerAlgoDiff = document.getElementById("banner-algo-diff");
+    const bannerLeetcodeLink = document.getElementById("banner-leetcode-link");
+    const playerLeetcodeLink = document.getElementById("player-leetcode-link");
+    const drawerLeetcodeTitleLink = document.getElementById("drawer-leetcode-title-link");
+    const drawerLeetcodeBtn = document.getElementById("drawer-leetcode-btn");
+    const drawerDiffBadge = document.getElementById("drawer-diff-badge");
+    const btnSubmitLeetcode = document.getElementById("btn-submit-leetcode");
+    const btnRunTestcase = document.getElementById("btn-run-testcase");
+    const lcExampleChipsContainer = document.getElementById("lc-example-chips-container");
+    const lcToast = document.getElementById("lc-toast");
     const answerBullets = document.getElementById("answer-bullets");
     const providerBadge = document.getElementById("provider-badge");
     const momentsList = document.getElementById("moments-list");
@@ -3641,6 +3915,14 @@
     const drawerNotesInput = document.getElementById("drawer-notes-input");
     const drawerNotesStatus = document.getElementById("drawer-notes-status");
     const drawerNotesCounter = document.getElementById("drawer-notes-counter");
+
+    function showToast(msg) {
+      if (!lcToast) return;
+      lcToast.textContent = msg;
+      lcToast.classList.add("show");
+      setTimeout(() => lcToast.classList.remove("show"), 2600);
+    }
+
     const btnNotesTemplate = document.getElementById("btn-notes-template");
     const btnCopyCode = document.getElementById("btn-copy-code");
     const btnResetCode = document.getElementById("btn-reset-code");
@@ -3751,6 +4033,41 @@
     }
 
     btnOpenDrawer.addEventListener("click", openDrawer);
+
+    // Submit on LeetCode (copies code to clipboard & opens LeetCode in a new tab)
+    if (btnSubmitLeetcode) {
+      btnSubmitLeetcode.addEventListener("click", () => {
+        const code = drawerCodeEditor.value.trim();
+        if (code && navigator.clipboard) {
+          navigator.clipboard.writeText(code);
+        }
+        showToast("📋 Code copied to clipboard! Opening LeetCode to submit...");
+        const sol = state.currentDsa;
+        const lcUrl = (sol && sol.leetcode_url) ? sol.leetcode_url : "https://leetcode.com/problemset/";
+        window.open(lcUrl, "_blank", "noopener,noreferrer");
+      });
+    }
+
+    // Run Test Case button (triggers execution with current stdin)
+    if (btnRunTestcase) {
+      btnRunTestcase.addEventListener("click", () => {
+        if (btnRunCode) btnRunCode.click();
+      });
+    }
+
+    // LeetCode Editor Workspace Navigation Tabs
+    document.querySelectorAll(".lc-tab-btn").forEach(tabBtn => {
+      tabBtn.addEventListener("click", () => {
+        document.querySelectorAll(".lc-tab-btn").forEach(b => b.classList.remove("active"));
+        tabBtn.classList.add("active");
+        const targetId = tabBtn.getAttribute("data-tab");
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
     btnPlayerDrawer.addEventListener("click", openDrawer);
     btnCloseDrawer.addEventListener("click", closeDrawer);
     drawerOverlay.addEventListener("click", (e) => {
@@ -4607,19 +4924,72 @@
       state.editedCode = {}; // Reset edited code cache on problem switch
       drawerEdgeCasesBox.classList.remove("visible");
 
+      // LeetCode Metadata Resolution
+      const lcUrl = sol.leetcode_url || ("https://leetcode.com/problems/" + (sol.leetcode_slug || "two-sum") + "/");
+      const lcDiff = sol.leetcode_difficulty || "Medium";
+
       // Update banner
       bannerAlgoName.textContent = sol.title;
       bannerAlgoTopic.textContent = sol.topic.replace(/^\d+\./, "");
       bannerAlgoTc.textContent = `Time: ${sol.time_complexity}`;
       bannerAlgoSc.textContent = `Space: ${sol.space_complexity}`;
+      if (bannerAlgoDiff) {
+        bannerAlgoDiff.textContent = lcDiff;
+        bannerAlgoDiff.className = "diff-badge diff-" + lcDiff.toLowerCase();
+      }
+      if (bannerLeetcodeLink) {
+        bannerLeetcodeLink.href = lcUrl;
+      }
+      if (playerLeetcodeLink) {
+        playerLeetcodeLink.href = lcUrl;
+      }
       algoBanner.classList.add("active");
       btnPlayerDrawer.style.display = "inline-flex";
 
       // Update drawer
       drawerAlgoTitle.textContent = sol.title;
-      drawerTopicBadge.textContent = sol.topic;
+      drawerTopicBadge.textContent = sol.topic.replace(/^\d+\./, "");
       drawerTcBadge.textContent = `Time: ${sol.time_complexity}`;
       drawerScBadge.textContent = `Space: ${sol.space_complexity}`;
+      if (drawerLeetcodeTitleLink) drawerLeetcodeTitleLink.href = lcUrl;
+      if (drawerLeetcodeBtn) drawerLeetcodeBtn.href = lcUrl;
+      if (drawerDiffBadge) {
+        drawerDiffBadge.textContent = lcDiff;
+        drawerDiffBadge.className = "diff-badge diff-" + lcDiff.toLowerCase();
+      }
+
+      // Populate interactive example test case chips (shuzijun/leetcode-editor feature)
+      if (lcExampleChipsContainer) {
+        const examples = sol.leetcode_examples || [];
+        if (examples.length > 0) {
+          lcExampleChipsContainer.innerHTML = examples.map((ex, idx) => `
+            <button type="button" class="lc-example-chip" data-idx="${idx}" title="Load Example ${idx + 1} into Stdin">
+              <strong>Example ${idx + 1}</strong>: ${escapeHtml(ex.input.slice(0, 36))}${ex.input.length > 36 ? '...' : ''}
+              ${ex.output ? `<span style="color: var(--text-muted); font-size: 10px;">➔ ${escapeHtml(ex.output.slice(0, 16))}</span>` : ''}
+            </button>
+          `).join("");
+
+          lcExampleChipsContainer.querySelectorAll(".lc-example-chip").forEach(btn => {
+            btn.addEventListener("click", () => {
+              const idx = parseInt(btn.getAttribute("data-idx"), 10);
+              const ex = examples[idx];
+              if (ex && drawerStdinInput) {
+                drawerStdinInput.value = ex.input;
+                showToast(`Loaded Example ${idx + 1} into Stdin!`);
+              }
+            });
+          });
+
+          if (examples[0] && examples[0].input && (!drawerStdinInput.value || drawerStdinInput.value.includes("2 7 11 15"))) {
+            drawerStdinInput.value = examples[0].input;
+          }
+        } else if (sol.leetcode_default_input) {
+          drawerStdinInput.value = sol.leetcode_default_input;
+          lcExampleChipsContainer.innerHTML = `<button type="button" class="lc-example-chip" title="Default LeetCode Test Case"><strong>Default Test Case</strong>: ${escapeHtml(sol.leetcode_default_input.slice(0, 40))}</button>`;
+        } else {
+          lcExampleChipsContainer.innerHTML = `<span style="font-size: 10.5px; color: var(--text-muted); font-family: var(--font-mono);">Enter custom test array / parameters below:</span>`;
+        }
+      }
       drawerApproachText.textContent = sol.approach;
       drawerQuestionText.textContent = sol.question;
       renderDrawerCode();
@@ -4820,6 +5190,7 @@
                 <div class="moment-top">
                   <span class="moment-lecture-title" title="${escapeHtml(r.video_title)}">${escapeHtml(r.video_title)}</span>
                   <div class="moment-actions">
+                    <a href="${(r.dsa_snippet && r.dsa_snippet.leetcode_url) ? r.dsa_snippet.leetcode_url : (state.currentDsa && state.currentDsa.leetcode_url ? state.currentDsa.leetcode_url : 'https://leetcode.com/problemset/')}" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-lc" title="Directly solve on LeetCode" onclick="event.stopPropagation();"><span>&#128992;</span> LC &#8599;</a>
                     <button class="btn-card-action btn-card-trace" title="Open Whiteboard Pointer Trace">🎨 Whiteboard</button>
                     <button class="btn-card-action btn-card-code" title="View Code Solution">&lt;/&gt; Code</button>
                   </div>
@@ -5836,5 +6207,6 @@
     }
 
   </script>
+  <div id="lc-toast" class="lc-toast">&#128203; Solution copied! Opening LeetCode to submit...</div>
 </body>
 </html>

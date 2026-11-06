@@ -33,7 +33,12 @@ class DSASolution:
     source_repo: str = "Codensity30/Strivers-A2Z-DSA-Sheet"
 
     def to_dict(self) -> dict:
-        return asdict(self)
+        d = asdict(self)
+        try:
+            from ytrag.leetcode_helper import enrich_dsa_snippet_with_leetcode
+            return enrich_dsa_snippet_with_leetcode(d)
+        except Exception:
+            return d
 
 
 # Hand-curated idiomatic Python & Java solutions for top core DSA sheet problems
