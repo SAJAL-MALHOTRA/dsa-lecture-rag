@@ -203,7 +203,7 @@ TOPIC_PATTERNS = {
 }
 
 
-def classify_canonical_topics(query: str, max_topics: int = 2) -> List[str]:
+def classify_canonical_topics(query: str, max_topics: int = 2, fallback_default: bool = False) -> List[str]:
     """
     Classifies an input user query into 1-2 canonical DSA topic tags.
 
@@ -213,6 +213,8 @@ def classify_canonical_topics(query: str, max_topics: int = 2) -> List[str]:
         The user query / doubt.
     max_topics : int
         Maximum number of canonical topics to return.
+    fallback_default : bool
+        If True, returns ['arrays'] when no topics match. Defaults to False.
 
     Returns
     -------
@@ -221,7 +223,7 @@ def classify_canonical_topics(query: str, max_topics: int = 2) -> List[str]:
     """
     q_lower = query.lower().strip()
     if not q_lower:
-        return ["arrays"]
+        return ["arrays"] if fallback_default else []
 
     scored_topics: list[Tuple[str, int]] = []
 
@@ -244,7 +246,7 @@ def classify_canonical_topics(query: str, max_topics: int = 2) -> List[str]:
                 scored_topics.append((topic, 1))
 
     if not scored_topics:
-        return ["arrays"]
+        return ["arrays"] if fallback_default else []
 
     scored_topics.sort(key=lambda x: x[1], reverse=True)
     return [t for t, _ in scored_topics[:max_topics]]

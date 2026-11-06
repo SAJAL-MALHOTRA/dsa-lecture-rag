@@ -941,9 +941,14 @@ def striver_chat_endpoint(request: ChatRequest):
             matched_dsa = sol.to_dict()
 
     citations = []
+    seen_cits = set()
     if retrieved.results and retrieved.total_found > 0:
         for i, item in enumerate(retrieved.results):
+            cit_key = (item.video_id, item.timestamp_display)
+            if cit_key in seen_cits:
+                continue
             if item.score and item.score > 0.005:
+                seen_cits.add(cit_key)
                 citations.append({
                     "source_id": len(citations) + 1,
                     "video_id": item.video_id,
@@ -1000,19 +1005,21 @@ def striver_chat_endpoint(request: ChatRequest):
         except Exception as exc:
             logger.warning("Striver chat LLM error (%s), falling back to grounded extractive reply.", exc)
 
-    if not matched_dsa and not citations:
+    if not matched_dsa and (not citations or not retrieved.canonical_topics):
         return {
             "reply": (
-                f"Hey! I searched across all 6,881 lecture moments, but couldn't find a direct lecture match for *\"{query}\"*.\n\n"
-                "Try searching for the standard problem name (e.g., *'Two Sum'*, *'Kadane's Algorithm'*, *'Cycle in Linked List'*), "
-                "or browse the **🗺️ A2Z Roadmap tab** above to pick a problem to study!"
+                f"Hey! *\"{query}\"* doesn't appear to be part of the Striver A2Z DSA Sheet curriculum.\n\n"
+                "I am grounded specifically in Striver's 305 DSA YouTube lectures and 369 A2Z problems "
+                "(Arrays, Linked Lists, Binary Search, Trees, Graphs, Dynamic Programming, Recursion, etc.).\n\n"
+                "If you have a doubt on an algorithmic pattern or a specific A2Z problem, "
+                "feel free to ask, or browse the **🗺️ A2Z Roadmap tab** above to pick a problem to study!"
             ),
             "citations": [],
             "dsa_snippet": None,
             "provider": "extractive",
-            "canonical_topics": retrieved.canonical_topics,
-            "pattern_chunks": retrieved.pattern_chunks,
-            "enrichment": retrieved.enrichment,
+            "canonical_topics": [],
+            "pattern_chunks": [],
+            "enrichment": None,
         }
 
     # Conversational Extractive Fallback (Fast, Zero Hallucination, Striver Voice)

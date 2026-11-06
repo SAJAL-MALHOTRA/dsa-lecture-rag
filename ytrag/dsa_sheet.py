@@ -386,6 +386,15 @@ def parse_solution_file(file_path: Path, base_dir: Path) -> Optional[DSASolution
     )
 
 
+DSA_GENERIC_STOPWORDS = {
+    "problem", "problems", "algo", "algorithm", "algorithms", "question", "questions",
+    "solution", "solutions", "striver", "dsa", "sheet", "code", "approach",
+    "lecture", "video", "in", "on", "of", "the", "a", "an", "to", "for",
+    "with", "is", "by", "using", "check", "find", "how", "what", "why",
+    "give", "explain", "explanation", "tell", "me", "about"
+}
+
+
 class DSASheetIndex:
     """
     Search index over the Striver A2Z DSA sheet problem records.
@@ -456,18 +465,24 @@ class DSASheetIndex:
         if not expanded_tokens:
             return self.solutions[:k]
 
+        content_tokens = {t for t in expanded_tokens if t not in DSA_GENERIC_STOPWORDS}
+        if not content_tokens:
+            content_tokens = expanded_tokens
+
         scored: list[tuple[float, DSASolution]] = []
         for sol in self.solutions:
             title_tokens = set(re.findall(r"[a-z0-9]+", sol.title.lower()))
+            title_content = {t for t in title_tokens if t not in DSA_GENERIC_STOPWORDS} or title_tokens
             topic_tokens = set(re.findall(r"[a-z0-9]+", sol.topic.lower() + " " + sol.subtopic.lower()))
+            topic_content = {t for t in topic_tokens if t not in DSA_GENERIC_STOPWORDS} or topic_tokens
             app_tokens = set(re.findall(r"[a-z0-9]+", sol.approach.lower()))
             q_tokens_match = set(re.findall(r"[a-z0-9]+", sol.question.lower()))
 
-            # Title tokens matched
-            title_overlap = len(expanded_tokens & title_tokens)
-            score = title_overlap * 12.0
-            score += len(expanded_tokens & topic_tokens) * 4.0
-            score += len(expanded_tokens & (app_tokens | q_tokens_match)) * 1.0
+            # Title tokens matched on meaningful content
+            title_overlap = len(content_tokens & title_content)
+            score = title_overlap * 15.0
+            score += len(content_tokens & topic_content) * 4.0
+            score += len(content_tokens & (app_tokens | q_tokens_match)) * 1.0
 
             # Bonus for normalized title matches
             sol_title_norm = norm(sol.title)
@@ -475,7 +490,7 @@ class DSASheetIndex:
                 score += 80.0
             elif q_norm in sol_title_norm:
                 score += 50.0
-            elif all(t in sol_title_norm for t in tokens if len(t) > 1):
+            elif all(t in sol_title_norm for t in content_tokens if len(t) > 1):
                 score += 25.0
 
             # Penalize advanced variants when query is a simple core term
@@ -495,9 +510,15 @@ class DSASheetIndex:
             return None, 0.0
         sol = results[0]
         q_tokens = set(re.findall(r"[a-z0-9]+", query.lower()))
+        q_content = {t for t in q_tokens if t not in DSA_GENERIC_STOPWORDS}
+        if not q_content:
+            q_content = q_tokens
         title_tokens = set(re.findall(r"[a-z0-9]+", sol.title.lower()))
-        overlap = len(q_tokens & title_tokens)
-        score = overlap / max(1, len(q_tokens))
+        title_content = {t for t in title_tokens if t not in DSA_GENERIC_STOPWORDS} or title_tokens
+        overlap = len(q_content & title_content)
+        if overlap == 0:
+            return None, 0.0
+        score = overlap / max(1, len(q_content))
         return sol, score
 
     def get_solution_for_video(self, video_id: str, video_title: str = "") -> Optional[DSASolution]:

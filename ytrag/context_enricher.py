@@ -55,7 +55,14 @@ class ContextEnricher:
         for the given canonical topics.
         """
         if not canonical_topics:
-            canonical_topics = ["arrays"]
+            return {
+                "canonical_topics": [],
+                "visualizers": [],
+                "cheat_sheets": [],
+                "prerequisites": [],
+                "next_topics": [],
+                "practice_problems": [],
+            }
 
         visualizers: List[dict] = []
         cheat_sheets: List[dict] = []
