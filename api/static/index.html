@@ -24,6 +24,12 @@
       };
       document.head.appendChild(s);
     })();
+    // Keep-Alive Heartbeat: Pings /api/health every 8 minutes
+    // Ensures Render instance stays active while a user is studying or solving problems
+    setInterval(() => {
+      fetch('/api/health', { cache: 'no-store' }).catch(() => {});
+    }, 8 * 60 * 1000);
+
   </script>
   <style>
     /* --------------------------------------------------------------------------

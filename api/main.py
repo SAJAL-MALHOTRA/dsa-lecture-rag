@@ -172,7 +172,37 @@ async def lifespan(app: FastAPI):
     warmup_task = asyncio.create_task(_async_warmup())
     if os.getenv("PYTEST_CURRENT_TEST"):
         await warmup_task
+
+    # 3. Optional keep-alive self-pinger (runs on Render to prevent 15-min idle spin-down)
+    keep_alive_task = None
+    if not os.getenv("PYTEST_CURRENT_TEST") and os.getenv("RENDER"):
+        async def _keep_alive():
+            render_url = os.getenv("RENDER_EXTERNAL_URL", "https://striver-dsa-platform.onrender.com")
+            health_url = f"{render_url.rstrip('/')}/api/health"
+            print(f"[KeepAlive] Render keep-alive worker started for {health_url}", flush=True)
+            while True:
+                await asyncio.sleep(600)  # Ping every 10 minutes (Render idle timeout is 15 mins)
+                try:
+                    import urllib.request
+                    loop = asyncio.get_running_loop()
+                    def _ping():
+                        req = urllib.request.Request(
+                            health_url,
+                            headers={"User-Agent": "Render-KeepAlive-Worker/1.0", "Accept": "application/json"}
+                        )
+                        with urllib.request.urlopen(req, timeout=20) as resp:
+                            return resp.status
+                    status = await loop.run_in_executor(None, _ping)
+                    print(f"[KeepAlive] Self-pinged {health_url} -> HTTP {status}", flush=True)
+                except Exception as err:
+                    print(f"[KeepAlive] Self-ping notice: {err}", flush=True)
+
+        keep_alive_task = asyncio.create_task(_keep_alive())
+
     yield
+
+    if keep_alive_task and not keep_alive_task.done():
+        keep_alive_task.cancel()
     state.clear()
 
 
