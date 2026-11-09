@@ -33,6 +33,7 @@ if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
 from fastapi import FastAPI, Query, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import time
 from fastapi.responses import FileResponse, StreamingResponse
@@ -207,6 +208,16 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="DSA Lecture Retrieval & Learning Platform", lifespan=lifespan)
+
+# Enable CORS for Next.js frontend (Vercel, localhost, preview deployments)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS", "HEAD", "PUT", "DELETE"],
+    allow_headers=["*"],
+    expose_headers=["*"],
+)
 
 
 class SearchResultItem(BaseModel):

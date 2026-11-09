@@ -115,3 +115,32 @@ export interface AnswerResponse {
   pattern_chunks?: PatternChunk[];
   message?: string;
 }
+
+export interface RoadmapProblem {
+  id: string;
+  title: string;
+  topic: string;
+  subtopic: string;
+  difficulty: "Easy" | "Medium" | "Hard" | string;
+  time_complexity?: string;
+  space_complexity?: string;
+}
+
+export interface RoadmapSubtopic {
+  name: string;
+  count: number;
+  problems: RoadmapProblem[];
+}
+
+export interface RoadmapTopic {
+  raw_name: string;
+  name: string;
+  icon: string;
+  total_count: number;
+  subtopics: RoadmapSubtopic[];
+}
+
+export interface RoadmapResponse {
+  total_problems: number;
+  topics: RoadmapTopic[];
+}

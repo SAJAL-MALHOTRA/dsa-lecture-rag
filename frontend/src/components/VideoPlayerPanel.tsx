@@ -50,6 +50,7 @@ export const VideoPlayerPanel: React.FC<VideoPlayerPanelProps> = ({
       <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black shadow-inner border border-[#E5E7EB]">
         <iframe
           ref={iframeRef}
+          key={`${videoId}-${seekSec}`}
           src={embedUrl}
           title={lectureTitle || "Striver DSA Lecture"}
           className="h-full w-full"
