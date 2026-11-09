@@ -518,9 +518,8 @@ def search_lectures(
     q: str = Query(..., description="Student doubt / technical query"),
     k: int = Query(5, description="Number of results to return"),
 ):
-    ev = state.get("ready_event")
-    if ev is not None and not ev.is_set():
-        ev.wait(timeout=3.0)
+    if not state.get("is_ready", False):
+        time.sleep(0.5)
     try:
         return _retrieve(q, k)
     except Exception as e:
